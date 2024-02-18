@@ -8,7 +8,7 @@ namespace wan24.CLI
     /// <summary>
     /// CLI API argument informations
     /// </summary>
-    public partial class CliApiArgumentInfo
+    public partial record class CliApiArgumentInfo
     {
         /// <summary>
         /// Regular expression to match double spaces

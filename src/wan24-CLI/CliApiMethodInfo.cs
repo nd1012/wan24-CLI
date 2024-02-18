@@ -8,7 +8,7 @@ namespace wan24.CLI
     /// <summary>
     /// CLI API method informations
     /// </summary>
-    public class CliApiMethodInfo
+    public record class CliApiMethodInfo
     {
         /// <summary>
         /// Constructor

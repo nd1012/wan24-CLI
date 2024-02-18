@@ -6,7 +6,7 @@ namespace wan24.CLI
     /// <summary>
     /// CLI API context
     /// </summary>
-    public sealed class CliApiContext
+    public sealed record class CliApiContext
     {
         /// <summary>
         /// Constructor

@@ -391,7 +391,7 @@ namespace wan24.CLI
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
         /// <returns>Is required?</returns>
         public static bool IsCliValueRequired(this PropertyInfo pi, NullabilityInfoContext? nic = null)
-            => !IsNullable((nic ?? new()).Create(pi)) && IsCliValueRequired(pi.GetCustomAttributesCached<ValidationAttribute>());
+            => pi.IsNullable(nic) && IsCliValueRequired(pi.GetCustomAttributesCached<ValidationAttribute>());
 
         /// <summary>
         /// Is a CLI argument value required?
@@ -400,7 +400,7 @@ namespace wan24.CLI
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
         /// <returns>Is required?</returns>
         public static bool IsCliValueRequired(this ParameterInfo pi, NullabilityInfoContext? nic = null)
-            => !pi.HasDefaultValue && !IsNullable((nic ?? new()).Create(pi)) && IsCliValueRequired(pi.GetCustomAttributesCached<ValidationAttribute>());
+            => !pi.HasDefaultValue && !pi.IsNullable(nic) && IsCliValueRequired(pi.GetCustomAttributesCached<ValidationAttribute>());
 
         /// <summary>
         /// Is a CLI argument value required?
@@ -414,12 +414,5 @@ namespace wan24.CLI
                 (a is StringLengthAttribute len && len.MinimumLength > 0) ||
                 (a is CountLimitAttribute limit && limit.Min.HasValue && limit.Min > 0)
                 );
-
-        /// <summary>
-        /// Determine if nullable
-        /// </summary>
-        /// <param name="ni">Nullability info</param>
-        /// <returns>Is nullable?</returns>
-        internal static bool IsNullable(NullabilityInfo ni) => ni.WriteState != NullabilityState.NotNull || ni.ReadState != NullabilityState.NotNull;
     }
 }
