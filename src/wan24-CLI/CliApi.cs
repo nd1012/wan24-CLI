@@ -27,7 +27,7 @@ namespace wan24.CLI
         public static CliApiContext? CurrentContext { get; internal set; }
 
         /// <summary>
-        /// Exported APIs
+        /// Exported APIs of the current run
         /// </summary>
         public static FrozenDictionary<string, CliApiInfo>? ExportedApis { get; internal set; }
 
