@@ -239,9 +239,6 @@ name to the `HelpTextProperty` property of the `CliApi` attribute. If the help
 text contains MarkDown formatted informations, set the `HelptextIsMarkDown` 
 property value of the `CliApi` attribute to `true`.
 
-If you API methods return an exit code, you can add documentation for them 
-using the `ExitCode` attribute on the method.
-
 Per default help text information can use the `Spectre.Console` markup syntax 
 for printing rich output to an ANSI console. The default colors used can be 
 customized in the static `CliApiInfo` properties.

@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>wan24-CLI | wan24-CLI </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="wan24-CLI | wan24-CLI ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="wan24-cli">wan24-CLI</h1>
+
+<p>This library contains some CLI app helpers. It uses the
+<a href="https://github.com/spectreconsole/spectre.console/tree/main">Spectre.Console</a>
+library for console output.</p>
+<p><code>Spectre.Console</code> contains some of the functionality this library provides,
+but in a different style, which may not meet some developers needs. The goal
+of this library is to provide a tool for rapid CLI app API development.</p>
+<h2 id="usage">Usage</h2>
+<p>Create a CLI API type:</p>
+<pre><code class="lang-cs">[CliApi]
+public class YourCliApi
+{
+	public YourCliApi() { }
+
+	[CliApi, Required]
+	public string Value { get; set; } = null!;
+
+	[CliApi]
+	public void YourApiMethod()
+	{
+		Console.WriteLine(Value);
+	}
+}
+</code></pre>
+<p>In your CLI apps startup:</p>
+<pre><code class="lang-cs">await CliApi.RunAsync(args);
+</code></pre>
+<p>Usage of your CLI API:</p>
+<pre><code class="lang-bash">dotnet app.dll --value 'Hello world!'
+</code></pre>
+<h3 id="cli-argument-types">CLI argument types</h3>
+<h4 id="keyvalue-pairs">Key/value pairs</h4>
+<p>A key/value pair is indicated with a <code>--[key]</code>, followed by its value.</p>
+<h4 id="key-with-multiple-values">Key with multiple values</h4>
+<p>A key may allow a value list, which follows the key. If a 2nd value starts
+with a dash, it needs to be prepended with another key indicator - example:</p>
+<pre><code class="lang-bash">dotnet app.dll --key value1 value2 --key -value3
+</code></pre>
+<h4 id="flags">Flags</h4>
+<p>A flag is inidicated with a <code>-[flag]</code>, having no value following.</p>
+<h4 id="value-quoting">Value quoting</h4>
+<p>A value may be quoted using single or double quotes. If quoted, the value
+needs to be escaped for JSON decoding. A backslash needs double escaping.</p>
+<h4 id="supported-clr-types">Supported CLR types</h4>
+<p>Per default these CLR types can be parsed:</p>
+<ul>
+<li><code>bool</code>: Flag argument</li>
+<li><code>string</code>: Simple key/value argument</li>
+<li><code>string[]</code>: Simple key/value list argument</li>
+</ul>
+<p>All other CLR types need to be given as JSON encoded values.</p>
+<h4 id="keyless-parameters">Keyless parameters</h4>
+<p>Example:</p>
+<pre><code class="lang-bash">dotnet app.dll -flag value1 --key value2 - value3 value4
+</code></pre>
+<p><code>-flag</code> is a flag, while <code>value1</code> is a keyless value, and <code>value2</code> will be
+stored to the key <code>key</code>. <code>value3</code> and <code>value4</code> are appended to the keyless
+values list of the parsed <code>CliArguments</code> instance. The single <code>dash</code> is
+used to separate them from the value list for <code>key</code>.</p>
+<p>Another example:</p>
+<pre><code class="lang-bash">dotnet app.dll value1 value2 value3 ... -flag --key valueN
+</code></pre>
+<p>All arguments before <code>-flag</code> are handled as keyless values.</p>
+<p>For binding keyless values to a CLI argument property or parameter, the
+<code>CliApi</code> attribute constructor which takes a keyless value offset needs to be
+used (more about that in the following chapters).</p>
+<h3 id="cli-argument-binding">CLI argument binding</h3>
+<h4 id="as-api-type-property">As API type property</h4>
+<p>This is the recommended way for the argument binding:</p>
+<pre><code class="lang-cs">[CliApi, Required]
+public string Value { get; set; } = null!;
+</code></pre>
+<p>This binding will set the value of the argument <code>--value</code> to the property
+before invoking the requested API method.</p>
+<p>Don't worry about the <code>= null!</code> initialization of the property: The API
+instance will be validated. If <code>--value</code> wasn't given, an usage help will be
+displayed.</p>
+<h4 id="as-api-method-parameter">As API method parameter</h4>
+<pre><code class="lang-cs">[CliApi]
+public void YourApiMethod([CliApi] string value)
+{
+	...
+}
+</code></pre>
+<p>This binding will set the value of the argument <code>--value</code> to the parameter,
+when invoking the requested API method.</p>
+<h4 id="as-argument-object">As argument object</h4>
+<p>The argument object:</p>
+<pre><code class="lang-cs">public class YourApiMethodArguments : ICliArguments
+{
+	[CliApi, Required]
+	public string Value { get; set; } = null!;
+}
+</code></pre>
+<p>By implementing the empty <code>ICliArguments</code> interface, an argument type won't be
+JSON parsed, but used as argument object.</p>
+<p>Don't worry about the <code>= null!</code> initialization of the property: The API
+instance will be validated. If <code>--value</code> wasn't given, an usage help will be
+displayed.</p>
+<p>The API method:</p>
+<pre><code class="lang-cs">[CliApi]
+public void YourApiMethod([CliApi] YourApiMethodArguments args)
+{
+	...
+}
+</code></pre>
+<h3 id="binding-keyless-arguments">Binding keyless arguments</h3>
+<p>Example API type:</p>
+<pre><code class="lang-cs">[CliApi]
+public class YourCliApi
+{
+	public YourCliApi() { }
+
+	[CliApi(0)]
+	public string KeyLessValue1 { get ; set; } = null!;
+
+	[CliApi(1)]
+	public string[] KeyLessValues2 { get; set; } = null!;
+
+	[CliApi]
+	public string NamedValue { get; set; } = null!;
+
+	[CliApi]
+	public void YourApiMethod()
+	{
+		....
+	}
+}
+</code></pre>
+<p>Example CLI app call:</p>
+<pre><code class="lang-bash">dotnet app.dll keyLessValue1 --namedValue 'Named value' keyLessValue2a keyLessValue2b
+</code></pre>
+<p>Now the properties of <code>YourCliApi</code> have these values:</p>
+<ul>
+<li><code>KeyLessValue1</code>: <code>&quot;keyLessValue1&quot;</code></li>
+<li><code>NamedValue</code>: <code>&quot;Named value&quot;</code></li>
+<li><code>KeyLessValues2</code>: <code>string[] { &quot;keyLessValue2a&quot;, &quot;keyLessValue2b&quot;}</code></li>
+</ul>
+<p>A keyless value list must always be taken from the last possible offset.</p>
+<h3 id="multiple-api-types-and-multiple-methods-within-an-api-type">Multiple API types and multiple methods within an API type</h3>
+<p>Serving multiple APIs:</p>
+<pre><code class="lang-cs">await CliApi.RunAsync(args, default, typeof(YourCliApi1), typeof(YourCliApi2), ...);
+</code></pre>
+<p>The first keyless argument needs to be the API name (f.e. <code>YourApiType</code>).
+Keyless argument bindngs within your APIs still begin with <code>0</code>.</p>
+<p>When serving multiple API methods within an API type, the second keyless
+argument needs to be the api method name. If you serve only one API type,
+the name of the API method will be taken from the first keyless argument.
+Keyless argument bindngs within your APIs still begin with <code>0</code>.</p>
+<h3 id="custom-api-method-and-argument-names">Custom API, method and argument names</h3>
+<p>You can give a custom API/method/argument name to the <code>CliApi</code> attribute
+constructor.</p>
+<h3 id="json-parsed-arguments">JSON parsed arguments</h3>
+<p>Set the <code>ParseJson</code> property value of the <code>CliApi</code> attribute for an argument
+to <code>true</code> to enable JSON parsing of the given value.</p>
+<p><strong>NOTE</strong>: JSON parsing must be enabled for numeric types, for example!</p>
+<h2 id="api-documentation">API documentation</h2>
+<p>API documentation will be generated automatic and be displayed on wrong usage.
+To add details, you can use the <code>DisplayText</code> (for titles) and <code>Description</code>
+attributes. You may also specify a static string property which returns the
+help text for an API/method/argument by setting the properties namespace and
+name to the <code>HelpTextProperty</code> property of the <code>CliApi</code> attribute. If the help
+text contains MarkDown formatted informations, set the <code>HelptextIsMarkDown</code>
+property value of the <code>CliApi</code> attribute to <code>true</code>.</p>
+<p>Per default help text information can use the <code>Spectre.Console</code> markup syntax
+for printing rich output to an ANSI console. The default colors used can be
+customized in the static <code>CliApiInfo</code> properties.</p>
+<p>For intercepting errors there are multiple ways:</p>
+<h3 id="icliapierrorhandler"><code>ICliApiErrorHandler</code></h3>
+<p>If your API type implements the <code>ICliApiErrorHandler</code> interface, errors during
+processing will be handled by your API type.</p>
+<p>In case your method can't handle the error, you can forward the error handling
+to the default error processing by calling <code>CliApi.DisplayHelpAsync</code> and
+setting the value of the parameter <code>useApi</code> to <code>false</code>.</p>
+<h3 id="icliapihelpprovider"><code>ICliApiHelpProvider</code></h3>
+<p>If your API type implements the <code>ICliApiHelpProvider</code> interface, wrong usage
+can be handled by your API type.</p>
+<p><strong>NOTE</strong>: If your API type implements <code>ICliApiErrorHandler</code>, too, the help
+provider will only be called, if there was no exception.</p>
+<p>In case your method can't display the context help, you can forward the help
+handling to the default help display processing by calling
+<code>CliApi.DisplayHelpAsync</code> and setting the value of the parameter <code>useApi</code> to
+<code>false</code>.</p>
+<h3 id="icliapihelper"><code>ICliApiHelper</code></h3>
+<p>If you create a type which implements the <code>ICliApiHelper</code> interface, you can
+set an instance as global help provider to the <code>CliApi.Helper</code> property for a
+customized help output in any case.</p>
+<p>The used type may implement <code>ICliApiHelper</code> and/or <code>ICliApiHelpProvider</code>, too.</p>
+<p><strong>NOTE</strong>: Interfaces implemented in an API type will be used in the first
+place! The <code>CliApi.Helper</code> instance will only be used, if the API type wasn't
+determined yet, or it doesn't implement error handling / help providing. In
+case your CLI app serves a <code>CliHelpApi</code> type, too, it'll be used before
+calling <code>CliApi.Helper</code>.</p>
+<p><strong>CAUTION</strong>: Do not call <code>CliApi.DisplayHelpAsync</code> from a <code>ICliApiHelper</code>
+instance, it may cause an endless loop!</p>
+<h3 id="clihelpapi"><code>CliHelpApi</code></h3>
+<p>Serve the <code>CliHelpApi</code> API type for serving help for APIs/methods/arguments:</p>
+<pre><code class="lang-bash"># Display a list of possible API names
+dotnet app.dll help
+
+# Display API details
+dotnet app.dll help [apiName]
+
+# Display API method details
+dotnet app.dll help [apiName] [methodName]
+
+# Display argument details
+dotnet app.dll help [apiName] [argumentName]
+</code></pre>
+<h2 id="processing-multiple-api-method-calls-within-one-process">Processing multiple API method calls within one process</h2>
+<p>Example:</p>
+<pre><code class="lang-bash">dotnet app.dll --key value - --key value2 - --key value3
+</code></pre>
+<p>A single dash is used to separate API call arguments for one API method call.</p>
+<p>How to process the three API method calls:</p>
+<pre><code class="lang-cs">await CliApi.RunMultiAsync(args);
+</code></pre>
+<p>There are some limitations:</p>
+<ol>
+<li>API method calls will be processed synchronous</li>
+<li>The first API method which fails or returns an exit code <code>!=0</code> will break
+the processing loop</li>
+<li>API calls without any argument aren't supported and will be ignored</li>
+<li>Since a single dash is used as argument separator, it can't be used as
+argument for your APIs</li>
+</ol>
+<h2 id="dash-and-double-dash-handling">Dash and double dash handling</h2>
+<p>A single dash is a nameless flag, while a double dash is a nameless key which
+requires a value to follow.</p>
+<h2 id="double-name-apperance-handling">Double name apperance handling</h2>
+<p>A repeated flag will be ignored, while a repeated key which required a value
+creates a value list. An API (method/arguments) name should be unique -
+otherwise the APIs (methods/arguments) would overwrite each other.</p>
+<h2 id="cli-api-reflection">CLI API reflection</h2>
+<pre><code class="lang-cs">IReadOnlyDictionary&lt;string, CliApiInfo&gt; apiInfos = 
+	CliApiInfo.Create(typeof(YourCliApi), typeof(CliHelpApi), ...);
+</code></pre>
+<p>The <code>CliApiInfosExtensions</code> have some useful helper methods. Using the
+<code>ReflectionExtensions</code> and <code>CliApiContext</code> methods you may also reflect .NET
+reflection info objects or a CLI API context instance for CLI API object
+detail informations.</p>
+<h2 id="best-practice">Best practice</h2>
+<p>You use this library, 'cause it matches your requirements (which
+<code>Spectre.Console</code> does not in some cases). You can work work the .NET
+<code>Console</code> methods, but since this library references <code>Spectre.Console</code> you
+could enrich your CLI app with formatted console output easily, if your app
+runs within an ANSI console.</p>
+<p>Tips:</p>
+<ul>
+<li>Create one API type for methods which work with one entity and may share
+argument definitions</li>
+<li>Use API type properties for defining CLI arguments</li>
+<li>Use <code>ICliArguments</code> object parameters for encapsulating API method arguments
+within an arguments type, if using API type properties is not an option</li>
+<li>Use data annotations for ensuring valid arguments (the
+<a href="https://www.nuget.org/packages/ObjectValidation/">ObjectValidation</a> NuGet
+package is being used for deep object validations, if CLI arguments are being
+stored in properties)</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

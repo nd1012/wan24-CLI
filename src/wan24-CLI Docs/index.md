@@ -215,7 +215,7 @@ Keyless argument bindngs within your APIs still begin with `0`.
 When serving multiple API methods within an API type, the second keyless 
 argument needs to be the api method name. If you serve only one API type, 
 the name of the API method will be taken from the first keyless argument. 
-Keyless argument bindings within your APIs still begin with `0`.
+Keyless argument bindngs within your APIs still begin with `0`.
 
 ### Custom API, method and argument names
 
@@ -238,9 +238,6 @@ help text for an API/method/argument by setting the properties namespace and
 name to the `HelpTextProperty` property of the `CliApi` attribute. If the help 
 text contains MarkDown formatted informations, set the `HelptextIsMarkDown` 
 property value of the `CliApi` attribute to `true`.
-
-If you API methods return an exit code, you can add documentation for them 
-using the `ExitCode` attribute on the method.
 
 Per default help text information can use the `Spectre.Console` markup syntax 
 for printing rich output to an ANSI console. The default colors used can be 

@@ -1,0 +1,368 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/P/wan24-CLI/src/wan24-CLI Docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "xx2NMXhV/W7eImABAINLW7JvWtwN0OOr+OyQfmJPGNs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "RT8LwafeULNmCJDk48tbyEy2qlW3EUxG2czrORy2T9w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliApi.html",
+          "hash": "OSwVxt8EFm1GopX95EP4npenaEzvT/CQJQfXrI0fric="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliApiArgumentInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliApiArgumentInfo.html",
+          "hash": "RSC8gZMnSnJXiL60ALd9wNTpZjEEQbTJc0vkY9//Lkc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliApiAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliApiAttribute.html",
+          "hash": "s/Zh/IjKoFTcsJV4D/7zsLCcrIIuNRhhrrpVUTyTFQA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliApiContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliApiContext.html",
+          "hash": "umBEimTCOIQQGKboVbV5+Wuacke03e1aZWVdAj7Ze2w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliApiHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliApiHelper.html",
+          "hash": "Kkb5G+/DNQ7pCWmnXhphQ/bqQvUHwr7SJjlwVNXjVts="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliApiInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliApiInfo.html",
+          "hash": "tgj9/7EXclKMf2Q2HeX26eB6vuxkqsj837JTu/a6++8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliApiInfosExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliApiInfosExtensions.html",
+          "hash": "UEeErMNDZfTn8bMWc13kdxDAOK6vvAdJnw9QYIyBTuY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliApiMethodInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliApiMethodInfo.html",
+          "hash": "qD3qONA6r0Ncn7TdLwMc/PlJOMyzrbDcYz2RZEKyuaY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliArgException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliArgException.html",
+          "hash": "WKMavslOgDm339SqBgGRq6q4STRx1T5R5TnyS1TSJlc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliArgumentHosts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliArgumentHosts.html",
+          "hash": "osuGg4oFN/cx6IdA09ZtGG2a314lw9rcmIxr9DfAP+g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliArgumentTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliArgumentTypes.html",
+          "hash": "k2HDlDmfR/G2RWjEUKaLJuUJAznZRuRcFYrPZMRG8LA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliArgumentsExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliArgumentsExtensions.html",
+          "hash": "H2j6unCUhfTVH/BFPfUko47fDw3v7z+Ui8hoHbPJz0Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliHelpApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliHelpApi.html",
+          "hash": "0HCv3IwzADDmI746EoLPwZIJBasVaArrFVfPVGoFUz8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.ICliApiErrorHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.ICliApiErrorHandler.html",
+          "hash": "WUuyOSE496l6LBb777pbZGfOZ5TbIn3NuZKjPZSdZb0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.ICliApiHelpProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.ICliApiHelpProvider.html",
+          "hash": "LWEUGVVqiBqyNshA9zGfnUnpkYUB2ROoeudb3YmqlCI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.ICliApiHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.ICliApiHelper.html",
+          "hash": "/l2N4x1+Wo92AcKuT92kot01edSYo92VQc8CVpfVZes="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.ICliArguments.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.ICliArguments.html",
+          "hash": "c3qU6GAkuC6H3fRlsom0+CHdnvmeZlgrFIzWl8wjCVw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.ReflectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.ReflectionExtensions.html",
+          "hash": "qUkmsLm735fUO4sPylF827Vkd7oofP+hpSZESgyCb0c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.StringExtensions.html",
+          "hash": "VKjGWwyCw23YJahFWmDLR+xSkuBUCepyenhvkTfiNdY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.html",
+          "hash": "/UpfL37GNXJNkYVs7WCrfRpOv1BtMAPeRc/U3Z6bPzU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "VWOppMdboRzJ/FO+fJFx7vXyCxYc8SsdrDTLvpvyk7Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "RtqMaaC4l+uVfyOktI2XK1RFjvqE0o0J6MzRa8kUAyQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "s+UecGKJLe11K3w4+MJjx6QoiqktkO8teeQG06lk8L0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 20,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
