@@ -27,11 +27,14 @@ references:
   fullName: wan24.CLI.CliApi.CurrentContext
   nameWithType: CliApi.CurrentContext
 - uid: wan24.CLI.CliApi.DisplayHelpAsync(wan24.CLI.CliApiContext,System.Boolean)
-  name: DisplayHelpAsync(CliApiContext, Boolean)
+  name: DisplayHelpAsync(CliApiContext, bool)
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_DisplayHelpAsync_wan24_CLI_CliApiContext_System_Boolean_
   commentId: M:wan24.CLI.CliApi.DisplayHelpAsync(wan24.CLI.CliApiContext,System.Boolean)
-  fullName: wan24.CLI.CliApi.DisplayHelpAsync(wan24.CLI.CliApiContext, System.Boolean)
-  nameWithType: CliApi.DisplayHelpAsync(CliApiContext, Boolean)
+  name.vb: DisplayHelpAsync(CliApiContext, Boolean)
+  fullName: wan24.CLI.CliApi.DisplayHelpAsync(wan24.CLI.CliApiContext, bool)
+  fullName.vb: wan24.CLI.CliApi.DisplayHelpAsync(wan24.CLI.CliApiContext, Boolean)
+  nameWithType: CliApi.DisplayHelpAsync(CliApiContext, bool)
+  nameWithType.vb: CliApi.DisplayHelpAsync(CliApiContext, Boolean)
 - uid: wan24.CLI.CliApi.DisplayHelpAsync*
   name: DisplayHelpAsync
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_DisplayHelpAsync_
@@ -39,6 +42,19 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApi.DisplayHelpAsync
   nameWithType: CliApi.DisplayHelpAsync
+- uid: wan24.CLI.CliApi.ExportedApis
+  name: ExportedApis
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_ExportedApis
+  commentId: P:wan24.CLI.CliApi.ExportedApis
+  fullName: wan24.CLI.CliApi.ExportedApis
+  nameWithType: CliApi.ExportedApis
+- uid: wan24.CLI.CliApi.ExportedApis*
+  name: ExportedApis
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_ExportedApis_
+  commentId: Overload:wan24.CLI.CliApi.ExportedApis
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.ExportedApis
+  nameWithType: CliApi.ExportedApis
 - uid: wan24.CLI.CliApi.Helper
   name: Helper
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_Helper
@@ -52,24 +68,24 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApi.Helper
   nameWithType: CliApi.Helper
-- uid: wan24.CLI.CliApi.RunAsync(System.String[],CancellationToken,Type[])
-  name: RunAsync(String[], CancellationToken, Type[])
-  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunAsync_System_String___CancellationToken_Type___
-  commentId: M:wan24.CLI.CliApi.RunAsync(System.String[],CancellationToken,Type[])
-  name.vb: RunAsync(String(), CancellationToken, Type())
-  fullName: wan24.CLI.CliApi.RunAsync(System.String[], CancellationToken, Type[])
-  fullName.vb: wan24.CLI.CliApi.RunAsync(System.String(), CancellationToken, Type())
-  nameWithType: CliApi.RunAsync(String[], CancellationToken, Type[])
-  nameWithType.vb: CliApi.RunAsync(String(), CancellationToken, Type())
-- uid: wan24.CLI.CliApi.RunAsync(System.String[],wan24.Core.CliArguments,CancellationToken,Type[])
-  name: RunAsync(String[], CliArguments, CancellationToken, Type[])
-  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunAsync_System_String___wan24_Core_CliArguments_CancellationToken_Type___
-  commentId: M:wan24.CLI.CliApi.RunAsync(System.String[],wan24.Core.CliArguments,CancellationToken,Type[])
-  name.vb: RunAsync(String(), CliArguments, CancellationToken, Type())
-  fullName: wan24.CLI.CliApi.RunAsync(System.String[], wan24.Core.CliArguments, CancellationToken, Type[])
-  fullName.vb: wan24.CLI.CliApi.RunAsync(System.String(), wan24.Core.CliArguments, CancellationToken, Type())
-  nameWithType: CliApi.RunAsync(String[], CliArguments, CancellationToken, Type[])
-  nameWithType.vb: CliApi.RunAsync(String(), CliArguments, CancellationToken, Type())
+- uid: wan24.CLI.CliApi.RunAsync(System.String[],System.Threading.CancellationToken,System.Type[])
+  name: RunAsync(string[], CancellationToken, params Type[])
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunAsync_System_String___System_Threading_CancellationToken_System_Type___
+  commentId: M:wan24.CLI.CliApi.RunAsync(System.String[],System.Threading.CancellationToken,System.Type[])
+  name.vb: RunAsync(String(), CancellationToken, ParamArray Type())
+  fullName: wan24.CLI.CliApi.RunAsync(string[], System.Threading.CancellationToken, params System.Type[])
+  fullName.vb: wan24.CLI.CliApi.RunAsync(String(), System.Threading.CancellationToken, ParamArray System.Type())
+  nameWithType: CliApi.RunAsync(string[], CancellationToken, params Type[])
+  nameWithType.vb: CliApi.RunAsync(String(), CancellationToken, ParamArray Type())
+- uid: wan24.CLI.CliApi.RunAsync(System.String[],wan24.Core.CliArguments,System.Threading.CancellationToken,System.Type[])
+  name: RunAsync(string[], CliArguments, CancellationToken, params Type[])
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunAsync_System_String___wan24_Core_CliArguments_System_Threading_CancellationToken_System_Type___
+  commentId: M:wan24.CLI.CliApi.RunAsync(System.String[],wan24.Core.CliArguments,System.Threading.CancellationToken,System.Type[])
+  name.vb: RunAsync(String(), CliArguments, CancellationToken, ParamArray Type())
+  fullName: wan24.CLI.CliApi.RunAsync(string[], wan24.Core.CliArguments, System.Threading.CancellationToken, params System.Type[])
+  fullName.vb: wan24.CLI.CliApi.RunAsync(String(), wan24.Core.CliArguments, System.Threading.CancellationToken, ParamArray System.Type())
+  nameWithType: CliApi.RunAsync(string[], CliArguments, CancellationToken, params Type[])
+  nameWithType.vb: CliApi.RunAsync(String(), CliArguments, CancellationToken, ParamArray Type())
 - uid: wan24.CLI.CliApi.RunAsync*
   name: RunAsync
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunAsync_
@@ -77,15 +93,15 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApi.RunAsync
   nameWithType: CliApi.RunAsync
-- uid: wan24.CLI.CliApi.RunMultiAsync(System.String[],CancellationToken,Type[])
-  name: RunMultiAsync(String[], CancellationToken, Type[])
-  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunMultiAsync_System_String___CancellationToken_Type___
-  commentId: M:wan24.CLI.CliApi.RunMultiAsync(System.String[],CancellationToken,Type[])
-  name.vb: RunMultiAsync(String(), CancellationToken, Type())
-  fullName: wan24.CLI.CliApi.RunMultiAsync(System.String[], CancellationToken, Type[])
-  fullName.vb: wan24.CLI.CliApi.RunMultiAsync(System.String(), CancellationToken, Type())
-  nameWithType: CliApi.RunMultiAsync(String[], CancellationToken, Type[])
-  nameWithType.vb: CliApi.RunMultiAsync(String(), CancellationToken, Type())
+- uid: wan24.CLI.CliApi.RunMultiAsync(System.String[],System.Threading.CancellationToken,System.Type[])
+  name: RunMultiAsync(string[], CancellationToken, params Type[])
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunMultiAsync_System_String___System_Threading_CancellationToken_System_Type___
+  commentId: M:wan24.CLI.CliApi.RunMultiAsync(System.String[],System.Threading.CancellationToken,System.Type[])
+  name.vb: RunMultiAsync(String(), CancellationToken, ParamArray Type())
+  fullName: wan24.CLI.CliApi.RunMultiAsync(string[], System.Threading.CancellationToken, params System.Type[])
+  fullName.vb: wan24.CLI.CliApi.RunMultiAsync(String(), System.Threading.CancellationToken, ParamArray System.Type())
+  nameWithType: CliApi.RunMultiAsync(string[], CancellationToken, params Type[])
+  nameWithType.vb: CliApi.RunMultiAsync(String(), CancellationToken, ParamArray Type())
 - uid: wan24.CLI.CliApi.RunMultiAsync*
   name: RunMultiAsync
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunMultiAsync_
@@ -116,21 +132,30 @@ references:
   name: CliApiArgumentInfo(CliApiMethodInfo, ParameterInfo, NullabilityInfoContext)
   href: api/wan24.CLI.CliApiArgumentInfo.html#wan24_CLI_CliApiArgumentInfo__ctor_wan24_CLI_CliApiMethodInfo_System_Reflection_ParameterInfo_System_Reflection_NullabilityInfoContext_
   commentId: M:wan24.CLI.CliApiArgumentInfo.#ctor(wan24.CLI.CliApiMethodInfo,System.Reflection.ParameterInfo,System.Reflection.NullabilityInfoContext)
+  name.vb: New(CliApiMethodInfo, ParameterInfo, NullabilityInfoContext)
   fullName: wan24.CLI.CliApiArgumentInfo.CliApiArgumentInfo(wan24.CLI.CliApiMethodInfo, System.Reflection.ParameterInfo, System.Reflection.NullabilityInfoContext)
+  fullName.vb: wan24.CLI.CliApiArgumentInfo.New(wan24.CLI.CliApiMethodInfo, System.Reflection.ParameterInfo, System.Reflection.NullabilityInfoContext)
   nameWithType: CliApiArgumentInfo.CliApiArgumentInfo(CliApiMethodInfo, ParameterInfo, NullabilityInfoContext)
-- uid: wan24.CLI.CliApiArgumentInfo.#ctor(wan24.CLI.CliApiMethodInfo,System.Reflection.PropertyInfo,System.Reflection.NullabilityInfoContext)
-  name: CliApiArgumentInfo(CliApiMethodInfo, PropertyInfo, NullabilityInfoContext)
-  href: api/wan24.CLI.CliApiArgumentInfo.html#wan24_CLI_CliApiArgumentInfo__ctor_wan24_CLI_CliApiMethodInfo_System_Reflection_PropertyInfo_System_Reflection_NullabilityInfoContext_
-  commentId: M:wan24.CLI.CliApiArgumentInfo.#ctor(wan24.CLI.CliApiMethodInfo,System.Reflection.PropertyInfo,System.Reflection.NullabilityInfoContext)
-  fullName: wan24.CLI.CliApiArgumentInfo.CliApiArgumentInfo(wan24.CLI.CliApiMethodInfo, System.Reflection.PropertyInfo, System.Reflection.NullabilityInfoContext)
-  nameWithType: CliApiArgumentInfo.CliApiArgumentInfo(CliApiMethodInfo, PropertyInfo, NullabilityInfoContext)
+  nameWithType.vb: CliApiArgumentInfo.New(CliApiMethodInfo, ParameterInfo, NullabilityInfoContext)
+- uid: wan24.CLI.CliApiArgumentInfo.#ctor(wan24.CLI.CliApiMethodInfo,wan24.Core.PropertyInfoExt,System.Reflection.NullabilityInfoContext)
+  name: CliApiArgumentInfo(CliApiMethodInfo, PropertyInfoExt, NullabilityInfoContext)
+  href: api/wan24.CLI.CliApiArgumentInfo.html#wan24_CLI_CliApiArgumentInfo__ctor_wan24_CLI_CliApiMethodInfo_wan24_Core_PropertyInfoExt_System_Reflection_NullabilityInfoContext_
+  commentId: M:wan24.CLI.CliApiArgumentInfo.#ctor(wan24.CLI.CliApiMethodInfo,wan24.Core.PropertyInfoExt,System.Reflection.NullabilityInfoContext)
+  name.vb: New(CliApiMethodInfo, PropertyInfoExt, NullabilityInfoContext)
+  fullName: wan24.CLI.CliApiArgumentInfo.CliApiArgumentInfo(wan24.CLI.CliApiMethodInfo, wan24.Core.PropertyInfoExt, System.Reflection.NullabilityInfoContext)
+  fullName.vb: wan24.CLI.CliApiArgumentInfo.New(wan24.CLI.CliApiMethodInfo, wan24.Core.PropertyInfoExt, System.Reflection.NullabilityInfoContext)
+  nameWithType: CliApiArgumentInfo.CliApiArgumentInfo(CliApiMethodInfo, PropertyInfoExt, NullabilityInfoContext)
+  nameWithType.vb: CliApiArgumentInfo.New(CliApiMethodInfo, PropertyInfoExt, NullabilityInfoContext)
 - uid: wan24.CLI.CliApiArgumentInfo.#ctor*
   name: CliApiArgumentInfo
   href: api/wan24.CLI.CliApiArgumentInfo.html#wan24_CLI_CliApiArgumentInfo__ctor_
   commentId: Overload:wan24.CLI.CliApiArgumentInfo.#ctor
   isSpec: "True"
+  name.vb: New
   fullName: wan24.CLI.CliApiArgumentInfo.CliApiArgumentInfo
+  fullName.vb: wan24.CLI.CliApiArgumentInfo.New
   nameWithType: CliApiArgumentInfo.CliApiArgumentInfo
+  nameWithType.vb: CliApiArgumentInfo.New
 - uid: wan24.CLI.CliApiArgumentInfo.ArgumentName
   name: ArgumentName
   href: api/wan24.CLI.CliApiArgumentInfo.html#wan24_CLI_CliApiArgumentInfo_ArgumentName
@@ -385,29 +410,38 @@ references:
   fullName: wan24.CLI.CliApiAttribute
   nameWithType: CliApiAttribute
 - uid: wan24.CLI.CliApiAttribute.#ctor(System.Int32,System.Boolean)
-  name: CliApiAttribute(Int32, Boolean)
+  name: CliApiAttribute(int, bool)
   href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute__ctor_System_Int32_System_Boolean_
   commentId: M:wan24.CLI.CliApiAttribute.#ctor(System.Int32,System.Boolean)
-  fullName: wan24.CLI.CliApiAttribute.CliApiAttribute(System.Int32, System.Boolean)
-  nameWithType: CliApiAttribute.CliApiAttribute(Int32, Boolean)
+  name.vb: New(Integer, Boolean)
+  fullName: wan24.CLI.CliApiAttribute.CliApiAttribute(int, bool)
+  fullName.vb: wan24.CLI.CliApiAttribute.New(Integer, Boolean)
+  nameWithType: CliApiAttribute.CliApiAttribute(int, bool)
+  nameWithType.vb: CliApiAttribute.New(Integer, Boolean)
 - uid: wan24.CLI.CliApiAttribute.#ctor(System.String,System.Boolean)
-  name: CliApiAttribute(String, Boolean)
+  name: CliApiAttribute(string?, bool)
   href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute__ctor_System_String_System_Boolean_
   commentId: M:wan24.CLI.CliApiAttribute.#ctor(System.String,System.Boolean)
-  fullName: wan24.CLI.CliApiAttribute.CliApiAttribute(System.String, System.Boolean)
-  nameWithType: CliApiAttribute.CliApiAttribute(String, Boolean)
+  name.vb: New(String, Boolean)
+  fullName: wan24.CLI.CliApiAttribute.CliApiAttribute(string?, bool)
+  fullName.vb: wan24.CLI.CliApiAttribute.New(String, Boolean)
+  nameWithType: CliApiAttribute.CliApiAttribute(string?, bool)
+  nameWithType.vb: CliApiAttribute.New(String, Boolean)
 - uid: wan24.CLI.CliApiAttribute.#ctor*
   name: CliApiAttribute
   href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute__ctor_
   commentId: Overload:wan24.CLI.CliApiAttribute.#ctor
   isSpec: "True"
+  name.vb: New
   fullName: wan24.CLI.CliApiAttribute.CliApiAttribute
+  fullName.vb: wan24.CLI.CliApiAttribute.New
   nameWithType: CliApiAttribute.CliApiAttribute
-- uid: wan24.CLI.CliApiAttribute.GetApiInfo(Type,System.Reflection.NullabilityInfoContext)
+  nameWithType.vb: CliApiAttribute.New
+- uid: wan24.CLI.CliApiAttribute.GetApiInfo(System.Type,System.Reflection.NullabilityInfoContext)
   name: GetApiInfo(Type, NullabilityInfoContext)
-  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_GetApiInfo_Type_System_Reflection_NullabilityInfoContext_
-  commentId: M:wan24.CLI.CliApiAttribute.GetApiInfo(Type,System.Reflection.NullabilityInfoContext)
-  fullName: wan24.CLI.CliApiAttribute.GetApiInfo(Type, System.Reflection.NullabilityInfoContext)
+  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_GetApiInfo_System_Type_System_Reflection_NullabilityInfoContext_
+  commentId: M:wan24.CLI.CliApiAttribute.GetApiInfo(System.Type,System.Reflection.NullabilityInfoContext)
+  fullName: wan24.CLI.CliApiAttribute.GetApiInfo(System.Type, System.Reflection.NullabilityInfoContext)
   nameWithType: CliApiAttribute.GetApiInfo(Type, NullabilityInfoContext)
 - uid: wan24.CLI.CliApiAttribute.GetApiInfo*
   name: GetApiInfo
@@ -598,11 +632,14 @@ references:
   fullName: wan24.CLI.CliApiContext.ExportedApis
   nameWithType: CliApiContext.ExportedApis
 - uid: wan24.CLI.CliApiContext.GetArgumentHostType(System.String)
-  name: GetArgumentHostType(String)
+  name: GetArgumentHostType(string)
   href: api/wan24.CLI.CliApiContext.html#wan24_CLI_CliApiContext_GetArgumentHostType_System_String_
   commentId: M:wan24.CLI.CliApiContext.GetArgumentHostType(System.String)
-  fullName: wan24.CLI.CliApiContext.GetArgumentHostType(System.String)
-  nameWithType: CliApiContext.GetArgumentHostType(String)
+  name.vb: GetArgumentHostType(String)
+  fullName: wan24.CLI.CliApiContext.GetArgumentHostType(string)
+  fullName.vb: wan24.CLI.CliApiContext.GetArgumentHostType(String)
+  nameWithType: CliApiContext.GetArgumentHostType(string)
+  nameWithType.vb: CliApiContext.GetArgumentHostType(String)
 - uid: wan24.CLI.CliApiContext.GetArgumentHostType*
   name: GetArgumentHostType
   href: api/wan24.CLI.CliApiContext.html#wan24_CLI_CliApiContext_GetArgumentHostType_
@@ -624,11 +661,14 @@ references:
   fullName: wan24.CLI.CliApiContext.GetAvailableArguments
   nameWithType: CliApiContext.GetAvailableArguments
 - uid: wan24.CLI.CliApiContext.GetCliArgumentHostParameter(System.String)
-  name: GetCliArgumentHostParameter(String)
+  name: GetCliArgumentHostParameter(string)
   href: api/wan24.CLI.CliApiContext.html#wan24_CLI_CliApiContext_GetCliArgumentHostParameter_System_String_
   commentId: M:wan24.CLI.CliApiContext.GetCliArgumentHostParameter(System.String)
-  fullName: wan24.CLI.CliApiContext.GetCliArgumentHostParameter(System.String)
-  nameWithType: CliApiContext.GetCliArgumentHostParameter(String)
+  name.vb: GetCliArgumentHostParameter(String)
+  fullName: wan24.CLI.CliApiContext.GetCliArgumentHostParameter(string)
+  fullName.vb: wan24.CLI.CliApiContext.GetCliArgumentHostParameter(String)
+  nameWithType: CliApiContext.GetCliArgumentHostParameter(string)
+  nameWithType.vb: CliApiContext.GetCliArgumentHostParameter(String)
 - uid: wan24.CLI.CliApiContext.GetCliArgumentHostParameter*
   name: GetCliArgumentHostParameter
   href: api/wan24.CLI.CliApiContext.html#wan24_CLI_CliApiContext_GetCliArgumentHostParameter_
@@ -637,11 +677,14 @@ references:
   fullName: wan24.CLI.CliApiContext.GetCliArgumentHostParameter
   nameWithType: CliApiContext.GetCliArgumentHostParameter
 - uid: wan24.CLI.CliApiContext.GetCliArgumentHostProperty(System.String)
-  name: GetCliArgumentHostProperty(String)
+  name: GetCliArgumentHostProperty(string)
   href: api/wan24.CLI.CliApiContext.html#wan24_CLI_CliApiContext_GetCliArgumentHostProperty_System_String_
   commentId: M:wan24.CLI.CliApiContext.GetCliArgumentHostProperty(System.String)
-  fullName: wan24.CLI.CliApiContext.GetCliArgumentHostProperty(System.String)
-  nameWithType: CliApiContext.GetCliArgumentHostProperty(String)
+  name.vb: GetCliArgumentHostProperty(String)
+  fullName: wan24.CLI.CliApiContext.GetCliArgumentHostProperty(string)
+  fullName.vb: wan24.CLI.CliApiContext.GetCliArgumentHostProperty(String)
+  nameWithType: CliApiContext.GetCliArgumentHostProperty(string)
+  nameWithType.vb: CliApiContext.GetCliArgumentHostProperty(String)
 - uid: wan24.CLI.CliApiContext.GetCliArgumentHostProperty*
   name: GetCliArgumentHostProperty
   href: api/wan24.CLI.CliApiContext.html#wan24_CLI_CliApiContext_GetCliArgumentHostProperty_
@@ -724,15 +767,21 @@ references:
   name: CliApiHelper()
   href: api/wan24.CLI.CliApiHelper.html#wan24_CLI_CliApiHelper__ctor
   commentId: M:wan24.CLI.CliApiHelper.#ctor
+  name.vb: New()
   fullName: wan24.CLI.CliApiHelper.CliApiHelper()
+  fullName.vb: wan24.CLI.CliApiHelper.New()
   nameWithType: CliApiHelper.CliApiHelper()
+  nameWithType.vb: CliApiHelper.New()
 - uid: wan24.CLI.CliApiHelper.#ctor*
   name: CliApiHelper
   href: api/wan24.CLI.CliApiHelper.html#wan24_CLI_CliApiHelper__ctor_
   commentId: Overload:wan24.CLI.CliApiHelper.#ctor
   isSpec: "True"
+  name.vb: New
   fullName: wan24.CLI.CliApiHelper.CliApiHelper
+  fullName.vb: wan24.CLI.CliApiHelper.New
   nameWithType: CliApiHelper.CliApiHelper
+  nameWithType.vb: CliApiHelper.New
 - uid: wan24.CLI.CliApiHelper.DisplayHelp(wan24.CLI.CliApiContext)
   name: DisplayHelp(CliApiContext)
   href: api/wan24.CLI.CliApiHelper.html#wan24_CLI_CliApiHelper_DisplayHelp_wan24_CLI_CliApiContext_
@@ -752,19 +801,25 @@ references:
   commentId: T:wan24.CLI.CliApiInfo
   fullName: wan24.CLI.CliApiInfo
   nameWithType: CliApiInfo
-- uid: wan24.CLI.CliApiInfo.#ctor(Type,System.Reflection.NullabilityInfoContext)
-  name: CliApiInfo(Type, NullabilityInfoContext)
-  href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo__ctor_Type_System_Reflection_NullabilityInfoContext_
-  commentId: M:wan24.CLI.CliApiInfo.#ctor(Type,System.Reflection.NullabilityInfoContext)
-  fullName: wan24.CLI.CliApiInfo.CliApiInfo(Type, System.Reflection.NullabilityInfoContext)
-  nameWithType: CliApiInfo.CliApiInfo(Type, NullabilityInfoContext)
+- uid: wan24.CLI.CliApiInfo.#ctor(System.Type,System.Reflection.NullabilityInfoContext)
+  name: CliApiInfo(Type, NullabilityInfoContext?)
+  href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo__ctor_System_Type_System_Reflection_NullabilityInfoContext_
+  commentId: M:wan24.CLI.CliApiInfo.#ctor(System.Type,System.Reflection.NullabilityInfoContext)
+  name.vb: New(Type, NullabilityInfoContext)
+  fullName: wan24.CLI.CliApiInfo.CliApiInfo(System.Type, System.Reflection.NullabilityInfoContext?)
+  fullName.vb: wan24.CLI.CliApiInfo.New(System.Type, System.Reflection.NullabilityInfoContext)
+  nameWithType: CliApiInfo.CliApiInfo(Type, NullabilityInfoContext?)
+  nameWithType.vb: CliApiInfo.New(Type, NullabilityInfoContext)
 - uid: wan24.CLI.CliApiInfo.#ctor*
   name: CliApiInfo
   href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo__ctor_
   commentId: Overload:wan24.CLI.CliApiInfo.#ctor
   isSpec: "True"
+  name.vb: New
   fullName: wan24.CLI.CliApiInfo.CliApiInfo
+  fullName.vb: wan24.CLI.CliApiInfo.New
   nameWithType: CliApiInfo.CliApiInfo
+  nameWithType.vb: CliApiInfo.New
 - uid: wan24.CLI.CliApiInfo.ApiMethodNameColor
   name: ApiMethodNameColor
   href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo_ApiMethodNameColor
@@ -817,15 +872,15 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiInfo.BackGroundColor
   nameWithType: CliApiInfo.BackGroundColor
-- uid: wan24.CLI.CliApiInfo.Create(Type[])
-  name: Create(Type[])
-  href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo_Create_Type___
-  commentId: M:wan24.CLI.CliApiInfo.Create(Type[])
-  name.vb: Create(Type())
-  fullName: wan24.CLI.CliApiInfo.Create(Type[])
-  fullName.vb: wan24.CLI.CliApiInfo.Create(Type())
-  nameWithType: CliApiInfo.Create(Type[])
-  nameWithType.vb: CliApiInfo.Create(Type())
+- uid: wan24.CLI.CliApiInfo.Create(System.Type[])
+  name: Create(params Type[])
+  href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo_Create_System_Type___
+  commentId: M:wan24.CLI.CliApiInfo.Create(System.Type[])
+  name.vb: Create(ParamArray Type())
+  fullName: wan24.CLI.CliApiInfo.Create(params System.Type[])
+  fullName.vb: wan24.CLI.CliApiInfo.Create(ParamArray System.Type())
+  nameWithType: CliApiInfo.Create(params Type[])
+  nameWithType.vb: CliApiInfo.Create(ParamArray Type())
 - uid: wan24.CLI.CliApiInfo.Create*
   name: Create
   href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo_Create_
@@ -982,14 +1037,14 @@ references:
   commentId: T:wan24.CLI.CliApiInfosExtensions
   fullName: wan24.CLI.CliApiInfosExtensions
   nameWithType: CliApiInfosExtensions
-- uid: wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax(IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo},System.String,System.String,System.String)
-  name: GetApiMethodSyntax(IReadOnlyDictionary<String, CliApiInfo>, String, String, String)
-  href: api/wan24.CLI.CliApiInfosExtensions.html#wan24_CLI_CliApiInfosExtensions_GetApiMethodSyntax_IReadOnlyDictionary_System_String_wan24_CLI_CliApiInfo__System_String_System_String_System_String_
-  commentId: M:wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax(IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo},System.String,System.String,System.String)
+- uid: wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax(System.Collections.Generic.IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo},System.String,System.String,System.String)
+  name: GetApiMethodSyntax(IReadOnlyDictionary<string, CliApiInfo>, string?, string?, string?)
+  href: api/wan24.CLI.CliApiInfosExtensions.html#wan24_CLI_CliApiInfosExtensions_GetApiMethodSyntax_System_Collections_Generic_IReadOnlyDictionary_System_String_wan24_CLI_CliApiInfo__System_String_System_String_System_String_
+  commentId: M:wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax(System.Collections.Generic.IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo},System.String,System.String,System.String)
   name.vb: GetApiMethodSyntax(IReadOnlyDictionary(Of String, CliApiInfo), String, String, String)
-  fullName: wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax(IReadOnlyDictionary<System.String, wan24.CLI.CliApiInfo>, System.String, System.String, System.String)
-  fullName.vb: wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax(IReadOnlyDictionary(Of System.String, wan24.CLI.CliApiInfo), System.String, System.String, System.String)
-  nameWithType: CliApiInfosExtensions.GetApiMethodSyntax(IReadOnlyDictionary<String, CliApiInfo>, String, String, String)
+  fullName: wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax(System.Collections.Generic.IReadOnlyDictionary<string, wan24.CLI.CliApiInfo>, string?, string?, string?)
+  fullName.vb: wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax(System.Collections.Generic.IReadOnlyDictionary(Of String, wan24.CLI.CliApiInfo), String, String, String)
+  nameWithType: CliApiInfosExtensions.GetApiMethodSyntax(IReadOnlyDictionary<string, CliApiInfo>, string?, string?, string?)
   nameWithType.vb: CliApiInfosExtensions.GetApiMethodSyntax(IReadOnlyDictionary(Of String, CliApiInfo), String, String, String)
 - uid: wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax*
   name: GetApiMethodSyntax
@@ -998,14 +1053,14 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiInfosExtensions.GetApiMethodSyntax
   nameWithType: CliApiInfosExtensions.GetApiMethodSyntax
-- uid: wan24.CLI.CliApiInfosExtensions.GetDefaultApi(IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo})
-  name: GetDefaultApi(IReadOnlyDictionary<String, CliApiInfo>)
-  href: api/wan24.CLI.CliApiInfosExtensions.html#wan24_CLI_CliApiInfosExtensions_GetDefaultApi_IReadOnlyDictionary_System_String_wan24_CLI_CliApiInfo__
-  commentId: M:wan24.CLI.CliApiInfosExtensions.GetDefaultApi(IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo})
+- uid: wan24.CLI.CliApiInfosExtensions.GetDefaultApi(System.Collections.Generic.IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo})
+  name: GetDefaultApi(IReadOnlyDictionary<string, CliApiInfo>)
+  href: api/wan24.CLI.CliApiInfosExtensions.html#wan24_CLI_CliApiInfosExtensions_GetDefaultApi_System_Collections_Generic_IReadOnlyDictionary_System_String_wan24_CLI_CliApiInfo__
+  commentId: M:wan24.CLI.CliApiInfosExtensions.GetDefaultApi(System.Collections.Generic.IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo})
   name.vb: GetDefaultApi(IReadOnlyDictionary(Of String, CliApiInfo))
-  fullName: wan24.CLI.CliApiInfosExtensions.GetDefaultApi(IReadOnlyDictionary<System.String, wan24.CLI.CliApiInfo>)
-  fullName.vb: wan24.CLI.CliApiInfosExtensions.GetDefaultApi(IReadOnlyDictionary(Of System.String, wan24.CLI.CliApiInfo))
-  nameWithType: CliApiInfosExtensions.GetDefaultApi(IReadOnlyDictionary<String, CliApiInfo>)
+  fullName: wan24.CLI.CliApiInfosExtensions.GetDefaultApi(System.Collections.Generic.IReadOnlyDictionary<string, wan24.CLI.CliApiInfo>)
+  fullName.vb: wan24.CLI.CliApiInfosExtensions.GetDefaultApi(System.Collections.Generic.IReadOnlyDictionary(Of String, wan24.CLI.CliApiInfo))
+  nameWithType: CliApiInfosExtensions.GetDefaultApi(IReadOnlyDictionary<string, CliApiInfo>)
   nameWithType.vb: CliApiInfosExtensions.GetDefaultApi(IReadOnlyDictionary(Of String, CliApiInfo))
 - uid: wan24.CLI.CliApiInfosExtensions.GetDefaultApi*
   name: GetDefaultApi
@@ -1024,15 +1079,21 @@ references:
   name: CliApiMethodInfo(CliApiInfo, MethodInfo, NullabilityInfoContext)
   href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo__ctor_wan24_CLI_CliApiInfo_System_Reflection_MethodInfo_System_Reflection_NullabilityInfoContext_
   commentId: M:wan24.CLI.CliApiMethodInfo.#ctor(wan24.CLI.CliApiInfo,System.Reflection.MethodInfo,System.Reflection.NullabilityInfoContext)
+  name.vb: New(CliApiInfo, MethodInfo, NullabilityInfoContext)
   fullName: wan24.CLI.CliApiMethodInfo.CliApiMethodInfo(wan24.CLI.CliApiInfo, System.Reflection.MethodInfo, System.Reflection.NullabilityInfoContext)
+  fullName.vb: wan24.CLI.CliApiMethodInfo.New(wan24.CLI.CliApiInfo, System.Reflection.MethodInfo, System.Reflection.NullabilityInfoContext)
   nameWithType: CliApiMethodInfo.CliApiMethodInfo(CliApiInfo, MethodInfo, NullabilityInfoContext)
+  nameWithType.vb: CliApiMethodInfo.New(CliApiInfo, MethodInfo, NullabilityInfoContext)
 - uid: wan24.CLI.CliApiMethodInfo.#ctor*
   name: CliApiMethodInfo
   href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo__ctor_
   commentId: Overload:wan24.CLI.CliApiMethodInfo.#ctor
   isSpec: "True"
+  name.vb: New
   fullName: wan24.CLI.CliApiMethodInfo.CliApiMethodInfo
+  fullName.vb: wan24.CLI.CliApiMethodInfo.New
   nameWithType: CliApiMethodInfo.CliApiMethodInfo
+  nameWithType.vb: CliApiMethodInfo.New
 - uid: wan24.CLI.CliApiMethodInfo.API
   name: API
   href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo_API
@@ -1072,6 +1133,19 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiMethodInfo.Description
   nameWithType: CliApiMethodInfo.Description
+- uid: wan24.CLI.CliApiMethodInfo.ExitCodes
+  name: ExitCodes
+  href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo_ExitCodes
+  commentId: P:wan24.CLI.CliApiMethodInfo.ExitCodes
+  fullName: wan24.CLI.CliApiMethodInfo.ExitCodes
+  nameWithType: CliApiMethodInfo.ExitCodes
+- uid: wan24.CLI.CliApiMethodInfo.ExitCodes*
+  name: ExitCodes
+  href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo_ExitCodes_
+  commentId: Overload:wan24.CLI.CliApiMethodInfo.ExitCodes
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiMethodInfo.ExitCodes
+  nameWithType: CliApiMethodInfo.ExitCodes
 - uid: wan24.CLI.CliApiMethodInfo.Method
   name: Method
   href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo_Method
@@ -1147,45 +1221,57 @@ references:
   name: CliArgException()
   href: api/wan24.CLI.CliArgException.html#wan24_CLI_CliArgException__ctor
   commentId: M:wan24.CLI.CliArgException.#ctor
+  name.vb: New()
   fullName: wan24.CLI.CliArgException.CliArgException()
+  fullName.vb: wan24.CLI.CliArgException.New()
   nameWithType: CliArgException.CliArgException()
+  nameWithType.vb: CliArgException.New()
 - uid: wan24.CLI.CliArgException.#ctor(System.String)
-  name: CliArgException(String)
+  name: CliArgException(string?)
   href: api/wan24.CLI.CliArgException.html#wan24_CLI_CliArgException__ctor_System_String_
   commentId: M:wan24.CLI.CliArgException.#ctor(System.String)
-  fullName: wan24.CLI.CliArgException.CliArgException(System.String)
-  nameWithType: CliArgException.CliArgException(String)
-- uid: wan24.CLI.CliArgException.#ctor(System.String,System.Nullable{Exception})
-  name: CliArgException(String, Nullable<Exception>)
-  href: api/wan24.CLI.CliArgException.html#wan24_CLI_CliArgException__ctor_System_String_System_Nullable_Exception__
-  commentId: M:wan24.CLI.CliArgException.#ctor(System.String,System.Nullable{Exception})
-  name.vb: CliArgException(String, Nullable(Of Exception))
-  fullName: wan24.CLI.CliArgException.CliArgException(System.String, System.Nullable<Exception>)
-  fullName.vb: wan24.CLI.CliArgException.CliArgException(System.String, System.Nullable(Of Exception))
-  nameWithType: CliArgException.CliArgException(String, Nullable<Exception>)
-  nameWithType.vb: CliArgException.CliArgException(String, Nullable(Of Exception))
+  name.vb: New(String)
+  fullName: wan24.CLI.CliArgException.CliArgException(string?)
+  fullName.vb: wan24.CLI.CliArgException.New(String)
+  nameWithType: CliArgException.CliArgException(string?)
+  nameWithType.vb: CliArgException.New(String)
+- uid: wan24.CLI.CliArgException.#ctor(System.String,System.Exception)
+  name: CliArgException(string?, Exception?)
+  href: api/wan24.CLI.CliArgException.html#wan24_CLI_CliArgException__ctor_System_String_System_Exception_
+  commentId: M:wan24.CLI.CliArgException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: wan24.CLI.CliArgException.CliArgException(string?, System.Exception?)
+  fullName.vb: wan24.CLI.CliArgException.New(String, System.Exception)
+  nameWithType: CliArgException.CliArgException(string?, Exception?)
+  nameWithType.vb: CliArgException.New(String, Exception)
 - uid: wan24.CLI.CliArgException.#ctor(System.String,System.String)
-  name: CliArgException(String, String)
+  name: CliArgException(string?, string?)
   href: api/wan24.CLI.CliArgException.html#wan24_CLI_CliArgException__ctor_System_String_System_String_
   commentId: M:wan24.CLI.CliArgException.#ctor(System.String,System.String)
-  fullName: wan24.CLI.CliArgException.CliArgException(System.String, System.String)
-  nameWithType: CliArgException.CliArgException(String, String)
-- uid: wan24.CLI.CliArgException.#ctor(System.String,System.String,System.Nullable{Exception})
-  name: CliArgException(String, String, Nullable<Exception>)
-  href: api/wan24.CLI.CliArgException.html#wan24_CLI_CliArgException__ctor_System_String_System_String_System_Nullable_Exception__
-  commentId: M:wan24.CLI.CliArgException.#ctor(System.String,System.String,System.Nullable{Exception})
-  name.vb: CliArgException(String, String, Nullable(Of Exception))
-  fullName: wan24.CLI.CliArgException.CliArgException(System.String, System.String, System.Nullable<Exception>)
-  fullName.vb: wan24.CLI.CliArgException.CliArgException(System.String, System.String, System.Nullable(Of Exception))
-  nameWithType: CliArgException.CliArgException(String, String, Nullable<Exception>)
-  nameWithType.vb: CliArgException.CliArgException(String, String, Nullable(Of Exception))
+  name.vb: New(String, String)
+  fullName: wan24.CLI.CliArgException.CliArgException(string?, string?)
+  fullName.vb: wan24.CLI.CliArgException.New(String, String)
+  nameWithType: CliArgException.CliArgException(string?, string?)
+  nameWithType.vb: CliArgException.New(String, String)
+- uid: wan24.CLI.CliArgException.#ctor(System.String,System.String,System.Exception)
+  name: CliArgException(string?, string?, Exception?)
+  href: api/wan24.CLI.CliArgException.html#wan24_CLI_CliArgException__ctor_System_String_System_String_System_Exception_
+  commentId: M:wan24.CLI.CliArgException.#ctor(System.String,System.String,System.Exception)
+  name.vb: New(String, String, Exception)
+  fullName: wan24.CLI.CliArgException.CliArgException(string?, string?, System.Exception?)
+  fullName.vb: wan24.CLI.CliArgException.New(String, String, System.Exception)
+  nameWithType: CliArgException.CliArgException(string?, string?, Exception?)
+  nameWithType.vb: CliArgException.New(String, String, Exception)
 - uid: wan24.CLI.CliArgException.#ctor*
   name: CliArgException
   href: api/wan24.CLI.CliArgException.html#wan24_CLI_CliArgException__ctor_
   commentId: Overload:wan24.CLI.CliArgException.#ctor
   isSpec: "True"
+  name.vb: New
   fullName: wan24.CLI.CliArgException.CliArgException
+  fullName.vb: wan24.CLI.CliArgException.New
   nameWithType: CliArgException.CliArgException
+  nameWithType.vb: CliArgException.New
 - uid: wan24.CLI.CliArgumentHosts
   name: CliArgumentHosts
   href: api/wan24.CLI.CliArgumentHosts.html
@@ -1210,25 +1296,6 @@ references:
   commentId: F:wan24.CLI.CliArgumentHosts.Property
   fullName: wan24.CLI.CliArgumentHosts.Property
   nameWithType: CliArgumentHosts.Property
-- uid: wan24.CLI.CliArgumentsExtensions
-  name: CliArgumentsExtensions
-  href: api/wan24.CLI.CliArgumentsExtensions.html
-  commentId: T:wan24.CLI.CliArgumentsExtensions
-  fullName: wan24.CLI.CliArgumentsExtensions
-  nameWithType: CliArgumentsExtensions
-- uid: wan24.CLI.CliArgumentsExtensions.GetArgumentType(wan24.Core.CliArguments,System.String)
-  name: GetArgumentType(CliArguments, String)
-  href: api/wan24.CLI.CliArgumentsExtensions.html#wan24_CLI_CliArgumentsExtensions_GetArgumentType_wan24_Core_CliArguments_System_String_
-  commentId: M:wan24.CLI.CliArgumentsExtensions.GetArgumentType(wan24.Core.CliArguments,System.String)
-  fullName: wan24.CLI.CliArgumentsExtensions.GetArgumentType(wan24.Core.CliArguments, System.String)
-  nameWithType: CliArgumentsExtensions.GetArgumentType(CliArguments, String)
-- uid: wan24.CLI.CliArgumentsExtensions.GetArgumentType*
-  name: GetArgumentType
-  href: api/wan24.CLI.CliArgumentsExtensions.html#wan24_CLI_CliArgumentsExtensions_GetArgumentType_
-  commentId: Overload:wan24.CLI.CliArgumentsExtensions.GetArgumentType
-  isSpec: "True"
-  fullName: wan24.CLI.CliArgumentsExtensions.GetArgumentType
-  nameWithType: CliArgumentsExtensions.GetArgumentType
 - uid: wan24.CLI.CliArgumentTypes
   name: CliArgumentTypes
   href: api/wan24.CLI.CliArgumentTypes.html
@@ -1253,6 +1320,28 @@ references:
   commentId: F:wan24.CLI.CliArgumentTypes.Value
   fullName: wan24.CLI.CliArgumentTypes.Value
   nameWithType: CliArgumentTypes.Value
+- uid: wan24.CLI.CliArgumentsExtensions
+  name: CliArgumentsExtensions
+  href: api/wan24.CLI.CliArgumentsExtensions.html
+  commentId: T:wan24.CLI.CliArgumentsExtensions
+  fullName: wan24.CLI.CliArgumentsExtensions
+  nameWithType: CliArgumentsExtensions
+- uid: wan24.CLI.CliArgumentsExtensions.GetArgumentType(wan24.Core.CliArguments,System.String)
+  name: GetArgumentType(CliArguments, string)
+  href: api/wan24.CLI.CliArgumentsExtensions.html#wan24_CLI_CliArgumentsExtensions_GetArgumentType_wan24_Core_CliArguments_System_String_
+  commentId: M:wan24.CLI.CliArgumentsExtensions.GetArgumentType(wan24.Core.CliArguments,System.String)
+  name.vb: GetArgumentType(CliArguments, String)
+  fullName: wan24.CLI.CliArgumentsExtensions.GetArgumentType(wan24.Core.CliArguments, string)
+  fullName.vb: wan24.CLI.CliArgumentsExtensions.GetArgumentType(wan24.Core.CliArguments, String)
+  nameWithType: CliArgumentsExtensions.GetArgumentType(CliArguments, string)
+  nameWithType.vb: CliArgumentsExtensions.GetArgumentType(CliArguments, String)
+- uid: wan24.CLI.CliArgumentsExtensions.GetArgumentType*
+  name: GetArgumentType
+  href: api/wan24.CLI.CliArgumentsExtensions.html#wan24_CLI_CliArgumentsExtensions_GetArgumentType_
+  commentId: Overload:wan24.CLI.CliArgumentsExtensions.GetArgumentType
+  isSpec: "True"
+  fullName: wan24.CLI.CliArgumentsExtensions.GetArgumentType
+  nameWithType: CliArgumentsExtensions.GetArgumentType
 - uid: wan24.CLI.CliHelpApi
   name: CliHelpApi
   href: api/wan24.CLI.CliHelpApi.html
@@ -1263,15 +1352,21 @@ references:
   name: CliHelpApi()
   href: api/wan24.CLI.CliHelpApi.html#wan24_CLI_CliHelpApi__ctor
   commentId: M:wan24.CLI.CliHelpApi.#ctor
+  name.vb: New()
   fullName: wan24.CLI.CliHelpApi.CliHelpApi()
+  fullName.vb: wan24.CLI.CliHelpApi.New()
   nameWithType: CliHelpApi.CliHelpApi()
+  nameWithType.vb: CliHelpApi.New()
 - uid: wan24.CLI.CliHelpApi.#ctor*
   name: CliHelpApi
   href: api/wan24.CLI.CliHelpApi.html#wan24_CLI_CliHelpApi__ctor_
   commentId: Overload:wan24.CLI.CliHelpApi.#ctor
   isSpec: "True"
+  name.vb: New
   fullName: wan24.CLI.CliHelpApi.CliHelpApi
+  fullName.vb: wan24.CLI.CliHelpApi.New
   nameWithType: CliHelpApi.CliHelpApi
+  nameWithType.vb: CliHelpApi.New
 - uid: wan24.CLI.CliHelpApi.ApiMethodName
   name: ApiMethodName
   href: api/wan24.CLI.CliHelpApi.html#wan24_CLI_CliHelpApi_ApiMethodName
@@ -1337,23 +1432,57 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliHelpApi.Help
   nameWithType: CliHelpApi.Help
-- uid: wan24.CLI.CliHelpApi.wan24#CLI#ICliApiHelpProvider#DisplayHelp(wan24.CLI.CliApiContext)
-  name: ICliApiHelpProvider.DisplayHelp(CliApiContext)
-  href: api/wan24.CLI.CliHelpApi.html#wan24_CLI_CliHelpApi_wan24_CLI_ICliApiHelpProvider_DisplayHelp_wan24_CLI_CliApiContext_
-  commentId: M:wan24.CLI.CliHelpApi.wan24#CLI#ICliApiHelpProvider#DisplayHelp(wan24.CLI.CliApiContext)
-  name.vb: wan24.CLI.ICliApiHelpProvider.DisplayHelp(CliApiContext)
-  fullName: wan24.CLI.CliHelpApi.wan24.CLI.ICliApiHelpProvider.DisplayHelp(wan24.CLI.CliApiContext)
-  nameWithType: CliHelpApi.ICliApiHelpProvider.DisplayHelp(CliApiContext)
-  nameWithType.vb: CliHelpApi.wan24.CLI.ICliApiHelpProvider.DisplayHelp(CliApiContext)
-- uid: wan24.CLI.CliHelpApi.wan24#CLI#ICliApiHelpProvider#DisplayHelp*
-  name: ICliApiHelpProvider.DisplayHelp
-  href: api/wan24.CLI.CliHelpApi.html#wan24_CLI_CliHelpApi_wan24_CLI_ICliApiHelpProvider_DisplayHelp_
-  commentId: Overload:wan24.CLI.CliHelpApi.wan24#CLI#ICliApiHelpProvider#DisplayHelp
+- uid: wan24.CLI.ExitCodeAttribute
+  name: ExitCodeAttribute
+  href: api/wan24.CLI.ExitCodeAttribute.html
+  commentId: T:wan24.CLI.ExitCodeAttribute
+  fullName: wan24.CLI.ExitCodeAttribute
+  nameWithType: ExitCodeAttribute
+- uid: wan24.CLI.ExitCodeAttribute.#ctor(System.Int32,System.String)
+  name: ExitCodeAttribute(int, string?)
+  href: api/wan24.CLI.ExitCodeAttribute.html#wan24_CLI_ExitCodeAttribute__ctor_System_Int32_System_String_
+  commentId: M:wan24.CLI.ExitCodeAttribute.#ctor(System.Int32,System.String)
+  name.vb: New(Integer, String)
+  fullName: wan24.CLI.ExitCodeAttribute.ExitCodeAttribute(int, string?)
+  fullName.vb: wan24.CLI.ExitCodeAttribute.New(Integer, String)
+  nameWithType: ExitCodeAttribute.ExitCodeAttribute(int, string?)
+  nameWithType.vb: ExitCodeAttribute.New(Integer, String)
+- uid: wan24.CLI.ExitCodeAttribute.#ctor*
+  name: ExitCodeAttribute
+  href: api/wan24.CLI.ExitCodeAttribute.html#wan24_CLI_ExitCodeAttribute__ctor_
+  commentId: Overload:wan24.CLI.ExitCodeAttribute.#ctor
   isSpec: "True"
-  name.vb: wan24.CLI.ICliApiHelpProvider.DisplayHelp
-  fullName: wan24.CLI.CliHelpApi.wan24.CLI.ICliApiHelpProvider.DisplayHelp
-  nameWithType: CliHelpApi.ICliApiHelpProvider.DisplayHelp
-  nameWithType.vb: CliHelpApi.wan24.CLI.ICliApiHelpProvider.DisplayHelp
+  name.vb: New
+  fullName: wan24.CLI.ExitCodeAttribute.ExitCodeAttribute
+  fullName.vb: wan24.CLI.ExitCodeAttribute.New
+  nameWithType: ExitCodeAttribute.ExitCodeAttribute
+  nameWithType.vb: ExitCodeAttribute.New
+- uid: wan24.CLI.ExitCodeAttribute.Code
+  name: Code
+  href: api/wan24.CLI.ExitCodeAttribute.html#wan24_CLI_ExitCodeAttribute_Code
+  commentId: P:wan24.CLI.ExitCodeAttribute.Code
+  fullName: wan24.CLI.ExitCodeAttribute.Code
+  nameWithType: ExitCodeAttribute.Code
+- uid: wan24.CLI.ExitCodeAttribute.Code*
+  name: Code
+  href: api/wan24.CLI.ExitCodeAttribute.html#wan24_CLI_ExitCodeAttribute_Code_
+  commentId: Overload:wan24.CLI.ExitCodeAttribute.Code
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeAttribute.Code
+  nameWithType: ExitCodeAttribute.Code
+- uid: wan24.CLI.ExitCodeAttribute.Description
+  name: Description
+  href: api/wan24.CLI.ExitCodeAttribute.html#wan24_CLI_ExitCodeAttribute_Description
+  commentId: P:wan24.CLI.ExitCodeAttribute.Description
+  fullName: wan24.CLI.ExitCodeAttribute.Description
+  nameWithType: ExitCodeAttribute.Description
+- uid: wan24.CLI.ExitCodeAttribute.Description*
+  name: Description
+  href: api/wan24.CLI.ExitCodeAttribute.html#wan24_CLI_ExitCodeAttribute_Description_
+  commentId: Overload:wan24.CLI.ExitCodeAttribute.Description
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeAttribute.Description
+  nameWithType: ExitCodeAttribute.Description
 - uid: wan24.CLI.ICliApiErrorHandler
   name: ICliApiErrorHandler
   href: api/wan24.CLI.ICliApiErrorHandler.html
@@ -1373,25 +1502,6 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ICliApiErrorHandler.HandleApiErrorAsync
   nameWithType: ICliApiErrorHandler.HandleApiErrorAsync
-- uid: wan24.CLI.ICliApiHelper
-  name: ICliApiHelper
-  href: api/wan24.CLI.ICliApiHelper.html
-  commentId: T:wan24.CLI.ICliApiHelper
-  fullName: wan24.CLI.ICliApiHelper
-  nameWithType: ICliApiHelper
-- uid: wan24.CLI.ICliApiHelper.DisplayHelp(wan24.CLI.CliApiContext)
-  name: DisplayHelp(CliApiContext)
-  href: api/wan24.CLI.ICliApiHelper.html#wan24_CLI_ICliApiHelper_DisplayHelp_wan24_CLI_CliApiContext_
-  commentId: M:wan24.CLI.ICliApiHelper.DisplayHelp(wan24.CLI.CliApiContext)
-  fullName: wan24.CLI.ICliApiHelper.DisplayHelp(wan24.CLI.CliApiContext)
-  nameWithType: ICliApiHelper.DisplayHelp(CliApiContext)
-- uid: wan24.CLI.ICliApiHelper.DisplayHelp*
-  name: DisplayHelp
-  href: api/wan24.CLI.ICliApiHelper.html#wan24_CLI_ICliApiHelper_DisplayHelp_
-  commentId: Overload:wan24.CLI.ICliApiHelper.DisplayHelp
-  isSpec: "True"
-  fullName: wan24.CLI.ICliApiHelper.DisplayHelp
-  nameWithType: ICliApiHelper.DisplayHelp
 - uid: wan24.CLI.ICliApiHelpProvider
   name: ICliApiHelpProvider
   href: api/wan24.CLI.ICliApiHelpProvider.html
@@ -1411,6 +1521,25 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ICliApiHelpProvider.DisplayHelp
   nameWithType: ICliApiHelpProvider.DisplayHelp
+- uid: wan24.CLI.ICliApiHelper
+  name: ICliApiHelper
+  href: api/wan24.CLI.ICliApiHelper.html
+  commentId: T:wan24.CLI.ICliApiHelper
+  fullName: wan24.CLI.ICliApiHelper
+  nameWithType: ICliApiHelper
+- uid: wan24.CLI.ICliApiHelper.DisplayHelp(wan24.CLI.CliApiContext)
+  name: DisplayHelp(CliApiContext)
+  href: api/wan24.CLI.ICliApiHelper.html#wan24_CLI_ICliApiHelper_DisplayHelp_wan24_CLI_CliApiContext_
+  commentId: M:wan24.CLI.ICliApiHelper.DisplayHelp(wan24.CLI.CliApiContext)
+  fullName: wan24.CLI.ICliApiHelper.DisplayHelp(wan24.CLI.CliApiContext)
+  nameWithType: ICliApiHelper.DisplayHelp(CliApiContext)
+- uid: wan24.CLI.ICliApiHelper.DisplayHelp*
+  name: DisplayHelp
+  href: api/wan24.CLI.ICliApiHelper.html#wan24_CLI_ICliApiHelper_DisplayHelp_
+  commentId: Overload:wan24.CLI.ICliApiHelper.DisplayHelp
+  isSpec: "True"
+  fullName: wan24.CLI.ICliApiHelper.DisplayHelp
+  nameWithType: ICliApiHelper.DisplayHelp
 - uid: wan24.CLI.ICliArguments
   name: ICliArguments
   href: api/wan24.CLI.ICliArguments.html
@@ -1423,12 +1552,15 @@ references:
   commentId: T:wan24.CLI.ReflectionExtensions
   fullName: wan24.CLI.ReflectionExtensions
   nameWithType: ReflectionExtensions
-- uid: wan24.CLI.ReflectionExtensions.FindCliArgumentMember(Type,System.String,System.Reflection.MethodInfo)
-  name: FindCliArgumentMember(Type, String, MethodInfo)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_FindCliArgumentMember_Type_System_String_System_Reflection_MethodInfo_
-  commentId: M:wan24.CLI.ReflectionExtensions.FindCliArgumentMember(Type,System.String,System.Reflection.MethodInfo)
-  fullName: wan24.CLI.ReflectionExtensions.FindCliArgumentMember(Type, System.String, System.Reflection.MethodInfo)
-  nameWithType: ReflectionExtensions.FindCliArgumentMember(Type, String, MethodInfo)
+- uid: wan24.CLI.ReflectionExtensions.FindCliArgumentMember(System.Type,System.String,System.Reflection.MethodInfo)
+  name: FindCliArgumentMember(Type, string, MethodInfo?)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_FindCliArgumentMember_System_Type_System_String_System_Reflection_MethodInfo_
+  commentId: M:wan24.CLI.ReflectionExtensions.FindCliArgumentMember(System.Type,System.String,System.Reflection.MethodInfo)
+  name.vb: FindCliArgumentMember(Type, String, MethodInfo)
+  fullName: wan24.CLI.ReflectionExtensions.FindCliArgumentMember(System.Type, string, System.Reflection.MethodInfo?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.FindCliArgumentMember(System.Type, String, System.Reflection.MethodInfo)
+  nameWithType: ReflectionExtensions.FindCliArgumentMember(Type, string, MethodInfo?)
+  nameWithType.vb: ReflectionExtensions.FindCliArgumentMember(Type, String, MethodInfo)
 - uid: wan24.CLI.ReflectionExtensions.FindCliArgumentMember*
   name: FindCliArgumentMember
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_FindCliArgumentMember_
@@ -1436,12 +1568,15 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ReflectionExtensions.FindCliArgumentMember
   nameWithType: ReflectionExtensions.FindCliArgumentMember
-- uid: wan24.CLI.ReflectionExtensions.GetArgumentHostType(Type,System.String,System.Reflection.MethodInfo)
-  name: GetArgumentHostType(Type, String, MethodInfo)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetArgumentHostType_Type_System_String_System_Reflection_MethodInfo_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetArgumentHostType(Type,System.String,System.Reflection.MethodInfo)
-  fullName: wan24.CLI.ReflectionExtensions.GetArgumentHostType(Type, System.String, System.Reflection.MethodInfo)
-  nameWithType: ReflectionExtensions.GetArgumentHostType(Type, String, MethodInfo)
+- uid: wan24.CLI.ReflectionExtensions.GetArgumentHostType(System.Type,System.String,System.Reflection.MethodInfo)
+  name: GetArgumentHostType(Type, string, MethodInfo?)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetArgumentHostType_System_Type_System_String_System_Reflection_MethodInfo_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetArgumentHostType(System.Type,System.String,System.Reflection.MethodInfo)
+  name.vb: GetArgumentHostType(Type, String, MethodInfo)
+  fullName: wan24.CLI.ReflectionExtensions.GetArgumentHostType(System.Type, string, System.Reflection.MethodInfo?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetArgumentHostType(System.Type, String, System.Reflection.MethodInfo)
+  nameWithType: ReflectionExtensions.GetArgumentHostType(Type, string, MethodInfo?)
+  nameWithType.vb: ReflectionExtensions.GetArgumentHostType(Type, String, MethodInfo)
 - uid: wan24.CLI.ReflectionExtensions.GetArgumentHostType*
   name: GetArgumentHostType
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetArgumentHostType_
@@ -1449,12 +1584,15 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ReflectionExtensions.GetArgumentHostType
   nameWithType: ReflectionExtensions.GetArgumentHostType
-- uid: wan24.CLI.ReflectionExtensions.GetAvailableArguments(Type,System.Reflection.MethodInfo)
-  name: GetAvailableArguments(Type, MethodInfo)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetAvailableArguments_Type_System_Reflection_MethodInfo_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetAvailableArguments(Type,System.Reflection.MethodInfo)
-  fullName: wan24.CLI.ReflectionExtensions.GetAvailableArguments(Type, System.Reflection.MethodInfo)
-  nameWithType: ReflectionExtensions.GetAvailableArguments(Type, MethodInfo)
+- uid: wan24.CLI.ReflectionExtensions.GetAvailableArguments(System.Type,System.Reflection.MethodInfo)
+  name: GetAvailableArguments(Type, MethodInfo?)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetAvailableArguments_System_Type_System_Reflection_MethodInfo_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetAvailableArguments(System.Type,System.Reflection.MethodInfo)
+  name.vb: GetAvailableArguments(Type, MethodInfo)
+  fullName: wan24.CLI.ReflectionExtensions.GetAvailableArguments(System.Type, System.Reflection.MethodInfo?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetAvailableArguments(System.Type, System.Reflection.MethodInfo)
+  nameWithType: ReflectionExtensions.GetAvailableArguments(Type, MethodInfo?)
+  nameWithType.vb: ReflectionExtensions.GetAvailableArguments(Type, MethodInfo)
 - uid: wan24.CLI.ReflectionExtensions.GetAvailableArguments*
   name: GetAvailableArguments
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetAvailableArguments_
@@ -1463,35 +1601,41 @@ references:
   fullName: wan24.CLI.ReflectionExtensions.GetAvailableArguments
   nameWithType: ReflectionExtensions.GetAvailableArguments
 - uid: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo,wan24.CLI.CliApiAttribute)
-  name: GetCliApiArgumentName(ParameterInfo, CliApiAttribute)
+  name: GetCliApiArgumentName(ParameterInfo, CliApiAttribute?)
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiArgumentName_System_Reflection_ParameterInfo_wan24_CLI_CliApiAttribute_
   commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo,wan24.CLI.CliApiAttribute)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo, wan24.CLI.CliApiAttribute)
-  nameWithType: ReflectionExtensions.GetCliApiArgumentName(ParameterInfo, CliApiAttribute)
+  name.vb: GetCliApiArgumentName(ParameterInfo, CliApiAttribute)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo, wan24.CLI.CliApiAttribute?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo, wan24.CLI.CliApiAttribute)
+  nameWithType: ReflectionExtensions.GetCliApiArgumentName(ParameterInfo, CliApiAttribute?)
+  nameWithType.vb: ReflectionExtensions.GetCliApiArgumentName(ParameterInfo, CliApiAttribute)
 - uid: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo,wan24.CLI.CliApiAttribute@)
-  name: GetCliApiArgumentName(ParameterInfo, out CliApiAttribute)
+  name: GetCliApiArgumentName(ParameterInfo, out CliApiAttribute?)
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiArgumentName_System_Reflection_ParameterInfo_wan24_CLI_CliApiAttribute__
   commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo,wan24.CLI.CliApiAttribute@)
-  name.vb: GetCliApiArgumentName(ParameterInfo, ByRef CliApiAttribute)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo, out wan24.CLI.CliApiAttribute)
-  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo, ByRef wan24.CLI.CliApiAttribute)
-  nameWithType: ReflectionExtensions.GetCliApiArgumentName(ParameterInfo, out CliApiAttribute)
-  nameWithType.vb: ReflectionExtensions.GetCliApiArgumentName(ParameterInfo, ByRef CliApiAttribute)
+  name.vb: GetCliApiArgumentName(ParameterInfo, CliApiAttribute)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo, out wan24.CLI.CliApiAttribute?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.ParameterInfo, wan24.CLI.CliApiAttribute)
+  nameWithType: ReflectionExtensions.GetCliApiArgumentName(ParameterInfo, out CliApiAttribute?)
+  nameWithType.vb: ReflectionExtensions.GetCliApiArgumentName(ParameterInfo, CliApiAttribute)
 - uid: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo,wan24.CLI.CliApiAttribute)
-  name: GetCliApiArgumentName(PropertyInfo, CliApiAttribute)
+  name: GetCliApiArgumentName(PropertyInfo, CliApiAttribute?)
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiArgumentName_System_Reflection_PropertyInfo_wan24_CLI_CliApiAttribute_
   commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo,wan24.CLI.CliApiAttribute)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo, wan24.CLI.CliApiAttribute)
-  nameWithType: ReflectionExtensions.GetCliApiArgumentName(PropertyInfo, CliApiAttribute)
+  name.vb: GetCliApiArgumentName(PropertyInfo, CliApiAttribute)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo, wan24.CLI.CliApiAttribute?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo, wan24.CLI.CliApiAttribute)
+  nameWithType: ReflectionExtensions.GetCliApiArgumentName(PropertyInfo, CliApiAttribute?)
+  nameWithType.vb: ReflectionExtensions.GetCliApiArgumentName(PropertyInfo, CliApiAttribute)
 - uid: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo,wan24.CLI.CliApiAttribute@)
-  name: GetCliApiArgumentName(PropertyInfo, out CliApiAttribute)
+  name: GetCliApiArgumentName(PropertyInfo, out CliApiAttribute?)
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiArgumentName_System_Reflection_PropertyInfo_wan24_CLI_CliApiAttribute__
   commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo,wan24.CLI.CliApiAttribute@)
-  name.vb: GetCliApiArgumentName(PropertyInfo, ByRef CliApiAttribute)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo, out wan24.CLI.CliApiAttribute)
-  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo, ByRef wan24.CLI.CliApiAttribute)
-  nameWithType: ReflectionExtensions.GetCliApiArgumentName(PropertyInfo, out CliApiAttribute)
-  nameWithType.vb: ReflectionExtensions.GetCliApiArgumentName(PropertyInfo, ByRef CliApiAttribute)
+  name.vb: GetCliApiArgumentName(PropertyInfo, CliApiAttribute)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo, out wan24.CLI.CliApiAttribute?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName(System.Reflection.PropertyInfo, wan24.CLI.CliApiAttribute)
+  nameWithType: ReflectionExtensions.GetCliApiArgumentName(PropertyInfo, out CliApiAttribute?)
+  nameWithType.vb: ReflectionExtensions.GetCliApiArgumentName(PropertyInfo, CliApiAttribute)
 - uid: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName*
   name: GetCliApiArgumentName
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiArgumentName_
@@ -1500,20 +1644,23 @@ references:
   fullName: wan24.CLI.ReflectionExtensions.GetCliApiArgumentName
   nameWithType: ReflectionExtensions.GetCliApiArgumentName
 - uid: wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo,wan24.CLI.CliApiAttribute)
-  name: GetCliApiMethodName(MethodInfo, CliApiAttribute)
+  name: GetCliApiMethodName(MethodInfo, CliApiAttribute?)
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiMethodName_System_Reflection_MethodInfo_wan24_CLI_CliApiAttribute_
   commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo,wan24.CLI.CliApiAttribute)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo, wan24.CLI.CliApiAttribute)
-  nameWithType: ReflectionExtensions.GetCliApiMethodName(MethodInfo, CliApiAttribute)
+  name.vb: GetCliApiMethodName(MethodInfo, CliApiAttribute)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo, wan24.CLI.CliApiAttribute?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo, wan24.CLI.CliApiAttribute)
+  nameWithType: ReflectionExtensions.GetCliApiMethodName(MethodInfo, CliApiAttribute?)
+  nameWithType.vb: ReflectionExtensions.GetCliApiMethodName(MethodInfo, CliApiAttribute)
 - uid: wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo,wan24.CLI.CliApiAttribute@)
-  name: GetCliApiMethodName(MethodInfo, out CliApiAttribute)
+  name: GetCliApiMethodName(MethodInfo, out CliApiAttribute?)
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiMethodName_System_Reflection_MethodInfo_wan24_CLI_CliApiAttribute__
   commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo,wan24.CLI.CliApiAttribute@)
-  name.vb: GetCliApiMethodName(MethodInfo, ByRef CliApiAttribute)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo, out wan24.CLI.CliApiAttribute)
-  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo, ByRef wan24.CLI.CliApiAttribute)
-  nameWithType: ReflectionExtensions.GetCliApiMethodName(MethodInfo, out CliApiAttribute)
-  nameWithType.vb: ReflectionExtensions.GetCliApiMethodName(MethodInfo, ByRef CliApiAttribute)
+  name.vb: GetCliApiMethodName(MethodInfo, CliApiAttribute)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo, out wan24.CLI.CliApiAttribute?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiMethodName(System.Reflection.MethodInfo, wan24.CLI.CliApiAttribute)
+  nameWithType: ReflectionExtensions.GetCliApiMethodName(MethodInfo, out CliApiAttribute?)
+  nameWithType.vb: ReflectionExtensions.GetCliApiMethodName(MethodInfo, CliApiAttribute)
 - uid: wan24.CLI.ReflectionExtensions.GetCliApiMethodName*
   name: GetCliApiMethodName
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiMethodName_
@@ -1521,21 +1668,24 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ReflectionExtensions.GetCliApiMethodName
   nameWithType: ReflectionExtensions.GetCliApiMethodName
-- uid: wan24.CLI.ReflectionExtensions.GetCliApiName(Type,wan24.CLI.CliApiAttribute)
-  name: GetCliApiName(Type, CliApiAttribute)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiName_Type_wan24_CLI_CliApiAttribute_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiName(Type,wan24.CLI.CliApiAttribute)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliApiName(Type, wan24.CLI.CliApiAttribute)
-  nameWithType: ReflectionExtensions.GetCliApiName(Type, CliApiAttribute)
-- uid: wan24.CLI.ReflectionExtensions.GetCliApiName(Type,wan24.CLI.CliApiAttribute@)
-  name: GetCliApiName(Type, out CliApiAttribute)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiName_Type_wan24_CLI_CliApiAttribute__
-  commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiName(Type,wan24.CLI.CliApiAttribute@)
-  name.vb: GetCliApiName(Type, ByRef CliApiAttribute)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliApiName(Type, out wan24.CLI.CliApiAttribute)
-  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiName(Type, ByRef wan24.CLI.CliApiAttribute)
-  nameWithType: ReflectionExtensions.GetCliApiName(Type, out CliApiAttribute)
-  nameWithType.vb: ReflectionExtensions.GetCliApiName(Type, ByRef CliApiAttribute)
+- uid: wan24.CLI.ReflectionExtensions.GetCliApiName(System.Type,wan24.CLI.CliApiAttribute)
+  name: GetCliApiName(Type, CliApiAttribute?)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiName_System_Type_wan24_CLI_CliApiAttribute_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiName(System.Type,wan24.CLI.CliApiAttribute)
+  name.vb: GetCliApiName(Type, CliApiAttribute)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliApiName(System.Type, wan24.CLI.CliApiAttribute?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiName(System.Type, wan24.CLI.CliApiAttribute)
+  nameWithType: ReflectionExtensions.GetCliApiName(Type, CliApiAttribute?)
+  nameWithType.vb: ReflectionExtensions.GetCliApiName(Type, CliApiAttribute)
+- uid: wan24.CLI.ReflectionExtensions.GetCliApiName(System.Type,wan24.CLI.CliApiAttribute@)
+  name: GetCliApiName(Type, out CliApiAttribute?)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiName_System_Type_wan24_CLI_CliApiAttribute__
+  commentId: M:wan24.CLI.ReflectionExtensions.GetCliApiName(System.Type,wan24.CLI.CliApiAttribute@)
+  name.vb: GetCliApiName(Type, CliApiAttribute)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliApiName(System.Type, out wan24.CLI.CliApiAttribute?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliApiName(System.Type, wan24.CLI.CliApiAttribute)
+  nameWithType: ReflectionExtensions.GetCliApiName(Type, out CliApiAttribute?)
+  nameWithType.vb: ReflectionExtensions.GetCliApiName(Type, CliApiAttribute)
 - uid: wan24.CLI.ReflectionExtensions.GetCliApiName*
   name: GetCliApiName
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliApiName_
@@ -1543,12 +1693,15 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ReflectionExtensions.GetCliApiName
   nameWithType: ReflectionExtensions.GetCliApiName
-- uid: wan24.CLI.ReflectionExtensions.GetCliArgumentHostParameter(Type,System.String,System.Reflection.MethodInfo)
-  name: GetCliArgumentHostParameter(Type, String, MethodInfo)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliArgumentHostParameter_Type_System_String_System_Reflection_MethodInfo_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetCliArgumentHostParameter(Type,System.String,System.Reflection.MethodInfo)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliArgumentHostParameter(Type, System.String, System.Reflection.MethodInfo)
-  nameWithType: ReflectionExtensions.GetCliArgumentHostParameter(Type, String, MethodInfo)
+- uid: wan24.CLI.ReflectionExtensions.GetCliArgumentHostParameter(System.Type,System.String,System.Reflection.MethodInfo)
+  name: GetCliArgumentHostParameter(Type, string, MethodInfo?)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliArgumentHostParameter_System_Type_System_String_System_Reflection_MethodInfo_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetCliArgumentHostParameter(System.Type,System.String,System.Reflection.MethodInfo)
+  name.vb: GetCliArgumentHostParameter(Type, String, MethodInfo)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliArgumentHostParameter(System.Type, string, System.Reflection.MethodInfo?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliArgumentHostParameter(System.Type, String, System.Reflection.MethodInfo)
+  nameWithType: ReflectionExtensions.GetCliArgumentHostParameter(Type, string, MethodInfo?)
+  nameWithType.vb: ReflectionExtensions.GetCliArgumentHostParameter(Type, String, MethodInfo)
 - uid: wan24.CLI.ReflectionExtensions.GetCliArgumentHostParameter*
   name: GetCliArgumentHostParameter
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliArgumentHostParameter_
@@ -1556,12 +1709,15 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ReflectionExtensions.GetCliArgumentHostParameter
   nameWithType: ReflectionExtensions.GetCliArgumentHostParameter
-- uid: wan24.CLI.ReflectionExtensions.GetCliArgumentHostProperty(Type,System.String,System.Reflection.MethodInfo)
-  name: GetCliArgumentHostProperty(Type, String, MethodInfo)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliArgumentHostProperty_Type_System_String_System_Reflection_MethodInfo_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetCliArgumentHostProperty(Type,System.String,System.Reflection.MethodInfo)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliArgumentHostProperty(Type, System.String, System.Reflection.MethodInfo)
-  nameWithType: ReflectionExtensions.GetCliArgumentHostProperty(Type, String, MethodInfo)
+- uid: wan24.CLI.ReflectionExtensions.GetCliArgumentHostProperty(System.Type,System.String,System.Reflection.MethodInfo)
+  name: GetCliArgumentHostProperty(Type, string, MethodInfo?)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliArgumentHostProperty_System_Type_System_String_System_Reflection_MethodInfo_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetCliArgumentHostProperty(System.Type,System.String,System.Reflection.MethodInfo)
+  name.vb: GetCliArgumentHostProperty(Type, String, MethodInfo)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliArgumentHostProperty(System.Type, string, System.Reflection.MethodInfo?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.GetCliArgumentHostProperty(System.Type, String, System.Reflection.MethodInfo)
+  nameWithType: ReflectionExtensions.GetCliArgumentHostProperty(Type, string, MethodInfo?)
+  nameWithType.vb: ReflectionExtensions.GetCliArgumentHostProperty(Type, String, MethodInfo)
 - uid: wan24.CLI.ReflectionExtensions.GetCliArgumentHostProperty*
   name: GetCliArgumentHostProperty
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliArgumentHostProperty_
@@ -1569,11 +1725,11 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ReflectionExtensions.GetCliArgumentHostProperty
   nameWithType: ReflectionExtensions.GetCliArgumentHostProperty
-- uid: wan24.CLI.ReflectionExtensions.GetCliArgumentType(Type)
+- uid: wan24.CLI.ReflectionExtensions.GetCliArgumentType(System.Type)
   name: GetCliArgumentType(Type)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliArgumentType_Type_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetCliArgumentType(Type)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliArgumentType(Type)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliArgumentType_System_Type_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetCliArgumentType(System.Type)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliArgumentType(System.Type)
   nameWithType: ReflectionExtensions.GetCliArgumentType(Type)
 - uid: wan24.CLI.ReflectionExtensions.GetCliArgumentType*
   name: GetCliArgumentType
@@ -1600,11 +1756,11 @@ references:
   commentId: M:wan24.CLI.ReflectionExtensions.GetCliDescription(System.Reflection.PropertyInfo)
   fullName: wan24.CLI.ReflectionExtensions.GetCliDescription(System.Reflection.PropertyInfo)
   nameWithType: ReflectionExtensions.GetCliDescription(PropertyInfo)
-- uid: wan24.CLI.ReflectionExtensions.GetCliDescription(Type)
+- uid: wan24.CLI.ReflectionExtensions.GetCliDescription(System.Type)
   name: GetCliDescription(Type)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliDescription_Type_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetCliDescription(Type)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliDescription(Type)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliDescription_System_Type_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetCliDescription(System.Type)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliDescription(System.Type)
   nameWithType: ReflectionExtensions.GetCliDescription(Type)
 - uid: wan24.CLI.ReflectionExtensions.GetCliDescription*
   name: GetCliDescription
@@ -1631,11 +1787,11 @@ references:
   commentId: M:wan24.CLI.ReflectionExtensions.GetCliTitle(System.Reflection.PropertyInfo)
   fullName: wan24.CLI.ReflectionExtensions.GetCliTitle(System.Reflection.PropertyInfo)
   nameWithType: ReflectionExtensions.GetCliTitle(PropertyInfo)
-- uid: wan24.CLI.ReflectionExtensions.GetCliTitle(Type)
+- uid: wan24.CLI.ReflectionExtensions.GetCliTitle(System.Type)
   name: GetCliTitle(Type)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliTitle_Type_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetCliTitle(Type)
-  fullName: wan24.CLI.ReflectionExtensions.GetCliTitle(Type)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetCliTitle_System_Type_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetCliTitle(System.Type)
+  fullName: wan24.CLI.ReflectionExtensions.GetCliTitle(System.Type)
   nameWithType: ReflectionExtensions.GetCliTitle(Type)
 - uid: wan24.CLI.ReflectionExtensions.GetCliTitle*
   name: GetCliTitle
@@ -1644,11 +1800,11 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ReflectionExtensions.GetCliTitle
   nameWithType: ReflectionExtensions.GetCliTitle
-- uid: wan24.CLI.ReflectionExtensions.GetExportedApiMethodNames(Type)
+- uid: wan24.CLI.ReflectionExtensions.GetExportedApiMethodNames(System.Type)
   name: GetExportedApiMethodNames(Type)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetExportedApiMethodNames_Type_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetExportedApiMethodNames(Type)
-  fullName: wan24.CLI.ReflectionExtensions.GetExportedApiMethodNames(Type)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetExportedApiMethodNames_System_Type_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetExportedApiMethodNames(System.Type)
+  fullName: wan24.CLI.ReflectionExtensions.GetExportedApiMethodNames(System.Type)
   nameWithType: ReflectionExtensions.GetExportedApiMethodNames(Type)
 - uid: wan24.CLI.ReflectionExtensions.GetExportedApiMethodNames*
   name: GetExportedApiMethodNames
@@ -1657,11 +1813,11 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ReflectionExtensions.GetExportedApiMethodNames
   nameWithType: ReflectionExtensions.GetExportedApiMethodNames
-- uid: wan24.CLI.ReflectionExtensions.GetExportedApiMethods(Type)
+- uid: wan24.CLI.ReflectionExtensions.GetExportedApiMethods(System.Type)
   name: GetExportedApiMethods(Type)
-  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetExportedApiMethods_Type_
-  commentId: M:wan24.CLI.ReflectionExtensions.GetExportedApiMethods(Type)
-  fullName: wan24.CLI.ReflectionExtensions.GetExportedApiMethods(Type)
+  href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_GetExportedApiMethods_System_Type_
+  commentId: M:wan24.CLI.ReflectionExtensions.GetExportedApiMethods(System.Type)
+  fullName: wan24.CLI.ReflectionExtensions.GetExportedApiMethods(System.Type)
   nameWithType: ReflectionExtensions.GetExportedApiMethods(Type)
 - uid: wan24.CLI.ReflectionExtensions.GetExportedApiMethods*
   name: GetExportedApiMethods
@@ -1671,17 +1827,23 @@ references:
   fullName: wan24.CLI.ReflectionExtensions.GetExportedApiMethods
   nameWithType: ReflectionExtensions.GetExportedApiMethods
 - uid: wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.ParameterInfo,System.Reflection.NullabilityInfoContext)
-  name: IsCliValueRequired(ParameterInfo, NullabilityInfoContext)
+  name: IsCliValueRequired(ParameterInfo, NullabilityInfoContext?)
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_IsCliValueRequired_System_Reflection_ParameterInfo_System_Reflection_NullabilityInfoContext_
   commentId: M:wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.ParameterInfo,System.Reflection.NullabilityInfoContext)
-  fullName: wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.ParameterInfo, System.Reflection.NullabilityInfoContext)
-  nameWithType: ReflectionExtensions.IsCliValueRequired(ParameterInfo, NullabilityInfoContext)
+  name.vb: IsCliValueRequired(ParameterInfo, NullabilityInfoContext)
+  fullName: wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.ParameterInfo, System.Reflection.NullabilityInfoContext?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.ParameterInfo, System.Reflection.NullabilityInfoContext)
+  nameWithType: ReflectionExtensions.IsCliValueRequired(ParameterInfo, NullabilityInfoContext?)
+  nameWithType.vb: ReflectionExtensions.IsCliValueRequired(ParameterInfo, NullabilityInfoContext)
 - uid: wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.PropertyInfo,System.Reflection.NullabilityInfoContext)
-  name: IsCliValueRequired(PropertyInfo, NullabilityInfoContext)
+  name: IsCliValueRequired(PropertyInfo, NullabilityInfoContext?)
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_IsCliValueRequired_System_Reflection_PropertyInfo_System_Reflection_NullabilityInfoContext_
   commentId: M:wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.PropertyInfo,System.Reflection.NullabilityInfoContext)
-  fullName: wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.PropertyInfo, System.Reflection.NullabilityInfoContext)
-  nameWithType: ReflectionExtensions.IsCliValueRequired(PropertyInfo, NullabilityInfoContext)
+  name.vb: IsCliValueRequired(PropertyInfo, NullabilityInfoContext)
+  fullName: wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.PropertyInfo, System.Reflection.NullabilityInfoContext?)
+  fullName.vb: wan24.CLI.ReflectionExtensions.IsCliValueRequired(System.Reflection.PropertyInfo, System.Reflection.NullabilityInfoContext)
+  nameWithType: ReflectionExtensions.IsCliValueRequired(PropertyInfo, NullabilityInfoContext?)
+  nameWithType.vb: ReflectionExtensions.IsCliValueRequired(PropertyInfo, NullabilityInfoContext)
 - uid: wan24.CLI.ReflectionExtensions.IsCliValueRequired*
   name: IsCliValueRequired
   href: api/wan24.CLI.ReflectionExtensions.html#wan24_CLI_ReflectionExtensions_IsCliValueRequired_
@@ -1696,11 +1858,14 @@ references:
   fullName: wan24.CLI.StringExtensions
   nameWithType: StringExtensions
 - uid: wan24.CLI.StringExtensions.RemoveDashPrefix(System.String)
-  name: RemoveDashPrefix(String)
+  name: RemoveDashPrefix(string)
   href: api/wan24.CLI.StringExtensions.html#wan24_CLI_StringExtensions_RemoveDashPrefix_System_String_
   commentId: M:wan24.CLI.StringExtensions.RemoveDashPrefix(System.String)
-  fullName: wan24.CLI.StringExtensions.RemoveDashPrefix(System.String)
-  nameWithType: StringExtensions.RemoveDashPrefix(String)
+  name.vb: RemoveDashPrefix(String)
+  fullName: wan24.CLI.StringExtensions.RemoveDashPrefix(string)
+  fullName.vb: wan24.CLI.StringExtensions.RemoveDashPrefix(String)
+  nameWithType: StringExtensions.RemoveDashPrefix(string)
+  nameWithType.vb: StringExtensions.RemoveDashPrefix(String)
 - uid: wan24.CLI.StringExtensions.RemoveDashPrefix*
   name: RemoveDashPrefix
   href: api/wan24.CLI.StringExtensions.html#wan24_CLI_StringExtensions_RemoveDashPrefix_

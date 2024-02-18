@@ -210,12 +210,12 @@ await CliApi.RunAsync(args, default, typeof(YourCliApi1), typeof(YourCliApi2), .
 ```
 
 The first keyless argument needs to be the API name (f.e. `YourApiType`). 
-Keyless argument bindngs within your APIs still begin with `0`.
+Keyless argument bindings within your APIs still begin with `0`.
 
 When serving multiple API methods within an API type, the second keyless 
-argument needs to be the api method name. If you serve only one API type, 
+argument needs to be the API method name. If you serve only one API type, 
 the name of the API method will be taken from the first keyless argument. 
-Keyless argument bindngs within your APIs still begin with `0`.
+Keyless argument bindings within your APIs still begin with `0`.
 
 ### Custom API, method and argument names
 
@@ -238,6 +238,9 @@ help text for an API/method/argument by setting the properties namespace and
 name to the `HelpTextProperty` property of the `CliApi` attribute. If the help 
 text contains MarkDown formatted informations, set the `HelptextIsMarkDown` 
 property value of the `CliApi` attribute to `true`.
+
+If you API methods return an exit code, you can add documentation for them 
+using the `ExitCode` attribute on the method.
 
 Per default help text information can use the `Spectre.Console` markup syntax 
 for printing rich output to an ANSI console. The default colors used can be 
@@ -290,17 +293,17 @@ Serve the `CliHelpApi` API type for serving help for APIs/methods/arguments:
 
 ```bash
 # Display a list of possible API names
-dotnet app.dll help
+dotnet app.dll help (-details)
 
 # Display API details
-dotnet app.dll help [apiName]
+dotnet app.dll help --api [apiName] (-details)
 
 # Display API method details
-dotnet app.dll help [apiName] [methodName]
-
-# Display argument details
-dotnet app.dll help [apiName] [argumentName]
+dotnet app.dll help --api [apiName] --method [methodName] (-details)
 ```
+
+The optional `-details` flag will force the help API to output more available 
+informations.
 
 ## Processing multiple API method calls within one process
 
@@ -341,7 +344,7 @@ otherwise the APIs (methods/arguments) would overwrite each other.
 ## CLI API reflection
 
 ```cs
-IReadOnlyDictionary<string, CliApiInfo> apiInfos = 
+FrozenDictionary<string, CliApiInfo> apiInfos = 
 	CliApiInfo.Create(typeof(YourCliApi), typeof(CliHelpApi), ...);
 ```
 
@@ -353,7 +356,7 @@ detail informations.
 ## Best practice
 
 You use this library, 'cause it matches your requirements (which 
-`Spectre.Console` does not in some cases). You can work work the .NET 
+`Spectre.Console` alone does not in some cases). You can work work the .NET 
 `Console` methods, but since this library references `Spectre.Console` you 
 could enrich your CLI app with formatted console output easily, if your app 
 runs within an ANSI console.
