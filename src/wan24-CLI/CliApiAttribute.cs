@@ -1,25 +1,20 @@
 ﻿using System.Reflection;
 using wan24.Core;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.CLI
 {
     /// <summary>
     /// Attribute for a CLI API type, method and property and parameters
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="name">API (method/argument) name</param>
+    /// <param name="parseJson">Parse JSON values?</param>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Parameter, AllowMultiple = true)]
-    public class CliApiAttribute : Attribute
+    public class CliApiAttribute(string? name = null, bool parseJson = false) : Attribute()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="name">API (method/argument) name</param>
-        /// <param name="parseJson">Parse JSON values?</param>
-        public CliApiAttribute(string? name = null, bool parseJson = false) : base()
-        {
-            Name = name ?? string.Empty;
-            ParseJson = parseJson;
-        }
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -30,7 +25,7 @@ namespace wan24.CLI
         /// <summary>
         /// API (method/argument) name
         /// </summary>
-        public string Name { get; }
+        public string Name { get; } = name ?? string.Empty;
 
         /// <summary>
         /// Is the default API (method)?
@@ -45,35 +40,35 @@ namespace wan24.CLI
         /// <summary>
         /// Parse JSON values? (applies to a property or parameteter only)
         /// </summary>
-        public bool ParseJson { get; set; }
+        public bool ParseJson { get; set; } = parseJson;
 
         /// <summary>
-        /// Static help text property name (needs to return a <see cref="string"/>)
+        /// Example display value
+        /// </summary>
+        public string? Example { get; set; }
+
+        /// <summary>
+        /// Static help text property name (needs to return a <see cref="string"/>; Spectre.Console markup is supported)
         /// </summary>
         public string? HelpTextProperty { get; set; }
 
         /// <summary>
-        /// If the help text is MarkDown formatted
-        /// </summary>
-        public bool HelpTextIsMarkDown { get; set; }
-
-        /// <summary>
-        /// Get the help text
+        /// Get the help text (Spectre.Console markup is supported)
         /// </summary>
         /// <returns>Help text</returns>
         public virtual string? GetHelpText()
         {
             if (HelpTextProperty is null) return null;
             string[] temp = HelpTextProperty.Split('.');
-            Type type = TypeHelper.Instance.GetType(string.Join('.', temp.AsSpan(0, temp.Length - 1).ToArray()), throwOnError: true)
+            Type type = TypeHelper.Instance.GetType(string.Join('.', temp.SkipLast(count: 1)), throwOnError: true)
                 ?? throw new InvalidProgramException($"Failed to load the help text from \"{HelpTextProperty}\": Failed to load the properties type");
             PropertyInfoExt pi = type.GetPropertyCached(temp[^1], BindingFlags.Public | BindingFlags.Static)
                 ?? throw new InvalidProgramException($"Failed to load the help text from \"{HelpTextProperty}\": Property \"{temp[^1]}\" not found");
             if (pi.Property.PropertyType != typeof(string))
                 throw new InvalidProgramException($"Failed to load the help text from \"{HelpTextProperty}\": Invalid property type {pi.Property.PropertyType} ({typeof(string)} expected)");
-            if (!pi.Property.CanRead)
+            if (pi.Getter is null)
                 throw new InvalidProgramException($"Failed to load the help text from \"{HelpTextProperty}\": Property \"{temp[^1]}\" has no getter");
-            return pi.Getter!(null) as string;
+            return pi.Getter!(null) is string res ? _(res) : null;
         }
 
         /// <summary>

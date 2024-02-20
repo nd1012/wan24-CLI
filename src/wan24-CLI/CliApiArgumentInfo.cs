@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Spectre.Console;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using wan24.Core;
@@ -29,9 +30,9 @@ namespace wan24.CLI
             Name = pi.Property.GetCliApiArgumentName().RemoveDashPrefix();
             Attribute = pi.GetCustomAttributeCached<CliApiAttribute>() ?? throw new ArgumentException("Missing CliApiAttribute", nameof(pi));
             Type = ClrType.GetCliArgumentType();
-            IsValueList = pi.PropertyType.IsArray;
+            IsValueList = pi.PropertyType.IsArray && pi.PropertyType.GetElementType() == typeof(string);
             IsRequired = pi.Property.IsCliValueRequired(nic);
-            IsComplex = Type == CliArgumentTypes.Value && ((IsValueList && pi.PropertyType.GetElementType() != typeof(string)) || (!IsValueList && pi.PropertyType != typeof(string)));
+            IsComplex = Type == CliArgumentTypes.Object && !typeof(ICliArguments).IsAssignableFrom(pi.PropertyType);
             Title = pi.Property.GetCliTitle();
             Description = pi.Property.GetCliDescription();
             SetObjectProperties(nic);
@@ -46,14 +47,14 @@ namespace wan24.CLI
         public CliApiArgumentInfo(CliApiMethodInfo method, ParameterInfo pi, NullabilityInfoContext nic)
         {
             Method = method;
-            Host = CliArgumentHosts.Property;
+            Host = CliArgumentHosts.Parameter;
             Parameter = pi;
             Name = pi.GetCliApiArgumentName().RemoveDashPrefix();
             Attribute = pi.GetCustomAttributeCached<CliApiAttribute>() ?? throw new ArgumentException("Missing CliApiAttribute", nameof(pi));
             Type = ClrType.GetCliArgumentType();
-            IsValueList = pi.ParameterType.IsArray;
+            IsValueList = pi.ParameterType.IsArray && pi.ParameterType.GetElementType() == typeof(string);
             IsRequired = pi.IsCliValueRequired(nic);
-            IsComplex = Type == CliArgumentTypes.Value && ((IsValueList && pi.ParameterType.GetElementType() != typeof(string)) || (!IsValueList && pi.ParameterType != typeof(string)));
+            IsComplex = Type == CliArgumentTypes.Object && !typeof(ICliArguments).IsAssignableFrom(pi.ParameterType);
             Title = pi.GetCliTitle();
             Description = pi.GetCliDescription();
             SetObjectProperties(nic);
@@ -127,19 +128,13 @@ namespace wan24.CLI
         /// <summary>
         /// Argument name (including dash prefix)
         /// </summary>
-        public string ArgumentName
+        public string ArgumentName => Type switch
         {
-            get
-            {
-                this.EnsureValidState(Type != CliArgumentTypes.Object, "Not an argument");
-                return Type switch
-                {
-                    CliArgumentTypes.Flag => $"-{Name}",
-                    CliArgumentTypes.Value => $"--{Name}",
-                    _ => throw new InvalidProgramException()
-                };
-            }
-        }
+            CliArgumentTypes.Flag => $"-{Name}",
+            CliArgumentTypes.Value => $"--{Name}",
+            CliArgumentTypes.Object => $"--{Name}",
+            _ => throw new InvalidProgramException()
+        };
 
         /// <summary>
         /// Get the CLR name (used for a keyless argument)
@@ -159,7 +154,7 @@ namespace wan24.CLI
         /// <inheritdoc/>
         public override string ToString()
         {
-            if (Type == CliArgumentTypes.Object)
+            if (Type == CliArgumentTypes.Object && !IsComplex)
             {
                 StringBuilder sb = new();
                 foreach (CliApiArgumentInfo ai in ObjectProperties!.Values)
@@ -171,15 +166,25 @@ namespace wan24.CLI
                 return RX_DOUBLE_SPACE.Replace(sb.ToString(), " ");
             }
             if (IsKeyLess)
-                return IsRequired
-                    ? $"[{CliApiInfo.RequiredColor}]{Name}({ClrName}){(ClrType.IsArray ? " ..." : string.Empty)}[/]"
-                    : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{Name}({ClrName}){(ClrType.IsArray ? " ..." : string.Empty)}[/][{CliApiInfo.DecorationColor}])[/]";
+                return Type switch
+                {
+                    CliArgumentTypes.Value => IsRequired
+                        ? $"[{CliApiInfo.DecorationColor}]{(IsValueList ? $"{Attribute.Example?.EscapeMarkup() ?? ClrName} ..." : Attribute.Example?.EscapeMarkup() ?? ClrName)}[/]"
+                        : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.DecorationColor}]{(IsValueList ? $"{Attribute.Example?.EscapeMarkup() ?? ClrName} ..." : Attribute.Example?.EscapeMarkup() ?? ClrName)}[/][{CliApiInfo.DecorationColor}])[/]",
+                    CliArgumentTypes.Object => IsRequired
+                        ? $"[{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : Attribute.Example?.EscapeMarkup() ?? $"{ClrName}Json")}[/]"
+                        : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : $"{ClrName}Json")}[/][{CliApiInfo.DecorationColor}])[/]",
+                _ => throw new InvalidProgramException()
+                };
             return Type switch
             {
                 CliArgumentTypes.Flag => $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/][{CliApiInfo.DecorationColor}])[/]",
                 CliArgumentTypes.Value => IsRequired
-                    ? $"[{CliApiInfo.RequiredColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(ClrType.IsArray ? $"{ClrName} ..." : ClrName)}[/]"
-                    : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(ClrType.IsArray ? $"{ClrName} ..." : ClrName)}[/][{CliApiInfo.DecorationColor}])[/]",
+                    ? $"[{CliApiInfo.RequiredColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{Attribute.Example?.EscapeMarkup() ?? ClrName} ..." : Attribute.Example?.EscapeMarkup() ?? ClrName)}[/]"
+                    : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{Attribute.Example?.EscapeMarkup() ?? ClrName} ..." : Attribute.Example?.EscapeMarkup() ?? ClrName)}[/][{CliApiInfo.DecorationColor}])[/]",
+                CliArgumentTypes.Object => IsRequired
+                    ? $"[{CliApiInfo.RequiredColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : Attribute.Example?.EscapeMarkup() ?? $"{ClrName}Json")}[/]"
+                    : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : $"{ClrName}Json")}[/][{CliApiInfo.DecorationColor}])[/]",
                 _ => throw new InvalidProgramException()
             };
         }

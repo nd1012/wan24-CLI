@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\wan24-CLI Demo\wan24-CLI Demo.csproj" />
     <ProjectReference Include="..\wan24-CLI\wan24-CLI.csproj" />
   </ItemGroup>
 

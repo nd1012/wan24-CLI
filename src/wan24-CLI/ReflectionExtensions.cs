@@ -91,7 +91,7 @@ namespace wan24.CLI
         public static CliArgumentTypes GetCliArgumentType(this Type type)
         {
             if (type == typeof(bool)) return CliArgumentTypes.Flag;
-            if (typeof(ICliArguments).IsAssignableFrom(type)) return CliArgumentTypes.Object;
+            if (type == typeof(string) || (type.IsArray && type.GetElementType() == typeof(string))) return CliArgumentTypes.Value;
             return CliArgumentTypes.Object;
         }
 
@@ -101,7 +101,7 @@ namespace wan24.CLI
         /// <param name="type">API type</param>
         /// <returns>CLI title</returns>
         public static string GetCliTitle(this Type type)
-            => type.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? type.GetCustomAttributeCached<DescriptionAttribute>()?.Description ?? GetCliApiName(type);
+            => type.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? GetCliApiName(type);
 
         /// <summary>
         /// Get the CLI description
@@ -116,7 +116,7 @@ namespace wan24.CLI
         /// <param name="mi">API method</param>
         /// <returns>CLI title</returns>
         public static string GetCliTitle(this MethodInfo mi)
-            => mi.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? mi.GetCustomAttributeCached<DescriptionAttribute>()?.Description ?? GetCliApiMethodName(mi);
+            => mi.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? GetCliApiMethodName(mi);
 
         /// <summary>
         /// Get the CLI description
@@ -131,7 +131,7 @@ namespace wan24.CLI
         /// <param name="pi">Property</param>
         /// <returns>CLI title</returns>
         public static string GetCliTitle(this PropertyInfo pi)
-            => pi.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? pi.GetCustomAttributeCached<DescriptionAttribute>()?.Description ?? GetCliApiArgumentName(pi);
+            => pi.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? GetCliApiArgumentName(pi);
 
         /// <summary>
         /// Get the CLI description
@@ -146,7 +146,7 @@ namespace wan24.CLI
         /// <param name="pi">Parameter</param>
         /// <returns>CLI title</returns>
         public static string GetCliTitle(this ParameterInfo pi)
-            => pi.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? pi.GetCustomAttributeCached<DescriptionAttribute>()?.Description ?? GetCliApiArgumentName(pi);
+            => pi.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? GetCliApiArgumentName(pi);
 
         /// <summary>
         /// Get the CLI description
@@ -168,9 +168,7 @@ namespace wan24.CLI
         /// <param name="api">API type</param>
         /// <returns>Exported API method names (sorted ascending)</returns>
         public static IEnumerable<string> GetExportedApiMethodNames(this Type api)
-            => from mi in GetExportedApiMethods(api)
-               orderby mi.GetCliApiMethodName()
-               select mi.GetCliApiMethodName();
+            => GetExportedApiMethods(api).Select(mi => mi.GetCliApiMethodName()).OrderBy(name => name);
 
         /// <summary>
         /// Get the available (named!) arguments
@@ -249,12 +247,9 @@ namespace wan24.CLI
             foreach (ParameterInfo pi in mi.GetParameters())
             {
                 if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
-                if (pi.ParameterType.GetCliArgumentType() != CliArgumentTypes.Object)
-                {
-                    if (pi.GetCliApiArgumentName() == arg) return CliArgumentHosts.Parameter;
-                    continue;
-                }
-                if (FindArgument(pi.ParameterType) == CliArgumentHosts.Property) return CliArgumentHosts.Property;
+                if (pi.ParameterType.GetCliArgumentType() == CliArgumentTypes.Object && FindArgument(pi.ParameterType) == CliArgumentHosts.Property)
+                    return CliArgumentHosts.Property;
+                if (pi.GetCliApiArgumentName() == arg) return CliArgumentHosts.Parameter;
             }
             return api.GetCliArgumentHostProperty(arg, mi) is not null ? CliArgumentHosts.Property : CliArgumentHosts.None;
         }
@@ -289,12 +284,9 @@ namespace wan24.CLI
             foreach (ParameterInfo pi in mi.GetParameters())
             {
                 if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
-                if (pi.ParameterType.GetCliArgumentType() != CliArgumentTypes.Object)
-                {
-                    if (pi.GetCliApiArgumentName() == arg) return pi;
-                    continue;
-                }
-                if (FindArgument(pi.ParameterType) == CliArgumentHosts.Property) return null;
+                if (pi.ParameterType.GetCliArgumentType() == CliArgumentTypes.Object && FindArgument(pi.ParameterType) == CliArgumentHosts.Property)
+                    return null;
+                if (pi.GetCliApiArgumentName() == arg) return pi;
             }
             return null;
         }
@@ -390,8 +382,7 @@ namespace wan24.CLI
         /// <param name="pi">Property</param>
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
         /// <returns>Is required?</returns>
-        public static bool IsCliValueRequired(this PropertyInfo pi, NullabilityInfoContext? nic = null)
-            => pi.IsNullable(nic) && IsCliValueRequired(pi.GetCustomAttributesCached<ValidationAttribute>());
+        public static bool IsCliValueRequired(this PropertyInfo pi, NullabilityInfoContext? nic = null) => !pi.IsNullable(nic);
 
         /// <summary>
         /// Is a CLI argument value required?
@@ -399,20 +390,6 @@ namespace wan24.CLI
         /// <param name="pi">Parameter</param>
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
         /// <returns>Is required?</returns>
-        public static bool IsCliValueRequired(this ParameterInfo pi, NullabilityInfoContext? nic = null)
-            => !pi.HasDefaultValue && !pi.IsNullable(nic) && IsCliValueRequired(pi.GetCustomAttributesCached<ValidationAttribute>());
-
-        /// <summary>
-        /// Is a CLI argument value required?
-        /// </summary>
-        /// <param name="attributes">Validation attributes</param>
-        /// <returns>Is required?</returns>
-        internal static bool IsCliValueRequired(IEnumerable<ValidationAttribute> attributes)
-            => attributes.Any(a =>
-                a is RequiredAttribute ||
-                (a is RangeAttribute range && !range.IsValid(0)) ||
-                (a is StringLengthAttribute len && len.MinimumLength > 0) ||
-                (a is CountLimitAttribute limit && limit.Min.HasValue && limit.Min > 0)
-                );
+        public static bool IsCliValueRequired(this ParameterInfo pi, NullabilityInfoContext? nic = null) => !pi.HasDefaultValue && !pi.IsNullable(nic);
     }
 }

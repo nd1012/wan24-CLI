@@ -26,12 +26,7 @@ namespace wan24.CLI
         /// <param name="app">App path or filename</param>
         internal static void AppendCommand(this StringBuilder sb, string? app = null)
         {
-            if (app is null)
-            {
-                if (Assembly.GetEntryAssembly()?.Location is not string fn) return;
-                app = Path.GetFileName(fn);
-            }
-            sb.Append(app.ToLower().EndsWith(".dll") ? $"[{CliApiInfo.RequiredColor}]dotnet {app}[/]" : $"[{CliApiInfo.RequiredColor}]{app}[/]");
+            sb.Append(app is null ? $"[{CliApiInfo.RequiredColor}]{CliApi.CommandLine}[/]" : $"[{CliApiInfo.RequiredColor}]{app}[/]");
             sb.Append(' ');
         }
     }

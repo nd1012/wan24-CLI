@@ -24,10 +24,6 @@ namespace wan24.CLI
             Name = mi.GetCliApiMethodName();
             Title = mi.GetCliTitle();
             Description = mi.GetCliDescription();
-            Dictionary<int, ExitCodeAttribute> exitCodes = [];
-            foreach(ExitCodeAttribute exitCode in mi.GetCustomAttributesCached<ExitCodeAttribute>())
-                exitCodes[exitCode.Code] = exitCode;
-            ExitCodes = exitCodes.ToFrozenDictionary();
             Dictionary<string, CliApiArgumentInfo> args = [];
             string a;
             foreach (string arg in api.Type.GetAvailableArguments(mi))
@@ -35,8 +31,6 @@ namespace wan24.CLI
                 a = arg.RemoveDashPrefix();
                 switch (api.Type.GetArgumentHostType(a, mi))
                 {
-                    case CliArgumentHosts.None:
-                        break;
                     case CliArgumentHosts.Property:
                         {
                             PropertyInfoExt pi = api.Type.GetCliArgumentHostProperty(a, mi) ?? throw new InvalidProgramException($"Failed to get host property for \"{arg}\"");
@@ -54,6 +48,12 @@ namespace wan24.CLI
                 }
             }
             Parameters = args.ToFrozenDictionary();
+            Dictionary<int, ExitCodeInfo> exitCodes = [];
+            foreach (ExitCodeAttribute exitCode in mi.GetCustomAttributesCached<ExitCodeAttribute>())
+                exitCodes[exitCode.Code] = new(api, this, exitCode);
+            ExitCodes = exitCodes.ToFrozenDictionary();
+            StdIn = mi.GetCustomAttributeCached<StdInAttribute>();
+            StdOut = mi.GetCustomAttributeCached<StdOutAttribute>();
         }
 
         /// <summary>
@@ -94,39 +94,23 @@ namespace wan24.CLI
         /// <summary>
         /// Exit codes
         /// </summary>
-        public FrozenDictionary<int, ExitCodeAttribute> ExitCodes { get; }
+        public FrozenDictionary<int, ExitCodeInfo> ExitCodes { get; }
+
+        /// <summary>
+        /// STDIN usage attribute
+        /// </summary>
+        public StdInAttribute? StdIn { get; }
+
+        /// <summary>
+        /// STDOUT usage attribute
+        /// </summary>
+        public StdOutAttribute? StdOut { get; }
 
         /// <inheritdoc/>
         public override string ToString()
         {
             StringBuilder sb = new();
-            foreach (CliApiArgumentInfo ai in from ai in Parameters.Values
-                                              where ai.IsRequired &&
-                                                !ai.IsKeyLess
-                                              orderby ai.ArgumentName
-                                              select ai)
-            {
-                sb.Append(ai.ToString());
-                sb.Append(' ');
-            }
-            foreach (CliApiArgumentInfo ai in from ai in Parameters.Values
-                                              where ai.Type == CliArgumentTypes.Flag
-                                              orderby ai.ArgumentName
-                                              select ai)
-            {
-                sb.Append(ai.ToString());
-                sb.Append(' ');
-            }
-            foreach (CliApiArgumentInfo ai in from ai in Parameters.Values
-                                              where !ai.IsRequired &&
-                                                ai.Type == CliArgumentTypes.Value &&
-                                                !ai.IsKeyLess
-                                              orderby ai.ArgumentName
-                                              select ai)
-            {
-                sb.Append(ai.ToString());
-                sb.Append(' ');
-            }
+            // Keyless
             foreach (CliApiArgumentInfo ai in from ai in Parameters.Values
                                               where ai.IsKeyLess
                                               orderby ai.Attribute.KeyLessOffset
@@ -135,7 +119,48 @@ namespace wan24.CLI
                 sb.Append(ai.ToString());
                 sb.Append(' ');
             }
-            if (sb.Length > 0) sb.Remove(sb.Length - 1, 1);
+            // Required arguments
+            foreach (CliApiArgumentInfo ai in from ai in Parameters.Values
+                                              where ai.IsRequired &&
+                                                ai.Type != CliArgumentTypes.Flag &&
+                                                !ai.IsKeyLess
+                                              orderby ai.Name
+                                              select ai)
+            {
+                sb.Append(ai.ToString());
+                sb.Append(' ');
+            }
+            // Flags
+            foreach (CliApiArgumentInfo ai in from ai in Parameters.Values
+                                              where ai.Type == CliArgumentTypes.Flag
+                                              orderby ai.Name
+                                              select ai)
+            {
+                sb.Append(ai.ToString());
+                sb.Append(' ');
+            }
+            // Optional arguments
+            foreach (CliApiArgumentInfo ai in from ai in Parameters.Values
+                                              where !ai.IsRequired &&
+                                                ai.Type != CliArgumentTypes.Flag &&
+                                                !ai.IsKeyLess
+                                              orderby ai.Name
+                                              select ai)
+            {
+                sb.Append(ai.ToString());
+                sb.Append(' ');
+            }
+            if (Parameters.Count != 0 && sb.Length > 0) sb.Remove(sb.Length - 1, 1);
+            // STDIN
+            if (StdIn is not null)
+                sb.Append(StdIn.Required
+                    ? $" [{CliApiInfo.RequiredColor}]< {StdIn.Description}[/]"
+                    : $" [{CliApiInfo.DecorationColor}]([/]< [{CliApiInfo.OptionalColor}]{StdIn.Description}[/][{CliApiInfo.DecorationColor}])[/]");
+            // STDOUT
+            if (StdOut is not null)
+                sb.Append(StdOut.Required
+                    ? $" [{CliApiInfo.RequiredColor}]< {StdOut.Description}[/]"
+                    : $" [{CliApiInfo.DecorationColor}]([/]> [{CliApiInfo.OptionalColor}]{StdOut.Description}[/][{CliApiInfo.DecorationColor}])[/]");
             return sb.ToString();
         }
     }

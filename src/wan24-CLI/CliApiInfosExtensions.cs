@@ -22,6 +22,27 @@ namespace wan24.CLI
             => infos.Values.FirstOrDefault(a => a.Attribute?.IsDefault ?? false) ?? infos.Values.FirstOrDefault();
 
         /// <summary>
+        /// Determine if the CLI help API is served
+        /// </summary>
+        /// <param name="exportedApis">Exported API types</param>
+        /// <returns>If the CLI help API is being served</returns>
+        public static bool IsCliHelpApiServed(this IEnumerable<Type> exportedApis) => exportedApis.Any(t => typeof(CliHelpApi).IsAssignableFrom(t));
+
+        /// <summary>
+        /// Determine if the CLI help API is served
+        /// </summary>
+        /// <param name="apis">API infos</param>
+        /// <returns>If the CLI help API is being served</returns>
+        public static bool IsCliHelpApiServed(this IEnumerable<CliApiInfo> apis) => apis.Any(a => typeof(CliHelpApi).IsAssignableFrom(a.Type));
+
+        /// <summary>
+        /// Determine if the CLI help API is served
+        /// </summary>
+        /// <param name="apis">API infos</param>
+        /// <returns>If the CLI help API is being served</returns>
+        public static bool IsCliHelpApiServed(this IReadOnlyDictionary<string, CliApiInfo> apis) => apis.Values.IsCliHelpApiServed();
+
+        /// <summary>
         /// Get the API method call syntax
         /// </summary>
         /// <param name="infos">API informations</param>
@@ -32,8 +53,7 @@ namespace wan24.CLI
         public static string GetApiMethodSyntax(this IReadOnlyDictionary<string, CliApiInfo> infos, string? api = null, string? method = null, string? app = null)
         {
             api ??= infos.GetDefaultApi()?.Name ?? throw new ArgumentNullException(nameof(api));
-            if (!infos.ContainsKey(api)) throw new ArgumentException("Unknown API", nameof(api));
-            CliApiInfo apiInfo = infos[api];
+            if (!infos.TryGetValue(api, out CliApiInfo? apiInfo)) throw new ArgumentException("Unknown API", nameof(api));
             method ??= apiInfo.DefaultMethod?.Name ?? throw new ArgumentNullException(nameof(method));
             if (!apiInfo.Methods.TryGetValue(method, out CliApiMethodInfo? methodInfo)) throw new ArgumentException("Unknown method", nameof(method));
             StringBuilder sb = new($"[on {CliApiInfo.BackGroundColor}]");
@@ -57,7 +77,7 @@ namespace wan24.CLI
         /// Regular expression to match double spaces
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"\s{2,}")]
+        [GeneratedRegex(@"\s{2,}", RegexOptions.Compiled)]
         private static partial Regex RxDoubleSpaces();
     }
 }

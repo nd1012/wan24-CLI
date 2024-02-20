@@ -2,7 +2,7 @@
   "profiles": {
     "wan24-CLI Demo": {
       "commandName": "Project",
-      "commandLineArgs": "help --api demo --method echo -details"
+      "commandLineArgs": "--api demo --method sum2 -Details"
     }
   }
 }

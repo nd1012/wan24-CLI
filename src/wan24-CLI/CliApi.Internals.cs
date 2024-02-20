@@ -3,6 +3,9 @@ using System.Reflection;
 using wan24.Core;
 using wan24.ObjectValidation;
 using static wan24.Core.Logging;
+using static wan24.Core.Logger;
+
+//TODO Allow custom argument type interpreting
 
 namespace wan24.CLI
 {
@@ -18,7 +21,7 @@ namespace wan24.CLI
         /// <param name="keyLessArgOffset">Current keyless argument offset</param>
         internal static void MapArguments(object obj, CliArguments ca, int keyLessOffset, ref int keyLessArgOffset)
         {
-            if (Debug) Logging.WriteDebug($"Mapping arguments to {obj.GetType()} using keyless offset {keyLessOffset} and keyless argument offset {keyLessArgOffset}");
+            if (Debug) WriteDebug($"Mapping arguments to {obj.GetType()} using keyless offset {keyLessOffset} and keyless argument offset {keyLessArgOffset}");
             bool parsed;
             object? value;
             foreach (PropertyInfoExt pi in FindApiArguments(obj.GetType()))
@@ -30,13 +33,13 @@ namespace wan24.CLI
                         throw new InvalidProgramException($"{obj.GetType()}.{pi.Name} property value type {pi.PropertyType} must not be abstract");
                     value = pi.PropertyType.ConstructAuto()
                         ?? throw new InvalidProgramException($"Failed to instance {obj.GetType()}.{pi.Name} parameter value type {pi.PropertyType}");
-                    if (Debug) Logging.WriteDebug($"Mapping arguments to host object {pi.PropertyType} (for {obj.GetType()}.{pi.Name})");
+                    if (Debug) WriteDebug($"Mapping arguments to host object {pi.PropertyType} (for {obj.GetType()}.{pi.Name})");
                     MapArguments(value, ca, keyLessOffset, ref keyLessArgOffset);
                     pi.Setter(obj, value);
                 }
                 else
                 {
-                    if (Debug) Logging.WriteDebug($"Mapping parsed argument {pi.PropertyType} to {obj.GetType()}.{pi.Name}");
+                    if (Debug) WriteDebug($"Mapping parsed argument {pi.PropertyType} to {obj.GetType()}.{pi.Name}");
                     (parsed, value) = ParseArgument(pi.Name, pi.PropertyType, ca, pi.GetCustomAttributeCached<CliApiAttribute>()!, keyLessOffset, ref keyLessArgOffset);
                     if (parsed)
                     {
@@ -44,7 +47,7 @@ namespace wan24.CLI
                     }
                     else if(Debug)
                     {
-                        Logging.WriteDebug($"Argument {pi.PropertyType} for {obj.GetType()}.{pi.Name} couldn't be parsed");
+                        WriteDebug($"Argument {pi.PropertyType} for {obj.GetType()}.{pi.Name} couldn't be parsed");
                     }
                 }
             }
@@ -63,16 +66,16 @@ namespace wan24.CLI
         /// <returns>If the value could be parsed, and the parsed value</returns>
         internal static (bool Parsed, object? Value) ParseArgument(string name, Type type, CliArguments ca, CliApiAttribute attr, int keyLessOffset, ref int keyLessArgOffset)
         {
-            if (Debug) Logging.WriteDebug($"Parse argument \"{name}\" ({type}) using keyless offset {keyLessOffset} and keyless argument offset {keyLessArgOffset}");
+            if (Debug) WriteDebug($"Parse argument \"{name}\" ({type}) using keyless offset {keyLessOffset} and keyless argument offset {keyLessArgOffset}");
             // Keyless argument
             if (attr.KeyLessOffset != -1)
             {
                 bool hasValue = attr.KeyLessOffset < ca.KeyLessArguments.Count - keyLessOffset - keyLessArgOffset;
-                if (Debug) Logging.WriteDebug(hasValue ? "Keyless argument value found" : "Keyless argument value not found");
+                if (Debug) WriteDebug(hasValue ? "Keyless argument value found" : "Keyless argument value not found");
                 if (type == typeof(string))
                 {
                     // Simple string value
-                    if (Debug) Logging.WriteDebug("Simple string value");
+                    if (Debug) WriteDebug("Simple string value");
                     if (!hasValue) return (false, null);
                     string res = ca.KeyLessArguments[keyLessOffset + keyLessArgOffset];
                     keyLessArgOffset++;
@@ -81,7 +84,7 @@ namespace wan24.CLI
                 else if (type.IsArray && type.GetElementType() == typeof(string))
                 {
                     // Simple string array
-                    if (Debug) Logging.WriteDebug("Simple string array");
+                    if (Debug) WriteDebug("Simple string array");
                     if (!hasValue) return (false, Array.Empty<string>());
                     string[] res = ca.KeyLessArguments.Skip(keyLessOffset + keyLessArgOffset).ToArray();
                     keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
@@ -90,7 +93,7 @@ namespace wan24.CLI
                 else if (type.IsArray)
                 {
                     // Array of JSON parsed values
-                    if (Debug) Logging.WriteDebug("Array of JSON parsed values");
+                    if (Debug) WriteDebug("Array of JSON parsed values");
                     if (!hasValue) return (false, Array.CreateInstance(type.GetElementType()!, length: 0));
                     string[] values = ca.KeyLessArguments.Skip(keyLessOffset + keyLessArgOffset).ToArray();
                     keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
@@ -101,7 +104,7 @@ namespace wan24.CLI
                 else
                 {
                     // JSON parsed value
-                    if (Debug) Logging.WriteDebug("JSON parsed value");
+                    if (Debug) WriteDebug("JSON parsed value");
                     if (!hasValue) return (false, null);
                     string value = ca.KeyLessArguments[keyLessOffset + keyLessArgOffset];
                     keyLessArgOffset++;
@@ -110,18 +113,18 @@ namespace wan24.CLI
             }
             // Named argument
             string? existingName = ca.GetExistingKey(attr.Name == string.Empty ? name : attr.Name);
-            if (existingName is not null && Debug) Logging.WriteDebug($"Using existing argument name \"{existingName}\"");
+            if (existingName is not null && Debug) WriteDebug($"Using existing argument name \"{existingName}\"");
             if (type == typeof(bool))
             {
                 // Flag
-                if (Debug) Logging.WriteDebug("Boolean flag");
+                if (Debug) WriteDebug("Boolean flag");
                 if (existingName is not null && !ca.IsBoolean(existingName)) throw new CliArgException($"Argument is a flag (without value)", existingName);
                 return (true, existingName is not null && ca[existingName]);
             }
             else if (type == typeof(string))
             {
                 // Simple string value
-                if (Debug) Logging.WriteDebug("Simple string value");
+                if (Debug) WriteDebug("Simple string value");
                 if (existingName is null) return (false, null);
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
                 if (ca.All(existingName).Count != 1)
@@ -131,7 +134,7 @@ namespace wan24.CLI
             else if (type.IsArray && type.GetElementType() == typeof(string))
             {
                 // Simple string array
-                if (Debug) Logging.WriteDebug("Simple string array");
+                if (Debug) WriteDebug("Simple string array");
                 if (existingName is null) return (true, Array.Empty<string>());
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
                 return (true, ca.All(existingName).ToArray());
@@ -139,7 +142,7 @@ namespace wan24.CLI
             else if (type.IsArray)
             {
                 // Array of JSON parsed values
-                if (Debug) Logging.WriteDebug("Array of parsed JSON values");
+                if (Debug) WriteDebug("Array of parsed JSON values");
                 if (existingName is null) return (true, Array.CreateInstance(type.GetElementType()!, length: 0));
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
                 ReadOnlyCollection<string> values = ca.All(existingName);
@@ -150,7 +153,7 @@ namespace wan24.CLI
             else
             {
                 // JSON parsed value
-                if (Debug) Logging.WriteDebug("JSON parsed value");
+                if (Debug) WriteDebug("JSON parsed value");
                 if (existingName is null) return (false, null);
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
                 if (ca.All(existingName).Count != 1)
@@ -191,7 +194,7 @@ namespace wan24.CLI
         /// <returns>Default API type</returns>
         internal static Type? FindDefaultApi(IEnumerable<Type> types)
             => (from type in types
-                where type.GetCustomAttributeCached<CliApiAttribute>()?.IsDefault ?? false
+                where type.GetCustomAttributeCached<CliApiAttribute>()!.IsDefault
                 select type).FirstOrDefault();
 
         /// <summary>
