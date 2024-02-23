@@ -1,9 +1,11 @@
 ﻿using Spectre.Console;
 using System.Collections.Frozen;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using wan24.Core;
-using static wan24.Core.Logging;
+using wan24.ObjectValidation;
 using static wan24.Core.Logger;
+using static wan24.Core.Logging;
 using static wan24.Core.TranslationHelper;
 
 namespace wan24.CLI
@@ -76,6 +78,17 @@ namespace wan24.CLI
         /// The command line to use
         /// </summary>
         public static string CommandLine { get; set; }
+
+        /// <summary>
+        /// Custom argument type parser delegates
+        /// </summary>
+        public static Dictionary<Type, ParseType_Delegate> CustomArgumentParsers { get; } = [];
+
+        /// <summary>
+        /// Display full exceptions in error messages?
+        /// </summary>
+        [CliConfig]
+        public static bool DisplayFullExceptions { get; set; }
 
         /// <summary>
         /// Run the CLI API
@@ -352,6 +365,7 @@ namespace wan24.CLI
                 try
                 {
                     object? value;
+                    IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> results;
                     foreach (ParameterInfo pi in mi.GetParameters())
                         if (pi.GetCustomAttributeCached<CliApiAttribute>() is not CliApiAttribute attr)
                         {
@@ -374,7 +388,11 @@ namespace wan24.CLI
                         {
                             // Parsed argument
                             if (Trace) WriteTrace($"Using parsed argument {pi.Name} ({pi.ParameterType})");
-                            param.Add(ParseArgument(pi.Name!, pi.ParameterType, ca, attr, keyLessOffset, ref keyLessArgOffset).Value);
+                            value = ParseArgument(pi.Name!, pi.ParameterType, ca, attr, keyLessOffset, ref keyLessArgOffset).Value;
+                            results = value.ValidateValue(pi.GetCustomAttributesCached<ValidationAttribute>());
+                            if (results.Any())
+                                throw new CliArgException($"Parsed argument validation failed: {results.First().ErrorMessage}", pi.Name, new ObjectValidationException(results));
+                            param.Add(value);
                         }
                 }
                 catch (Exception ex)
@@ -548,5 +566,15 @@ namespace wan24.CLI
             AnsiConsole.MarkupLine(_(HelpHeader));
             Console.WriteLine();
         }
+
+        /// <summary>
+        /// Delegate for a custom argument type parser (needs to throw on error)
+        /// </summary>
+        /// <param name="name">Argument name</param>
+        /// <param name="type">Type</param>
+        /// <param name="arg">Argument value</param>
+        /// <param name="attr">Attribute</param>
+        /// <returns>Parsed object</returns>
+        public delegate object ParseType_Delegate(string name, Type type, string arg, CliApiAttribute attr);
     }
 }

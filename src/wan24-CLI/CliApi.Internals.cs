@@ -5,8 +5,6 @@ using wan24.ObjectValidation;
 using static wan24.Core.Logging;
 using static wan24.Core.Logger;
 
-//TODO Allow custom argument type interpreting
-
 namespace wan24.CLI
 {
     // Internals
@@ -90,6 +88,32 @@ namespace wan24.CLI
                     keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
                     return (true, res);
                 }
+                else if ((FindTypeParser(type) ?? (type.IsArray ? FindTypeParser(type.GetElementType()!) : null)) is ParseType_Delegate parser)
+                {
+                    // Custom parser
+                    if (!hasValue)
+                    {
+                        if (Debug) WriteDebug($"Custom parsed {type}");
+                        return (false, null);
+                    }
+                    if (!type.IsArray)
+                    {
+                        if (Debug) WriteDebug($"Simple custom parsed {type}");
+                        string value = ca.KeyLessArguments[keyLessOffset + keyLessArgOffset];
+                        keyLessArgOffset++;
+                        return (true, parser(name, type, value, attr));
+                    }
+                    else
+                    {
+                        type = type.GetElementType()!;
+                        if (Debug) WriteDebug($"Array of custom parsed {type}");
+                        string[] values = ca.KeyLessArguments.Skip(keyLessOffset + keyLessArgOffset).ToArray();
+                        keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
+                        Array arr = Array.CreateInstance(type, values.Length);
+                        for (int i = 0, len = values.Length; i < len; arr.SetValue(parser($"{name}[{i}]", type, values[i], attr), i), i++) ;
+                        return (true, arr);
+                    }
+                }
                 else if (type.IsArray)
                 {
                     // Array of JSON parsed values
@@ -128,7 +152,7 @@ namespace wan24.CLI
                 if (existingName is null) return (false, null);
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
                 if (ca.All(existingName).Count != 1)
-                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} value(e) is/are given)", existingName);
+                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} values are given)", existingName);
                 return (true, ca.Single(existingName));
             }
             else if (type.IsArray && type.GetElementType() == typeof(string))
@@ -138,6 +162,32 @@ namespace wan24.CLI
                 if (existingName is null) return (true, Array.Empty<string>());
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
                 return (true, ca.All(existingName).ToArray());
+            }
+            else if ((FindTypeParser(type) ?? (type.IsArray ? FindTypeParser(type.GetElementType()!) : null)) is ParseType_Delegate parser)
+            {
+                // Custom parser
+                if (existingName is null)
+                {
+                    if (Debug) WriteDebug($"Custom parsed {type}");
+                    return (false, null);
+                }
+                if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
+                if (!type.IsArray)
+                {
+                    if (Debug) WriteDebug($"Simple custom parsed {type}");
+                    if (ca.All(existingName).Count != 1)
+                        throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} values are given)", existingName);
+                    return (true, parser(existingName, type, ca.Single(existingName), attr));
+                }
+                else
+                {
+                    type = type.GetElementType()!;
+                    if (Debug) WriteDebug($"Array of custom parsed {type}");
+                    ReadOnlyCollection<string> values = ca.All(existingName);
+                    Array res = Array.CreateInstance(type, values.Count);
+                    for (int i = 0, len = values.Count; i < len; res.SetValue(parser($"{existingName}[{i}]", type, values[i], attr), i), i++) ;
+                    return (true, res);
+                }
             }
             else if (type.IsArray)
             {
@@ -157,7 +207,7 @@ namespace wan24.CLI
                 if (existingName is null) return (false, null);
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
                 if (ca.All(existingName).Count != 1)
-                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} value(e) is/are given)", existingName);
+                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} values are given)", existingName);
                 return (true, ParseArgumentJsonValue(existingName, type, ca.Single(existingName), attr));
             }
         }
@@ -174,6 +224,23 @@ namespace wan24.CLI
             => attr.ParseJson
                 ? JsonHelper.DecodeObject(type, arg)
                 : throw new InvalidProgramException($"JSON parsing needs to be enabled for argument \"{name}\"");
+
+        /// <summary>
+        /// Find a custom parser for a type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Parser</returns>
+        internal static ParseType_Delegate? FindTypeParser(Type type)
+        {
+            Type? gtd = type.IsGenericType ? type.GetGenericTypeDefinition() : null;
+            foreach(KeyValuePair<Type, ParseType_Delegate> kvp in CustomArgumentParsers)
+            {
+                if (kvp.Key == type) return kvp.Value;
+                if (type.IsAssignableFrom(type)) return kvp.Value;
+                if (gtd is not null && kvp.Key.IsGenericType && gtd == kvp.Key.GetGenericTypeDefinition()) return kvp.Value;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Find all exported CLI APIs

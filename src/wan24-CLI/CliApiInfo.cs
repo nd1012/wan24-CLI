@@ -37,6 +37,11 @@ namespace wan24.CLI
         public static Color BackGroundColor { get; set; } = Color.Black;
 
         /// <summary>
+        /// Highlight color
+        /// </summary>
+        public static Color HighlightColor { get; set; } = Color.White;
+
+        /// <summary>
         /// Required color
         /// </summary>
         public static Color RequiredColor { get; set; } = Color.Wheat1;

@@ -21,11 +21,12 @@ namespace wan24.CLI.Demo
             [CliApi]
             [DisplayText("Message")]
             [Description("The message to display (Spectre.Console markup is supported)")]
-            string message
+            string message,
+            int exitCode = 123
             )
         {
             AnsiConsole.MarkupLine(message);
-            return 123;
+            return exitCode;
         }
 
         [CliApi("echo2")]
@@ -33,10 +34,10 @@ namespace wan24.CLI.Demo
         [Description("The output to STDOUT is the given message (Spectre.Console markup is supported), exit code will be 456")]
         [StdOut("Message")]
         [ExitCode(456, "Default exit code")]
-        public static int Echo2([CliApi] Echo2Arguments args)
+        public static int Echo2([CliApi] Echo2Arguments args, int exitCode = 456)
         {
             AnsiConsole.MarkupLine(args.Message);
-            return 456;
+            return exitCode;
         }
 
         [CliApi("sum")]
@@ -56,9 +57,9 @@ namespace wan24.CLI.Demo
         [Description("The given integers will be summarized, the result will be the exit code")]
         [StdOut("Result")]
         public static int Sum2(
-            [CliApi(ParseJson = true, Example = "\"[ 1, 2, 3, ... ]\"")]
+            [CliApi(ParseJson = true, Example = "1 2 3 ...")]
             [DisplayText("Numbers to summarize")]
-            [Description("Define 1..n integer values as JSON array to summarize")]
+            [Description("Define 1..n integer values to summarize")]
             int[] integers
             )
             => integers.Sum();
@@ -73,6 +74,17 @@ namespace wan24.CLI.Demo
         [DisplayText("Throw an exception")]
         [Description("This API method will throw an exception")]
         public static void Error() => throw new InvalidProgramException("Error API method called");
+
+        [CliApi("custom")]
+        [DisplayText("Custom type")]
+        [Description("Demonstrate the usage of a custom argument type parser")]
+        public static void CustomType(
+            [CliApi(Example = "float")]
+            [DisplayText("Number")]
+            [Description("Float number to output to the console")]
+            float number
+            )
+            => Console.WriteLine(number.ToString());
 
         public sealed record class Echo2Arguments : ICliArguments
         {

@@ -69,10 +69,10 @@ namespace wan24.CLI
                     CliApi.StdErr.MarkupLine($"[white on red]{_("API not found")}: \"{ApiName}\"[/]");
                     CliApi.StdErr.WriteLine();
                 }
-                Console.WriteLine($"{_("Usage")}:");
+                AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Usage")}:[/]");
                 AnsiConsole.MarkupLine($"  [{CliApiInfo.RequiredColor}]{CliApi.CommandLine.EscapeMarkup()}[/] [{CliApiInfo.ApiNameColor}]API[/] [{CliApiInfo.DecorationColor}]([/][{CliApiInfo.ApiMethodNameColor}]{_("Method")}[/][{CliApiInfo.DecorationColor}]) ([/][{CliApiInfo.OptionalColor}]{_("Arguments")}[/][{CliApiInfo.DecorationColor}])[/]");
                 Console.WriteLine();
-                Console.WriteLine($"{_("Available APIs")}:");
+                AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Available APIs")}:[/]");
                 foreach (CliApiInfo cliApiInfo in CliApi.ExportedApis.Values)
                 {
                     Console.WriteLine();
@@ -83,7 +83,7 @@ namespace wan24.CLI
                     if (cliApiInfo.Description is not null) AnsiConsole.MarkupLine($"  {_(cliApiInfo.Description.EscapeMarkup())}");
                     if (!Details) continue;
                     Console.WriteLine();
-                    Console.WriteLine($"  {_("API methods")}:");
+                    AnsiConsole.MarkupLine($"  {_("API methods")}:");
                     foreach (CliApiMethodInfo apiMethodInfo in cliApiInfo.Methods.Values)
                     {
                         Console.WriteLine();
@@ -125,12 +125,12 @@ namespace wan24.CLI
                     AnsiConsole.MarkupLine(_(apiInfo.Description.EscapeMarkup()));
                 }
                 Console.WriteLine();
-                Console.WriteLine($"{_("Usage")}:");
+                AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Usage")}:[/]");
                 AnsiConsole.MarkupLine($"  [{CliApiInfo.RequiredColor}]{CliApi.CommandLine.EscapeMarkup()}[/] [{CliApiInfo.ApiNameColor}]{ApiName}[/] [{CliApiInfo.DecorationColor}]([/][{CliApiInfo.ApiMethodNameColor}]{_("Method")}[/][{CliApiInfo.DecorationColor}]) ([/][{CliApiInfo.OptionalColor}]{_("Arguments")}[/][{CliApiInfo.DecorationColor}])[/]");
                 Console.WriteLine();
                 if (Details && apiInfo.Attribute?.HelpTextProperty is not null)
                 {
-                    Console.WriteLine($"{_("Usage details")}:");
+                    AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Usage details")}:[/]");
                     AnsiConsole.MarkupLine(apiInfo.Attribute.GetHelpText()!.Parse(new Dictionary<string, string>()
                         {
                             {"CommandLine", CliApi.CommandLine.EscapeMarkup()},
@@ -139,7 +139,7 @@ namespace wan24.CLI
                         }));
                     Console.WriteLine();
                 }
-                Console.WriteLine($"{_("API methods")}:");
+                AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("API methods")}:[/]");
                 foreach (CliApiMethodInfo apiMethodInfo in apiInfo.Methods.Values)
                 {
                     Console.WriteLine();
@@ -151,7 +151,7 @@ namespace wan24.CLI
                     if (apiMethodInfo.Description is not null) AnsiConsole.MarkupLine($"  {_(apiMethodInfo.Description.EscapeMarkup())}");
                     if (!Details || apiMethodInfo.Parameters.Count == 0) continue;
                     Console.WriteLine();
-                    Console.WriteLine($"  {_("Arguments")}:");
+                    AnsiConsole.MarkupLine($"  {_("Arguments")}:");
                     foreach (CliApiArgumentInfo argInfo in apiMethodInfo.Parameters.Values)
                     {
                         Console.WriteLine();
@@ -190,13 +190,13 @@ namespace wan24.CLI
                     AnsiConsole.MarkupLine(_(methodInfo.Description.EscapeMarkup()));
                 }
                 Console.WriteLine();
-                Console.WriteLine($"{_("Usage")}:");
+                AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Usage")}:[/]");
                 AnsiConsole.MarkupLine($"  {CliApi.ExportedApis.GetApiMethodSyntax(apiInfo.Name, methodInfo.Name, CliApi.CommandLine.EscapeMarkup())}");
                 bool hasDetails = false;
                 if (methodInfo.Parameters.Count != 0)
                 {
                     Console.WriteLine();
-                    Console.WriteLine($"{_("Arguments")}:");
+                    AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Arguments")}:[/]");
                     foreach (CliApiArgumentInfo argInfo in methodInfo.Parameters.Values)
                     {
                         Console.WriteLine();
@@ -228,24 +228,24 @@ namespace wan24.CLI
                     if (methodInfo.ExitCodes.Count != 0)
                     {
                         Console.WriteLine();
-                        Console.WriteLine($"{_("Exit codes")}:");
+                        AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Exit codes")}:[/]");
                         foreach (ExitCodeInfo exitCode in methodInfo.ExitCodes.Values)
                             AnsiConsole.MarkupLine($"  [{CliApiInfo.RequiredColor}]{exitCode.Code}[/]: {_(exitCode.Description?.EscapeMarkup() ?? $"({_("undocumented")})")}");
                     }
                     if (methodInfo.StdIn is not null)
                     {
                         Console.WriteLine();
-                        AnsiConsole.MarkupLine($"STDIN:  {(methodInfo.StdIn.Required ? $"[{CliApiInfo.RequiredColor}]({_("Required")})" : $"[{CliApiInfo.OptionalColor}]({_("Optional")})")}[/] {_(methodInfo.StdIn.Description.EscapeMarkup())}");
+                        AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]STDIN:[/]  {(methodInfo.StdIn.Required ? $"[{CliApiInfo.RequiredColor}]({_("Required")})" : $"[{CliApiInfo.OptionalColor}]({_("Optional")})")}[/] {_(methodInfo.StdIn.Description.EscapeMarkup())}");
                     }
                     if (methodInfo.StdOut is not null)
                     {
                         Console.WriteLine();
-                        AnsiConsole.MarkupLine($"STDOUT: {(methodInfo.StdOut.Required ? $"[{CliApiInfo.RequiredColor}]({_("Required")})" : $"[{CliApiInfo.OptionalColor}]({_("Optional")})")}[/] {_(methodInfo.StdOut.Description.EscapeMarkup())}");
+                        AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]STDOUT:[/] {(methodInfo.StdOut.Required ? $"[{CliApiInfo.RequiredColor}]({_("Required")})" : $"[{CliApiInfo.OptionalColor}]({_("Optional")})")}[/] {_(methodInfo.StdOut.Description.EscapeMarkup())}");
                     }
                     if (methodInfo.Attribute?.HelpTextProperty is not null)
                     {
                         Console.WriteLine();
-                        Console.WriteLine($"{_("Usage details")}:");
+                        AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Usage details")}:[/]");
                         Console.WriteLine();
                         AnsiConsole.MarkupLine(methodInfo.Attribute.GetHelpText()!.Parse(new Dictionary<string, string>()
                         {

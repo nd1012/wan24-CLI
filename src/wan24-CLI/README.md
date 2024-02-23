@@ -331,6 +331,17 @@ informations.
 **TIP**: Serve the `CliHelpApi` as the first (and default) API to display the 
 help on any general wrong usage.
 
+## Localization
+
+`wan24-CLI` uses the 
+[`wan24-Core`](https://github.com/WAN-Solutions/wan24-Core) localization 
+helpers. If you want to localize your CLI API help, you can include the 
+`wan24-CLI` source code and match the keyword source `_("...")` to the 
+keyword extraction configuration.
+
+All help texts defined as API/method/argument attributes will be translated 
+before they're going to be displayed.
+
 ## Processing multiple API method calls within one process
 
 Example:

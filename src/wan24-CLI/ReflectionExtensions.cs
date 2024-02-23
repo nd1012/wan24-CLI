@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using wan24.Core;
-using wan24.ObjectValidation;
 
 namespace wan24.CLI
 {
@@ -180,10 +178,11 @@ namespace wan24.CLI
         {
             IEnumerable<string> GetObjectArguments(Type type)
             {
-                CliApiAttribute attr;
+                CliApiAttribute? attr;
                 foreach (PropertyInfo pi in CliApi.FindApiArguments(type))
                 {
-                    attr = pi.GetCustomAttributeCached<CliApiAttribute>()!;
+                    attr = pi.GetCustomAttributeCached<CliApiAttribute>();
+                    if (attr is null) continue;
                     if (attr.KeyLessOffset == -1)
                     {
                         yield return pi.PropertyType == typeof(bool) ? $"-{pi.GetCliApiArgumentName()}" : $"--{pi.GetCliApiArgumentName()}";
@@ -200,6 +199,8 @@ namespace wan24.CLI
                     yield return arg;
                 if (mi is null) yield break;
                 foreach (ParameterInfo pi in mi.GetParameters())
+                {
+                    if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                     if (pi.ParameterType == typeof(bool))
                     {
                         yield return $"-{pi.GetCliApiArgumentName()}";
@@ -213,6 +214,7 @@ namespace wan24.CLI
                     {
                         yield return $"--{pi.GetCliApiArgumentName()}";
                     }
+                }
             }
             return GetArguments().Distinct().OrderBy(a => a);
         }
@@ -234,6 +236,8 @@ namespace wan24.CLI
                 if (seen.Contains(type)) return CliArgumentHosts.None;
                 seen.Add(type);
                 foreach (PropertyInfoExt pi in CliApi.FindApiArguments(type))
+                {
+                    if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                     if (pi.PropertyType.GetCliArgumentType() == CliArgumentTypes.Object)
                     {
                         if (FindArgument(pi.PropertyType) == CliArgumentHosts.Property) return CliArgumentHosts.Property;
@@ -242,6 +246,7 @@ namespace wan24.CLI
                     {
                         return CliArgumentHosts.Property;
                     }
+                }
                 return CliArgumentHosts.None;
             }
             foreach (ParameterInfo pi in mi.GetParameters())
@@ -271,6 +276,8 @@ namespace wan24.CLI
                 if (seen.Contains(type)) return CliArgumentHosts.None;
                 seen.Add(type);
                 foreach (PropertyInfo pi in CliApi.FindApiArguments(type))
+                {
+                    if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                     if (pi.PropertyType.GetCliArgumentType() == CliArgumentTypes.Object)
                     {
                         if (FindArgument(pi.PropertyType) == CliArgumentHosts.Property) return CliArgumentHosts.Property;
@@ -279,6 +286,7 @@ namespace wan24.CLI
                     {
                         return CliArgumentHosts.Property;
                     }
+                }
                 return CliArgumentHosts.None;
             }
             foreach (ParameterInfo pi in mi.GetParameters())
@@ -308,6 +316,8 @@ namespace wan24.CLI
                 if (seen.Contains(type)) return null;
                 seen.Add(type);
                 foreach (PropertyInfoExt pi in CliApi.FindApiArguments(type))
+                {
+                    if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                     if (pi.PropertyType.GetCliArgumentType() == CliArgumentTypes.Object)
                     {
                         if (FindArgument(pi.PropertyType) is PropertyInfoExt res) return res;
@@ -316,6 +326,7 @@ namespace wan24.CLI
                     {
                         return pi;
                     }
+                }
                 return null;
             }
             foreach (ParameterInfo pi in mi.GetParameters())
@@ -353,6 +364,8 @@ namespace wan24.CLI
                 if (seen.Contains(type)) return null;
                 seen.Add(type);
                 foreach (PropertyInfo pi in CliApi.FindApiArguments(type))
+                {
+                    if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                     if (pi.PropertyType.GetCliArgumentType() == CliArgumentTypes.Object)
                     {
                         if (FindArgument(pi.PropertyType) is PropertyInfo res) return res;
@@ -361,6 +374,7 @@ namespace wan24.CLI
                     {
                         return pi;
                     }
+                }
                 return null;
             }
             foreach (ParameterInfo pi in mi.GetParameters())
