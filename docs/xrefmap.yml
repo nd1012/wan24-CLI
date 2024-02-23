@@ -13,6 +13,19 @@ references:
   commentId: T:wan24.CLI.CliApi
   fullName: wan24.CLI.CliApi
   nameWithType: CliApi
+- uid: wan24.CLI.CliApi.CommandLine
+  name: CommandLine
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_CommandLine
+  commentId: P:wan24.CLI.CliApi.CommandLine
+  fullName: wan24.CLI.CliApi.CommandLine
+  nameWithType: CliApi.CommandLine
+- uid: wan24.CLI.CliApi.CommandLine*
+  name: CommandLine
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_CommandLine_
+  commentId: Overload:wan24.CLI.CliApi.CommandLine
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.CommandLine
+  nameWithType: CliApi.CommandLine
 - uid: wan24.CLI.CliApi.CurrentContext
   name: CurrentContext
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_CurrentContext
@@ -26,6 +39,45 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApi.CurrentContext
   nameWithType: CliApi.CurrentContext
+- uid: wan24.CLI.CliApi.CustomArgumentParsers
+  name: CustomArgumentParsers
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_CustomArgumentParsers
+  commentId: P:wan24.CLI.CliApi.CustomArgumentParsers
+  fullName: wan24.CLI.CliApi.CustomArgumentParsers
+  nameWithType: CliApi.CustomArgumentParsers
+- uid: wan24.CLI.CliApi.CustomArgumentParsers*
+  name: CustomArgumentParsers
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_CustomArgumentParsers_
+  commentId: Overload:wan24.CLI.CliApi.CustomArgumentParsers
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.CustomArgumentParsers
+  nameWithType: CliApi.CustomArgumentParsers
+- uid: wan24.CLI.CliApi.DisplayFullExceptions
+  name: DisplayFullExceptions
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_DisplayFullExceptions
+  commentId: P:wan24.CLI.CliApi.DisplayFullExceptions
+  fullName: wan24.CLI.CliApi.DisplayFullExceptions
+  nameWithType: CliApi.DisplayFullExceptions
+- uid: wan24.CLI.CliApi.DisplayFullExceptions*
+  name: DisplayFullExceptions
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_DisplayFullExceptions_
+  commentId: Overload:wan24.CLI.CliApi.DisplayFullExceptions
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.DisplayFullExceptions
+  nameWithType: CliApi.DisplayFullExceptions
+- uid: wan24.CLI.CliApi.DisplayGeneralHeader
+  name: DisplayGeneralHeader()
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_DisplayGeneralHeader
+  commentId: M:wan24.CLI.CliApi.DisplayGeneralHeader
+  fullName: wan24.CLI.CliApi.DisplayGeneralHeader()
+  nameWithType: CliApi.DisplayGeneralHeader()
+- uid: wan24.CLI.CliApi.DisplayGeneralHeader*
+  name: DisplayGeneralHeader
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_DisplayGeneralHeader_
+  commentId: Overload:wan24.CLI.CliApi.DisplayGeneralHeader
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.DisplayGeneralHeader
+  nameWithType: CliApi.DisplayGeneralHeader
 - uid: wan24.CLI.CliApi.DisplayHelpAsync(wan24.CLI.CliApiContext,System.Boolean)
   name: DisplayHelpAsync(CliApiContext, bool)
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_DisplayHelpAsync_wan24_CLI_CliApiContext_System_Boolean_
@@ -42,6 +94,19 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApi.DisplayHelpAsync
   nameWithType: CliApi.DisplayHelpAsync
+- uid: wan24.CLI.CliApi.DisplayHelpHeader
+  name: DisplayHelpHeader()
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_DisplayHelpHeader
+  commentId: M:wan24.CLI.CliApi.DisplayHelpHeader
+  fullName: wan24.CLI.CliApi.DisplayHelpHeader()
+  nameWithType: CliApi.DisplayHelpHeader()
+- uid: wan24.CLI.CliApi.DisplayHelpHeader*
+  name: DisplayHelpHeader
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_DisplayHelpHeader_
+  commentId: Overload:wan24.CLI.CliApi.DisplayHelpHeader
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.DisplayHelpHeader
+  nameWithType: CliApi.DisplayHelpHeader
 - uid: wan24.CLI.CliApi.ExportedApis
   name: ExportedApis
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_ExportedApis
@@ -55,6 +120,58 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApi.ExportedApis
   nameWithType: CliApi.ExportedApis
+- uid: wan24.CLI.CliApi.GeneralHeader
+  name: GeneralHeader
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_GeneralHeader
+  commentId: P:wan24.CLI.CliApi.GeneralHeader
+  fullName: wan24.CLI.CliApi.GeneralHeader
+  nameWithType: CliApi.GeneralHeader
+- uid: wan24.CLI.CliApi.GeneralHeader*
+  name: GeneralHeader
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_GeneralHeader_
+  commentId: Overload:wan24.CLI.CliApi.GeneralHeader
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.GeneralHeader
+  nameWithType: CliApi.GeneralHeader
+- uid: wan24.CLI.CliApi.GeneralHeaderDisplayed
+  name: GeneralHeaderDisplayed
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_GeneralHeaderDisplayed
+  commentId: P:wan24.CLI.CliApi.GeneralHeaderDisplayed
+  fullName: wan24.CLI.CliApi.GeneralHeaderDisplayed
+  nameWithType: CliApi.GeneralHeaderDisplayed
+- uid: wan24.CLI.CliApi.GeneralHeaderDisplayed*
+  name: GeneralHeaderDisplayed
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_GeneralHeaderDisplayed_
+  commentId: Overload:wan24.CLI.CliApi.GeneralHeaderDisplayed
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.GeneralHeaderDisplayed
+  nameWithType: CliApi.GeneralHeaderDisplayed
+- uid: wan24.CLI.CliApi.HelpHeader
+  name: HelpHeader
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_HelpHeader
+  commentId: P:wan24.CLI.CliApi.HelpHeader
+  fullName: wan24.CLI.CliApi.HelpHeader
+  nameWithType: CliApi.HelpHeader
+- uid: wan24.CLI.CliApi.HelpHeader*
+  name: HelpHeader
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_HelpHeader_
+  commentId: Overload:wan24.CLI.CliApi.HelpHeader
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.HelpHeader
+  nameWithType: CliApi.HelpHeader
+- uid: wan24.CLI.CliApi.HelpHeaderDisplayed
+  name: HelpHeaderDisplayed
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_HelpHeaderDisplayed
+  commentId: P:wan24.CLI.CliApi.HelpHeaderDisplayed
+  fullName: wan24.CLI.CliApi.HelpHeaderDisplayed
+  nameWithType: CliApi.HelpHeaderDisplayed
+- uid: wan24.CLI.CliApi.HelpHeaderDisplayed*
+  name: HelpHeaderDisplayed
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_HelpHeaderDisplayed_
+  commentId: Overload:wan24.CLI.CliApi.HelpHeaderDisplayed
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.HelpHeaderDisplayed
+  nameWithType: CliApi.HelpHeaderDisplayed
 - uid: wan24.CLI.CliApi.Helper
   name: Helper
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_Helper
@@ -68,24 +185,30 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApi.Helper
   nameWithType: CliApi.Helper
+- uid: wan24.CLI.CliApi.ParseType_Delegate
+  name: CliApi.ParseType_Delegate
+  href: api/wan24.CLI.CliApi.ParseType_Delegate.html
+  commentId: T:wan24.CLI.CliApi.ParseType_Delegate
+  fullName: wan24.CLI.CliApi.ParseType_Delegate
+  nameWithType: CliApi.ParseType_Delegate
 - uid: wan24.CLI.CliApi.RunAsync(System.String[],System.Threading.CancellationToken,System.Type[])
-  name: RunAsync(string[], CancellationToken, params Type[])
+  name: RunAsync(string[]?, CancellationToken, params Type[])
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunAsync_System_String___System_Threading_CancellationToken_System_Type___
   commentId: M:wan24.CLI.CliApi.RunAsync(System.String[],System.Threading.CancellationToken,System.Type[])
   name.vb: RunAsync(String(), CancellationToken, ParamArray Type())
-  fullName: wan24.CLI.CliApi.RunAsync(string[], System.Threading.CancellationToken, params System.Type[])
+  fullName: wan24.CLI.CliApi.RunAsync(string[]?, System.Threading.CancellationToken, params System.Type[])
   fullName.vb: wan24.CLI.CliApi.RunAsync(String(), System.Threading.CancellationToken, ParamArray System.Type())
-  nameWithType: CliApi.RunAsync(string[], CancellationToken, params Type[])
+  nameWithType: CliApi.RunAsync(string[]?, CancellationToken, params Type[])
   nameWithType.vb: CliApi.RunAsync(String(), CancellationToken, ParamArray Type())
-- uid: wan24.CLI.CliApi.RunAsync(System.String[],wan24.Core.CliArguments,System.Threading.CancellationToken,System.Type[])
-  name: RunAsync(string[], CliArguments, CancellationToken, params Type[])
-  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunAsync_System_String___wan24_Core_CliArguments_System_Threading_CancellationToken_System_Type___
-  commentId: M:wan24.CLI.CliApi.RunAsync(System.String[],wan24.Core.CliArguments,System.Threading.CancellationToken,System.Type[])
-  name.vb: RunAsync(String(), CliArguments, CancellationToken, ParamArray Type())
-  fullName: wan24.CLI.CliApi.RunAsync(string[], wan24.Core.CliArguments, System.Threading.CancellationToken, params System.Type[])
-  fullName.vb: wan24.CLI.CliApi.RunAsync(String(), wan24.Core.CliArguments, System.Threading.CancellationToken, ParamArray System.Type())
-  nameWithType: CliApi.RunAsync(string[], CliArguments, CancellationToken, params Type[])
-  nameWithType.vb: CliApi.RunAsync(String(), CliArguments, CancellationToken, ParamArray Type())
+- uid: wan24.CLI.CliApi.RunAsync(wan24.Core.CliArguments,System.String[],System.Threading.CancellationToken,System.Type[])
+  name: RunAsync(CliArguments, string[]?, CancellationToken, params Type[])
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunAsync_wan24_Core_CliArguments_System_String___System_Threading_CancellationToken_System_Type___
+  commentId: M:wan24.CLI.CliApi.RunAsync(wan24.Core.CliArguments,System.String[],System.Threading.CancellationToken,System.Type[])
+  name.vb: RunAsync(CliArguments, String(), CancellationToken, ParamArray Type())
+  fullName: wan24.CLI.CliApi.RunAsync(wan24.Core.CliArguments, string[]?, System.Threading.CancellationToken, params System.Type[])
+  fullName.vb: wan24.CLI.CliApi.RunAsync(wan24.Core.CliArguments, String(), System.Threading.CancellationToken, ParamArray System.Type())
+  nameWithType: CliApi.RunAsync(CliArguments, string[]?, CancellationToken, params Type[])
+  nameWithType.vb: CliApi.RunAsync(CliArguments, String(), CancellationToken, ParamArray Type())
 - uid: wan24.CLI.CliApi.RunAsync*
   name: RunAsync
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunAsync_
@@ -94,13 +217,13 @@ references:
   fullName: wan24.CLI.CliApi.RunAsync
   nameWithType: CliApi.RunAsync
 - uid: wan24.CLI.CliApi.RunMultiAsync(System.String[],System.Threading.CancellationToken,System.Type[])
-  name: RunMultiAsync(string[], CancellationToken, params Type[])
+  name: RunMultiAsync(string[]?, CancellationToken, params Type[])
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_RunMultiAsync_System_String___System_Threading_CancellationToken_System_Type___
   commentId: M:wan24.CLI.CliApi.RunMultiAsync(System.String[],System.Threading.CancellationToken,System.Type[])
   name.vb: RunMultiAsync(String(), CancellationToken, ParamArray Type())
-  fullName: wan24.CLI.CliApi.RunMultiAsync(string[], System.Threading.CancellationToken, params System.Type[])
+  fullName: wan24.CLI.CliApi.RunMultiAsync(string[]?, System.Threading.CancellationToken, params System.Type[])
   fullName.vb: wan24.CLI.CliApi.RunMultiAsync(String(), System.Threading.CancellationToken, ParamArray System.Type())
-  nameWithType: CliApi.RunMultiAsync(string[], CancellationToken, params Type[])
+  nameWithType: CliApi.RunMultiAsync(string[]?, CancellationToken, params Type[])
   nameWithType.vb: CliApi.RunMultiAsync(String(), CancellationToken, ParamArray Type())
 - uid: wan24.CLI.CliApi.RunMultiAsync*
   name: RunMultiAsync
@@ -109,6 +232,19 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApi.RunMultiAsync
   nameWithType: CliApi.RunMultiAsync
+- uid: wan24.CLI.CliApi.StdErr
+  name: StdErr
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_StdErr
+  commentId: P:wan24.CLI.CliApi.StdErr
+  fullName: wan24.CLI.CliApi.StdErr
+  nameWithType: CliApi.StdErr
+- uid: wan24.CLI.CliApi.StdErr*
+  name: StdErr
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_StdErr_
+  commentId: Overload:wan24.CLI.CliApi.StdErr
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.StdErr
+  nameWithType: CliApi.StdErr
 - uid: wan24.CLI.CliApi.UseInvokeAuto
   name: UseInvokeAuto
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_UseInvokeAuto
@@ -437,6 +573,19 @@ references:
   fullName.vb: wan24.CLI.CliApiAttribute.New
   nameWithType: CliApiAttribute.CliApiAttribute
   nameWithType.vb: CliApiAttribute.New
+- uid: wan24.CLI.CliApiAttribute.Example
+  name: Example
+  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_Example
+  commentId: P:wan24.CLI.CliApiAttribute.Example
+  fullName: wan24.CLI.CliApiAttribute.Example
+  nameWithType: CliApiAttribute.Example
+- uid: wan24.CLI.CliApiAttribute.Example*
+  name: Example
+  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_Example_
+  commentId: Overload:wan24.CLI.CliApiAttribute.Example
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiAttribute.Example
+  nameWithType: CliApiAttribute.Example
 - uid: wan24.CLI.CliApiAttribute.GetApiInfo(System.Type,System.Reflection.NullabilityInfoContext)
   name: GetApiInfo(Type, NullabilityInfoContext)
   href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_GetApiInfo_System_Type_System_Reflection_NullabilityInfoContext_
@@ -495,19 +644,6 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiAttribute.GetHelpText
   nameWithType: CliApiAttribute.GetHelpText
-- uid: wan24.CLI.CliApiAttribute.HelpTextIsMarkDown
-  name: HelpTextIsMarkDown
-  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_HelpTextIsMarkDown
-  commentId: P:wan24.CLI.CliApiAttribute.HelpTextIsMarkDown
-  fullName: wan24.CLI.CliApiAttribute.HelpTextIsMarkDown
-  nameWithType: CliApiAttribute.HelpTextIsMarkDown
-- uid: wan24.CLI.CliApiAttribute.HelpTextIsMarkDown*
-  name: HelpTextIsMarkDown
-  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_HelpTextIsMarkDown_
-  commentId: Overload:wan24.CLI.CliApiAttribute.HelpTextIsMarkDown
-  isSpec: "True"
-  fullName: wan24.CLI.CliApiAttribute.HelpTextIsMarkDown
-  nameWithType: CliApiAttribute.HelpTextIsMarkDown
 - uid: wan24.CLI.CliApiAttribute.HelpTextProperty
   name: HelpTextProperty
   href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_HelpTextProperty
@@ -782,6 +918,19 @@ references:
   fullName.vb: wan24.CLI.CliApiHelper.New
   nameWithType: CliApiHelper.CliApiHelper
   nameWithType.vb: CliApiHelper.New
+- uid: wan24.CLI.CliApiHelper.Default
+  name: Default
+  href: api/wan24.CLI.CliApiHelper.html#wan24_CLI_CliApiHelper_Default
+  commentId: P:wan24.CLI.CliApiHelper.Default
+  fullName: wan24.CLI.CliApiHelper.Default
+  nameWithType: CliApiHelper.Default
+- uid: wan24.CLI.CliApiHelper.Default*
+  name: Default
+  href: api/wan24.CLI.CliApiHelper.html#wan24_CLI_CliApiHelper_Default_
+  commentId: Overload:wan24.CLI.CliApiHelper.Default
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiHelper.Default
+  nameWithType: CliApiHelper.Default
 - uid: wan24.CLI.CliApiHelper.DisplayHelp(wan24.CLI.CliApiContext)
   name: DisplayHelp(CliApiContext)
   href: api/wan24.CLI.CliApiHelper.html#wan24_CLI_CliApiHelper_DisplayHelp_wan24_CLI_CliApiContext_
@@ -927,6 +1076,19 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiInfo.Description
   nameWithType: CliApiInfo.Description
+- uid: wan24.CLI.CliApiInfo.HighlightColor
+  name: HighlightColor
+  href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo_HighlightColor
+  commentId: P:wan24.CLI.CliApiInfo.HighlightColor
+  fullName: wan24.CLI.CliApiInfo.HighlightColor
+  nameWithType: CliApiInfo.HighlightColor
+- uid: wan24.CLI.CliApiInfo.HighlightColor*
+  name: HighlightColor
+  href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo_HighlightColor_
+  commentId: Overload:wan24.CLI.CliApiInfo.HighlightColor
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiInfo.HighlightColor
+  nameWithType: CliApiInfo.HighlightColor
 - uid: wan24.CLI.CliApiInfo.IsErrorHandler
   name: IsErrorHandler
   href: api/wan24.CLI.CliApiInfo.html#wan24_CLI_CliApiInfo_IsErrorHandler
@@ -1069,6 +1231,40 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiInfosExtensions.GetDefaultApi
   nameWithType: CliApiInfosExtensions.GetDefaultApi
+- uid: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IEnumerable{System.Type})
+  name: IsCliHelpApiServed(IEnumerable<Type>)
+  href: api/wan24.CLI.CliApiInfosExtensions.html#wan24_CLI_CliApiInfosExtensions_IsCliHelpApiServed_System_Collections_Generic_IEnumerable_System_Type__
+  commentId: M:wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IEnumerable{System.Type})
+  name.vb: IsCliHelpApiServed(IEnumerable(Of Type))
+  fullName: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IEnumerable<System.Type>)
+  fullName.vb: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IEnumerable(Of System.Type))
+  nameWithType: CliApiInfosExtensions.IsCliHelpApiServed(IEnumerable<Type>)
+  nameWithType.vb: CliApiInfosExtensions.IsCliHelpApiServed(IEnumerable(Of Type))
+- uid: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IEnumerable{wan24.CLI.CliApiInfo})
+  name: IsCliHelpApiServed(IEnumerable<CliApiInfo>)
+  href: api/wan24.CLI.CliApiInfosExtensions.html#wan24_CLI_CliApiInfosExtensions_IsCliHelpApiServed_System_Collections_Generic_IEnumerable_wan24_CLI_CliApiInfo__
+  commentId: M:wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IEnumerable{wan24.CLI.CliApiInfo})
+  name.vb: IsCliHelpApiServed(IEnumerable(Of CliApiInfo))
+  fullName: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IEnumerable<wan24.CLI.CliApiInfo>)
+  fullName.vb: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IEnumerable(Of wan24.CLI.CliApiInfo))
+  nameWithType: CliApiInfosExtensions.IsCliHelpApiServed(IEnumerable<CliApiInfo>)
+  nameWithType.vb: CliApiInfosExtensions.IsCliHelpApiServed(IEnumerable(Of CliApiInfo))
+- uid: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo})
+  name: IsCliHelpApiServed(IReadOnlyDictionary<string, CliApiInfo>)
+  href: api/wan24.CLI.CliApiInfosExtensions.html#wan24_CLI_CliApiInfosExtensions_IsCliHelpApiServed_System_Collections_Generic_IReadOnlyDictionary_System_String_wan24_CLI_CliApiInfo__
+  commentId: M:wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IReadOnlyDictionary{System.String,wan24.CLI.CliApiInfo})
+  name.vb: IsCliHelpApiServed(IReadOnlyDictionary(Of String, CliApiInfo))
+  fullName: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IReadOnlyDictionary<string, wan24.CLI.CliApiInfo>)
+  fullName.vb: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed(System.Collections.Generic.IReadOnlyDictionary(Of String, wan24.CLI.CliApiInfo))
+  nameWithType: CliApiInfosExtensions.IsCliHelpApiServed(IReadOnlyDictionary<string, CliApiInfo>)
+  nameWithType.vb: CliApiInfosExtensions.IsCliHelpApiServed(IReadOnlyDictionary(Of String, CliApiInfo))
+- uid: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed*
+  name: IsCliHelpApiServed
+  href: api/wan24.CLI.CliApiInfosExtensions.html#wan24_CLI_CliApiInfosExtensions_IsCliHelpApiServed_
+  commentId: Overload:wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiInfosExtensions.IsCliHelpApiServed
+  nameWithType: CliApiInfosExtensions.IsCliHelpApiServed
 - uid: wan24.CLI.CliApiMethodInfo
   name: CliApiMethodInfo
   href: api/wan24.CLI.CliApiMethodInfo.html
@@ -1185,6 +1381,32 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiMethodInfo.Parameters
   nameWithType: CliApiMethodInfo.Parameters
+- uid: wan24.CLI.CliApiMethodInfo.StdIn
+  name: StdIn
+  href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo_StdIn
+  commentId: P:wan24.CLI.CliApiMethodInfo.StdIn
+  fullName: wan24.CLI.CliApiMethodInfo.StdIn
+  nameWithType: CliApiMethodInfo.StdIn
+- uid: wan24.CLI.CliApiMethodInfo.StdIn*
+  name: StdIn
+  href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo_StdIn_
+  commentId: Overload:wan24.CLI.CliApiMethodInfo.StdIn
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiMethodInfo.StdIn
+  nameWithType: CliApiMethodInfo.StdIn
+- uid: wan24.CLI.CliApiMethodInfo.StdOut
+  name: StdOut
+  href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo_StdOut
+  commentId: P:wan24.CLI.CliApiMethodInfo.StdOut
+  fullName: wan24.CLI.CliApiMethodInfo.StdOut
+  nameWithType: CliApiMethodInfo.StdOut
+- uid: wan24.CLI.CliApiMethodInfo.StdOut*
+  name: StdOut
+  href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo_StdOut_
+  commentId: Overload:wan24.CLI.CliApiMethodInfo.StdOut
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiMethodInfo.StdOut
+  nameWithType: CliApiMethodInfo.StdOut
 - uid: wan24.CLI.CliApiMethodInfo.Title
   name: Title
   href: api/wan24.CLI.CliApiMethodInfo.html#wan24_CLI_CliApiMethodInfo_Title
@@ -1483,6 +1705,135 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ExitCodeAttribute.Description
   nameWithType: ExitCodeAttribute.Description
+- uid: wan24.CLI.ExitCodeInfo
+  name: ExitCodeInfo
+  href: api/wan24.CLI.ExitCodeInfo.html
+  commentId: T:wan24.CLI.ExitCodeInfo
+  fullName: wan24.CLI.ExitCodeInfo
+  nameWithType: ExitCodeInfo
+- uid: wan24.CLI.ExitCodeInfo.#ctor(wan24.CLI.CliApiInfo,wan24.CLI.CliApiMethodInfo,wan24.CLI.ExitCodeAttribute)
+  name: ExitCodeInfo(CliApiInfo, CliApiMethodInfo, ExitCodeAttribute)
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo__ctor_wan24_CLI_CliApiInfo_wan24_CLI_CliApiMethodInfo_wan24_CLI_ExitCodeAttribute_
+  commentId: M:wan24.CLI.ExitCodeInfo.#ctor(wan24.CLI.CliApiInfo,wan24.CLI.CliApiMethodInfo,wan24.CLI.ExitCodeAttribute)
+  name.vb: New(CliApiInfo, CliApiMethodInfo, ExitCodeAttribute)
+  fullName: wan24.CLI.ExitCodeInfo.ExitCodeInfo(wan24.CLI.CliApiInfo, wan24.CLI.CliApiMethodInfo, wan24.CLI.ExitCodeAttribute)
+  fullName.vb: wan24.CLI.ExitCodeInfo.New(wan24.CLI.CliApiInfo, wan24.CLI.CliApiMethodInfo, wan24.CLI.ExitCodeAttribute)
+  nameWithType: ExitCodeInfo.ExitCodeInfo(CliApiInfo, CliApiMethodInfo, ExitCodeAttribute)
+  nameWithType.vb: ExitCodeInfo.New(CliApiInfo, CliApiMethodInfo, ExitCodeAttribute)
+- uid: wan24.CLI.ExitCodeInfo.#ctor*
+  name: ExitCodeInfo
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo__ctor_
+  commentId: Overload:wan24.CLI.ExitCodeInfo.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.CLI.ExitCodeInfo.ExitCodeInfo
+  fullName.vb: wan24.CLI.ExitCodeInfo.New
+  nameWithType: ExitCodeInfo.ExitCodeInfo
+  nameWithType.vb: ExitCodeInfo.New
+- uid: wan24.CLI.ExitCodeInfo.API
+  name: API
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_API
+  commentId: P:wan24.CLI.ExitCodeInfo.API
+  fullName: wan24.CLI.ExitCodeInfo.API
+  nameWithType: ExitCodeInfo.API
+- uid: wan24.CLI.ExitCodeInfo.API*
+  name: API
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_API_
+  commentId: Overload:wan24.CLI.ExitCodeInfo.API
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeInfo.API
+  nameWithType: ExitCodeInfo.API
+- uid: wan24.CLI.ExitCodeInfo.Attribute
+  name: Attribute
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_Attribute
+  commentId: P:wan24.CLI.ExitCodeInfo.Attribute
+  fullName: wan24.CLI.ExitCodeInfo.Attribute
+  nameWithType: ExitCodeInfo.Attribute
+- uid: wan24.CLI.ExitCodeInfo.Attribute*
+  name: Attribute
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_Attribute_
+  commentId: Overload:wan24.CLI.ExitCodeInfo.Attribute
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeInfo.Attribute
+  nameWithType: ExitCodeInfo.Attribute
+- uid: wan24.CLI.ExitCodeInfo.Code
+  name: Code
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_Code
+  commentId: P:wan24.CLI.ExitCodeInfo.Code
+  fullName: wan24.CLI.ExitCodeInfo.Code
+  nameWithType: ExitCodeInfo.Code
+- uid: wan24.CLI.ExitCodeInfo.Code*
+  name: Code
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_Code_
+  commentId: Overload:wan24.CLI.ExitCodeInfo.Code
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeInfo.Code
+  nameWithType: ExitCodeInfo.Code
+- uid: wan24.CLI.ExitCodeInfo.Description
+  name: Description
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_Description
+  commentId: P:wan24.CLI.ExitCodeInfo.Description
+  fullName: wan24.CLI.ExitCodeInfo.Description
+  nameWithType: ExitCodeInfo.Description
+- uid: wan24.CLI.ExitCodeInfo.Description*
+  name: Description
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_Description_
+  commentId: Overload:wan24.CLI.ExitCodeInfo.Description
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeInfo.Description
+  nameWithType: ExitCodeInfo.Description
+- uid: wan24.CLI.ExitCodeInfo.Method
+  name: Method
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_Method
+  commentId: P:wan24.CLI.ExitCodeInfo.Method
+  fullName: wan24.CLI.ExitCodeInfo.Method
+  nameWithType: ExitCodeInfo.Method
+- uid: wan24.CLI.ExitCodeInfo.Method*
+  name: Method
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_Method_
+  commentId: Overload:wan24.CLI.ExitCodeInfo.Method
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeInfo.Method
+  nameWithType: ExitCodeInfo.Method
+- uid: wan24.CLI.ExitCodeInfo.api
+  name: api
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_api
+  commentId: P:wan24.CLI.ExitCodeInfo.api
+  fullName: wan24.CLI.ExitCodeInfo.api
+  nameWithType: ExitCodeInfo.api
+- uid: wan24.CLI.ExitCodeInfo.api*
+  name: api
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_api_
+  commentId: Overload:wan24.CLI.ExitCodeInfo.api
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeInfo.api
+  nameWithType: ExitCodeInfo.api
+- uid: wan24.CLI.ExitCodeInfo.attr
+  name: attr
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_attr
+  commentId: P:wan24.CLI.ExitCodeInfo.attr
+  fullName: wan24.CLI.ExitCodeInfo.attr
+  nameWithType: ExitCodeInfo.attr
+- uid: wan24.CLI.ExitCodeInfo.attr*
+  name: attr
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_attr_
+  commentId: Overload:wan24.CLI.ExitCodeInfo.attr
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeInfo.attr
+  nameWithType: ExitCodeInfo.attr
+- uid: wan24.CLI.ExitCodeInfo.method
+  name: method
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_method
+  commentId: P:wan24.CLI.ExitCodeInfo.method
+  fullName: wan24.CLI.ExitCodeInfo.method
+  nameWithType: ExitCodeInfo.method
+- uid: wan24.CLI.ExitCodeInfo.method*
+  name: method
+  href: api/wan24.CLI.ExitCodeInfo.html#wan24_CLI_ExitCodeInfo_method_
+  commentId: Overload:wan24.CLI.ExitCodeInfo.method
+  isSpec: "True"
+  fullName: wan24.CLI.ExitCodeInfo.method
+  nameWithType: ExitCodeInfo.method
 - uid: wan24.CLI.ICliApiErrorHandler
   name: ICliApiErrorHandler
   href: api/wan24.CLI.ICliApiErrorHandler.html
@@ -1851,6 +2202,108 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.ReflectionExtensions.IsCliValueRequired
   nameWithType: ReflectionExtensions.IsCliValueRequired
+- uid: wan24.CLI.StdInAttribute
+  name: StdInAttribute
+  href: api/wan24.CLI.StdInAttribute.html
+  commentId: T:wan24.CLI.StdInAttribute
+  fullName: wan24.CLI.StdInAttribute
+  nameWithType: StdInAttribute
+- uid: wan24.CLI.StdInAttribute.#ctor(System.String,System.Boolean)
+  name: StdInAttribute(string, bool)
+  href: api/wan24.CLI.StdInAttribute.html#wan24_CLI_StdInAttribute__ctor_System_String_System_Boolean_
+  commentId: M:wan24.CLI.StdInAttribute.#ctor(System.String,System.Boolean)
+  name.vb: New(String, Boolean)
+  fullName: wan24.CLI.StdInAttribute.StdInAttribute(string, bool)
+  fullName.vb: wan24.CLI.StdInAttribute.New(String, Boolean)
+  nameWithType: StdInAttribute.StdInAttribute(string, bool)
+  nameWithType.vb: StdInAttribute.New(String, Boolean)
+- uid: wan24.CLI.StdInAttribute.#ctor*
+  name: StdInAttribute
+  href: api/wan24.CLI.StdInAttribute.html#wan24_CLI_StdInAttribute__ctor_
+  commentId: Overload:wan24.CLI.StdInAttribute.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.CLI.StdInAttribute.StdInAttribute
+  fullName.vb: wan24.CLI.StdInAttribute.New
+  nameWithType: StdInAttribute.StdInAttribute
+  nameWithType.vb: StdInAttribute.New
+- uid: wan24.CLI.StdInAttribute.Description
+  name: Description
+  href: api/wan24.CLI.StdInAttribute.html#wan24_CLI_StdInAttribute_Description
+  commentId: P:wan24.CLI.StdInAttribute.Description
+  fullName: wan24.CLI.StdInAttribute.Description
+  nameWithType: StdInAttribute.Description
+- uid: wan24.CLI.StdInAttribute.Description*
+  name: Description
+  href: api/wan24.CLI.StdInAttribute.html#wan24_CLI_StdInAttribute_Description_
+  commentId: Overload:wan24.CLI.StdInAttribute.Description
+  isSpec: "True"
+  fullName: wan24.CLI.StdInAttribute.Description
+  nameWithType: StdInAttribute.Description
+- uid: wan24.CLI.StdInAttribute.Required
+  name: Required
+  href: api/wan24.CLI.StdInAttribute.html#wan24_CLI_StdInAttribute_Required
+  commentId: P:wan24.CLI.StdInAttribute.Required
+  fullName: wan24.CLI.StdInAttribute.Required
+  nameWithType: StdInAttribute.Required
+- uid: wan24.CLI.StdInAttribute.Required*
+  name: Required
+  href: api/wan24.CLI.StdInAttribute.html#wan24_CLI_StdInAttribute_Required_
+  commentId: Overload:wan24.CLI.StdInAttribute.Required
+  isSpec: "True"
+  fullName: wan24.CLI.StdInAttribute.Required
+  nameWithType: StdInAttribute.Required
+- uid: wan24.CLI.StdOutAttribute
+  name: StdOutAttribute
+  href: api/wan24.CLI.StdOutAttribute.html
+  commentId: T:wan24.CLI.StdOutAttribute
+  fullName: wan24.CLI.StdOutAttribute
+  nameWithType: StdOutAttribute
+- uid: wan24.CLI.StdOutAttribute.#ctor(System.String,System.Boolean)
+  name: StdOutAttribute(string, bool)
+  href: api/wan24.CLI.StdOutAttribute.html#wan24_CLI_StdOutAttribute__ctor_System_String_System_Boolean_
+  commentId: M:wan24.CLI.StdOutAttribute.#ctor(System.String,System.Boolean)
+  name.vb: New(String, Boolean)
+  fullName: wan24.CLI.StdOutAttribute.StdOutAttribute(string, bool)
+  fullName.vb: wan24.CLI.StdOutAttribute.New(String, Boolean)
+  nameWithType: StdOutAttribute.StdOutAttribute(string, bool)
+  nameWithType.vb: StdOutAttribute.New(String, Boolean)
+- uid: wan24.CLI.StdOutAttribute.#ctor*
+  name: StdOutAttribute
+  href: api/wan24.CLI.StdOutAttribute.html#wan24_CLI_StdOutAttribute__ctor_
+  commentId: Overload:wan24.CLI.StdOutAttribute.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.CLI.StdOutAttribute.StdOutAttribute
+  fullName.vb: wan24.CLI.StdOutAttribute.New
+  nameWithType: StdOutAttribute.StdOutAttribute
+  nameWithType.vb: StdOutAttribute.New
+- uid: wan24.CLI.StdOutAttribute.Description
+  name: Description
+  href: api/wan24.CLI.StdOutAttribute.html#wan24_CLI_StdOutAttribute_Description
+  commentId: P:wan24.CLI.StdOutAttribute.Description
+  fullName: wan24.CLI.StdOutAttribute.Description
+  nameWithType: StdOutAttribute.Description
+- uid: wan24.CLI.StdOutAttribute.Description*
+  name: Description
+  href: api/wan24.CLI.StdOutAttribute.html#wan24_CLI_StdOutAttribute_Description_
+  commentId: Overload:wan24.CLI.StdOutAttribute.Description
+  isSpec: "True"
+  fullName: wan24.CLI.StdOutAttribute.Description
+  nameWithType: StdOutAttribute.Description
+- uid: wan24.CLI.StdOutAttribute.Required
+  name: Required
+  href: api/wan24.CLI.StdOutAttribute.html#wan24_CLI_StdOutAttribute_Required
+  commentId: P:wan24.CLI.StdOutAttribute.Required
+  fullName: wan24.CLI.StdOutAttribute.Required
+  nameWithType: StdOutAttribute.Required
+- uid: wan24.CLI.StdOutAttribute.Required*
+  name: Required
+  href: api/wan24.CLI.StdOutAttribute.html#wan24_CLI_StdOutAttribute_Required_
+  commentId: Overload:wan24.CLI.StdOutAttribute.Required
+  isSpec: "True"
+  fullName: wan24.CLI.StdOutAttribute.Required
+  nameWithType: StdOutAttribute.Required
 - uid: wan24.CLI.StringExtensions
   name: StringExtensions
   href: api/wan24.CLI.StringExtensions.html
@@ -1873,3 +2326,135 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.StringExtensions.RemoveDashPrefix
   nameWithType: StringExtensions.RemoveDashPrefix
+- uid: wan24.CLI.VividConsoleLogger
+  name: VividConsoleLogger
+  href: api/wan24.CLI.VividConsoleLogger.html
+  commentId: T:wan24.CLI.VividConsoleLogger
+  fullName: wan24.CLI.VividConsoleLogger
+  nameWithType: VividConsoleLogger
+- uid: wan24.CLI.VividConsoleLogger.#ctor(System.Nullable{Microsoft.Extensions.Logging.LogLevel}@,Microsoft.Extensions.Logging.ILogger@)
+  name: VividConsoleLogger(in LogLevel?, in ILogger?)
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger__ctor_System_Nullable_Microsoft_Extensions_Logging_LogLevel___Microsoft_Extensions_Logging_ILogger__
+  commentId: M:wan24.CLI.VividConsoleLogger.#ctor(System.Nullable{Microsoft.Extensions.Logging.LogLevel}@,Microsoft.Extensions.Logging.ILogger@)
+  name.vb: New(LogLevel?, ILogger)
+  fullName: wan24.CLI.VividConsoleLogger.VividConsoleLogger(in Microsoft.Extensions.Logging.LogLevel?, in Microsoft.Extensions.Logging.ILogger?)
+  fullName.vb: wan24.CLI.VividConsoleLogger.New(Microsoft.Extensions.Logging.LogLevel?, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: VividConsoleLogger.VividConsoleLogger(in LogLevel?, in ILogger?)
+  nameWithType.vb: VividConsoleLogger.New(LogLevel?, ILogger)
+- uid: wan24.CLI.VividConsoleLogger.#ctor*
+  name: VividConsoleLogger
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger__ctor_
+  commentId: Overload:wan24.CLI.VividConsoleLogger.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.CLI.VividConsoleLogger.VividConsoleLogger
+  fullName.vb: wan24.CLI.VividConsoleLogger.New
+  nameWithType: VividConsoleLogger.VividConsoleLogger
+  nameWithType.vb: VividConsoleLogger.New
+- uid: wan24.CLI.VividConsoleLogger.CriticalColor
+  name: CriticalColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_CriticalColor
+  commentId: P:wan24.CLI.VividConsoleLogger.CriticalColor
+  fullName: wan24.CLI.VividConsoleLogger.CriticalColor
+  nameWithType: VividConsoleLogger.CriticalColor
+- uid: wan24.CLI.VividConsoleLogger.CriticalColor*
+  name: CriticalColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_CriticalColor_
+  commentId: Overload:wan24.CLI.VividConsoleLogger.CriticalColor
+  isSpec: "True"
+  fullName: wan24.CLI.VividConsoleLogger.CriticalColor
+  nameWithType: VividConsoleLogger.CriticalColor
+- uid: wan24.CLI.VividConsoleLogger.DebugColor
+  name: DebugColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_DebugColor
+  commentId: P:wan24.CLI.VividConsoleLogger.DebugColor
+  fullName: wan24.CLI.VividConsoleLogger.DebugColor
+  nameWithType: VividConsoleLogger.DebugColor
+- uid: wan24.CLI.VividConsoleLogger.DebugColor*
+  name: DebugColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_DebugColor_
+  commentId: Overload:wan24.CLI.VividConsoleLogger.DebugColor
+  isSpec: "True"
+  fullName: wan24.CLI.VividConsoleLogger.DebugColor
+  nameWithType: VividConsoleLogger.DebugColor
+- uid: wan24.CLI.VividConsoleLogger.ErrorColor
+  name: ErrorColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_ErrorColor
+  commentId: P:wan24.CLI.VividConsoleLogger.ErrorColor
+  fullName: wan24.CLI.VividConsoleLogger.ErrorColor
+  nameWithType: VividConsoleLogger.ErrorColor
+- uid: wan24.CLI.VividConsoleLogger.ErrorColor*
+  name: ErrorColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_ErrorColor_
+  commentId: Overload:wan24.CLI.VividConsoleLogger.ErrorColor
+  isSpec: "True"
+  fullName: wan24.CLI.VividConsoleLogger.ErrorColor
+  nameWithType: VividConsoleLogger.ErrorColor
+- uid: wan24.CLI.VividConsoleLogger.InformationColor
+  name: InformationColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_InformationColor
+  commentId: P:wan24.CLI.VividConsoleLogger.InformationColor
+  fullName: wan24.CLI.VividConsoleLogger.InformationColor
+  nameWithType: VividConsoleLogger.InformationColor
+- uid: wan24.CLI.VividConsoleLogger.InformationColor*
+  name: InformationColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_InformationColor_
+  commentId: Overload:wan24.CLI.VividConsoleLogger.InformationColor
+  isSpec: "True"
+  fullName: wan24.CLI.VividConsoleLogger.InformationColor
+  nameWithType: VividConsoleLogger.InformationColor
+- uid: wan24.CLI.VividConsoleLogger.LogInt*
+  name: LogInt
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_LogInt_
+  commentId: Overload:wan24.CLI.VividConsoleLogger.LogInt
+  isSpec: "True"
+  fullName: wan24.CLI.VividConsoleLogger.LogInt
+  nameWithType: VividConsoleLogger.LogInt
+- uid: wan24.CLI.VividConsoleLogger.LogInt``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})
+  name: LogInt<TState>(LogLevel, EventId, TState, Exception?, Func<TState, Exception?, string>)
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_LogInt__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Exception_System_Func___0_System_Exception_System_String__
+  commentId: M:wan24.CLI.VividConsoleLogger.LogInt``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})
+  name.vb: LogInt(Of TState)(LogLevel, EventId, TState, Exception, Func(Of TState, Exception, String))
+  fullName: wan24.CLI.VividConsoleLogger.LogInt<TState>(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Exception?, System.Func<TState, System.Exception?, string>)
+  fullName.vb: wan24.CLI.VividConsoleLogger.LogInt(Of TState)(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Exception, System.Func(Of TState, System.Exception, String))
+  nameWithType: VividConsoleLogger.LogInt<TState>(LogLevel, EventId, TState, Exception?, Func<TState, Exception?, string>)
+  nameWithType.vb: VividConsoleLogger.LogInt(Of TState)(LogLevel, EventId, TState, Exception, Func(Of TState, Exception, String))
+- uid: wan24.CLI.VividConsoleLogger.TraceColor
+  name: TraceColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_TraceColor
+  commentId: P:wan24.CLI.VividConsoleLogger.TraceColor
+  fullName: wan24.CLI.VividConsoleLogger.TraceColor
+  nameWithType: VividConsoleLogger.TraceColor
+- uid: wan24.CLI.VividConsoleLogger.TraceColor*
+  name: TraceColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_TraceColor_
+  commentId: Overload:wan24.CLI.VividConsoleLogger.TraceColor
+  isSpec: "True"
+  fullName: wan24.CLI.VividConsoleLogger.TraceColor
+  nameWithType: VividConsoleLogger.TraceColor
+- uid: wan24.CLI.VividConsoleLogger.WarningColor
+  name: WarningColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_WarningColor
+  commentId: P:wan24.CLI.VividConsoleLogger.WarningColor
+  fullName: wan24.CLI.VividConsoleLogger.WarningColor
+  nameWithType: VividConsoleLogger.WarningColor
+- uid: wan24.CLI.VividConsoleLogger.WarningColor*
+  name: WarningColor
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_WarningColor_
+  commentId: Overload:wan24.CLI.VividConsoleLogger.WarningColor
+  isSpec: "True"
+  fullName: wan24.CLI.VividConsoleLogger.WarningColor
+  nameWithType: VividConsoleLogger.WarningColor
+- uid: wan24.CLI.VividConsoleLogger.WriteToStdErr
+  name: WriteToStdErr
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_WriteToStdErr
+  commentId: P:wan24.CLI.VividConsoleLogger.WriteToStdErr
+  fullName: wan24.CLI.VividConsoleLogger.WriteToStdErr
+  nameWithType: VividConsoleLogger.WriteToStdErr
+- uid: wan24.CLI.VividConsoleLogger.WriteToStdErr*
+  name: WriteToStdErr
+  href: api/wan24.CLI.VividConsoleLogger.html#wan24_CLI_VividConsoleLogger_WriteToStdErr_
+  commentId: Overload:wan24.CLI.VividConsoleLogger.WriteToStdErr
+  isSpec: "True"
+  fullName: wan24.CLI.VividConsoleLogger.WriteToStdErr
+  nameWithType: VividConsoleLogger.WriteToStdErr

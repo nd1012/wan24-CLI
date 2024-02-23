@@ -32,7 +32,9 @@ public class YourCliApi
 In your CLI apps startup:
 
 ```cs
-await CliApi.RunAsync(args);
+await wan24.Core.Bootstrap.Async();
+Translation.Current = Translation.Dummy;// Or initialize with your own translations
+return await CliApi.RunAsync(args);
 ```
 
 Usage of your CLI API:
@@ -65,15 +67,24 @@ A flag is inidicated with a `-[flag]`, having no value following.
 A value may be quoted using single or double quotes. If quoted, the value 
 needs to be escaped for JSON decoding. A backslash needs double escaping.
 
-#### Supported CLR types
+#### Supported argument types
 
-Per default these CLR types can be parsed:
+Per default these CLR types can be parsed from the CLI argument list:
 
 - `bool`: Flag argument
-- `string`: Simple key/value argument
-- `string[]`: Simple key/value list argument
+- `string`: Simple string (key/)value argument
+- `string[]`: Simple string (key/)value list argument
 
-All other CLR types need to be given as JSON encoded values.
+All other CLR types need to be given as JSON encoded values, or you use a 
+custom argument parser - example for float values:
+
+```cs
+CliApi.CustomArgumentParsers[typeof(float)] = (name, type, arg, attr) => float.Parse(arg);
+```
+
+This custom parser will now be used for `float` argument types. If you want to 
+use JSON decoding instead, set the `ParseJson` property value of the `CliApi` 
+attribute of the property or method parameter to `true`.
 
 #### Keyless parameters
 
@@ -99,6 +110,11 @@ All arguments before `-flag` are handled as keyless values.
 For binding keyless values to a CLI argument property or parameter, the 
 `CliApi` attribute constructor which takes a keyless value offset needs to be 
 used (more about that in the following chapters).
+
+#### STDIN and STDOUT
+
+Uing the `StdIn` and `StdOut` attributes you can add STDIN/-OUT usage 
+informations to the method help.
 
 ### CLI argument binding
 
@@ -150,7 +166,7 @@ Don't worry about the `= null!` initialization of the property: The API
 instance will be validated. If `--value` wasn't given, an usage help will be 
 displayed.
 
-The API method:
+The API method which will consume the argument object:
 
 ```cs
 [CliApi]
@@ -233,18 +249,34 @@ to `true` to enable JSON parsing of the given value.
 
 API documentation will be generated automatic and be displayed on wrong usage. 
 To add details, you can use the `DisplayText` (for titles) and `Description` 
-attributes. You may also specify a static string property which returns the 
-help text for an API/method/argument by setting the properties namespace and 
-name to the `HelpTextProperty` property of the `CliApi` attribute. If the help 
-text contains MarkDown formatted informations, set the `HelptextIsMarkDown` 
-property value of the `CliApi` attribute to `true`.
+attributes. If an argument isn't a flag, you can add an example value to 
+display to the `Example` property of the `CliApi` attribute.
 
-If you API methods return an exit code, you can add documentation for them 
+You may also specify a static string property which returns the help text for 
+an API/method/argument by setting the properties namespace and name to the 
+`HelpTextProperty` property of the `CliApi` attribute. The text contents will 
+be parsed, and `Spectre.Console` markup is supported also. You may use these 
+variables:
+
+- `%{CommandLine}`: The command line used to call the CLI in general
+- `%{API}`: The current API name
+- `%{Method}`: The current API method name
+
+The `wan24-Core` string parser is being used for this.
+
+If your API methods return an exit code, you can add documentation for them 
 using the `ExitCode` attribute on the method.
 
-Per default help text information can use the `Spectre.Console` markup syntax 
-for printing rich output to an ANSI console. The default colors used can be 
-customized in the static `CliApiInfo` properties.
+Help output uses the `Spectre.Console` markup syntax for printing rich output 
+to an ANSI console. The default colors used can be customized in the static 
+`CliApiInfo` properties.
+
+All help output can be localized. For a full localization, you can parse the 
+`wan24-CLI` source code with POEdit, for example, too. Parser should look for 
+these phrases:
+
+- `_("...")` (single underscore)
+- `__("...")` (double underscore)
 
 For intercepting errors there are multiple ways:
 
@@ -305,6 +337,20 @@ dotnet app.dll help --api [apiName] --method [methodName] (-details)
 The optional `-details` flag will force the help API to output more available 
 informations.
 
+**TIP**: Serve the `CliHelpApi` as the first (and default) API to display the 
+help on any general wrong usage.
+
+## Localization
+
+`wan24-CLI` uses the 
+[`wan24-Core`](https://github.com/WAN-Solutions/wan24-Core) localization 
+helpers. If you want to localize your CLI API help, you can include the 
+`wan24-CLI` source code and match the keyword source `_("...")` to the 
+keyword extraction configuration.
+
+All help texts defined as API/method/argument attributes will be translated 
+before they're going to be displayed.
+
 ## Processing multiple API method calls within one process
 
 Example:
@@ -323,7 +369,7 @@ await CliApi.RunMultiAsync(args);
 
 There are some limitations:
 
-1. API method calls will be processed synchronous
+1. API method calls will be processed sequential (not in parallel)
 2. The first API method which fails or returns an exit code `!=0` will break 
 the processing loop
 3. API calls without any argument aren't supported and will be ignored
@@ -352,6 +398,22 @@ The `CliApiInfosExtensions` have some useful helper methods. Using the
 `ReflectionExtensions` and `CliApiContext` methods you may also reflect .NET 
 reflection info objects or a CLI API context instance for CLI API object 
 detail informations.
+
+## Header output
+
+The `CliApi.GeneralHeader` and `CliApi.HelpHeader` properties store a header, 
+which will be displayed in general, or if help is being displayed (if there's 
+a general header, the help header will never be displayed).
+
+## Running as a dotnet tool
+
+Since there's no way to determine if the process is running as dotnet tool, 
+the CLI command would need to be specified in order to get correct usage 
+examples from the CLI help API:
+
+```cs
+CliApi.CommandLine = "dotnet tool yourapp";
+```
 
 ## Best practice
 

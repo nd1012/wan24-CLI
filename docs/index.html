@@ -86,7 +86,9 @@ public class YourCliApi
 }
 </code></pre>
 <p>In your CLI apps startup:</p>
-<pre><code class="lang-cs">await CliApi.RunAsync(args);
+<pre><code class="lang-cs">await wan24.Core.Bootstrap.Async();
+Translation.Current = Translation.Dummy;// Or initialize with your own translations
+return await CliApi.RunAsync(args);
 </code></pre>
 <p>Usage of your CLI API:</p>
 <pre><code class="lang-bash">dotnet app.dll --value 'Hello world!'
@@ -104,14 +106,20 @@ with a dash, it needs to be prepended with another key indicator - example:</p>
 <h4 id="value-quoting">Value quoting</h4>
 <p>A value may be quoted using single or double quotes. If quoted, the value
 needs to be escaped for JSON decoding. A backslash needs double escaping.</p>
-<h4 id="supported-clr-types">Supported CLR types</h4>
-<p>Per default these CLR types can be parsed:</p>
+<h4 id="supported-argument-types">Supported argument types</h4>
+<p>Per default these CLR types can be parsed from the CLI argument list:</p>
 <ul>
 <li><code>bool</code>: Flag argument</li>
-<li><code>string</code>: Simple key/value argument</li>
-<li><code>string[]</code>: Simple key/value list argument</li>
+<li><code>string</code>: Simple string (key/)value argument</li>
+<li><code>string[]</code>: Simple string (key/)value list argument</li>
 </ul>
-<p>All other CLR types need to be given as JSON encoded values.</p>
+<p>All other CLR types need to be given as JSON encoded values, or you use a
+custom argument parser - example for float values:</p>
+<pre><code class="lang-cs">CliApi.CustomArgumentParsers[typeof(float)] = (name, type, arg, attr) =&gt; float.Parse(arg);
+</code></pre>
+<p>This custom parser will now be used for <code>float</code> argument types. If you want to
+use JSON decoding instead, set the <code>ParseJson</code> property value of the <code>CliApi</code>
+attribute of the property or method parameter to <code>true</code>.</p>
 <h4 id="keyless-parameters">Keyless parameters</h4>
 <p>Example:</p>
 <pre><code class="lang-bash">dotnet app.dll -flag value1 --key value2 - value3 value4
@@ -127,6 +135,9 @@ used to separate them from the value list for <code>key</code>.</p>
 <p>For binding keyless values to a CLI argument property or parameter, the
 <code>CliApi</code> attribute constructor which takes a keyless value offset needs to be
 used (more about that in the following chapters).</p>
+<h4 id="stdin-and-stdout">STDIN and STDOUT</h4>
+<p>Uing the <code>StdIn</code> and <code>StdOut</code> attributes you can add STDIN/-OUT usage
+informations to the method help.</p>
 <h3 id="cli-argument-binding">CLI argument binding</h3>
 <h4 id="as-api-type-property">As API type property</h4>
 <p>This is the recommended way for the argument binding:</p>
@@ -160,7 +171,7 @@ JSON parsed, but used as argument object.</p>
 <p>Don't worry about the <code>= null!</code> initialization of the property: The API
 instance will be validated. If <code>--value</code> wasn't given, an usage help will be
 displayed.</p>
-<p>The API method:</p>
+<p>The API method which will consume the argument object:</p>
 <pre><code class="lang-cs">[CliApi]
 public void YourApiMethod([CliApi] YourApiMethodArguments args)
 {
@@ -220,16 +231,31 @@ to <code>true</code> to enable JSON parsing of the given value.</p>
 <h2 id="api-documentation">API documentation</h2>
 <p>API documentation will be generated automatic and be displayed on wrong usage.
 To add details, you can use the <code>DisplayText</code> (for titles) and <code>Description</code>
-attributes. You may also specify a static string property which returns the
-help text for an API/method/argument by setting the properties namespace and
-name to the <code>HelpTextProperty</code> property of the <code>CliApi</code> attribute. If the help
-text contains MarkDown formatted informations, set the <code>HelptextIsMarkDown</code>
-property value of the <code>CliApi</code> attribute to <code>true</code>.</p>
-<p>If you API methods return an exit code, you can add documentation for them
+attributes. If an argument isn't a flag, you can add an example value to
+display to the <code>Example</code> property of the <code>CliApi</code> attribute.</p>
+<p>You may also specify a static string property which returns the help text for
+an API/method/argument by setting the properties namespace and name to the
+<code>HelpTextProperty</code> property of the <code>CliApi</code> attribute. The text contents will
+be parsed, and <code>Spectre.Console</code> markup is supported also. You may use these
+variables:</p>
+<ul>
+<li><code>%{CommandLine}</code>: The command line used to call the CLI in general</li>
+<li><code>%{API}</code>: The current API name</li>
+<li><code>%{Method}</code>: The current API method name</li>
+</ul>
+<p>The <code>wan24-Core</code> string parser is being used for this.</p>
+<p>If your API methods return an exit code, you can add documentation for them
 using the <code>ExitCode</code> attribute on the method.</p>
-<p>Per default help text information can use the <code>Spectre.Console</code> markup syntax
-for printing rich output to an ANSI console. The default colors used can be
-customized in the static <code>CliApiInfo</code> properties.</p>
+<p>Help output uses the <code>Spectre.Console</code> markup syntax for printing rich output
+to an ANSI console. The default colors used can be customized in the static
+<code>CliApiInfo</code> properties.</p>
+<p>All help output can be localized. For a full localization, you can parse the
+<code>wan24-CLI</code> source code with POEdit, for example, too. Parser should look for
+these phrases:</p>
+<ul>
+<li><code>_(&quot;...&quot;)</code> (single underscore)</li>
+<li><code>__(&quot;...&quot;)</code> (double underscore)</li>
+</ul>
 <p>For intercepting errors there are multiple ways:</p>
 <h3 id="icliapierrorhandler"><code>ICliApiErrorHandler</code></h3>
 <p>If your API type implements the <code>ICliApiErrorHandler</code> interface, errors during
@@ -271,6 +297,16 @@ dotnet app.dll help --api [apiName] --method [methodName] (-details)
 </code></pre>
 <p>The optional <code>-details</code> flag will force the help API to output more available
 informations.</p>
+<p><strong>TIP</strong>: Serve the <code>CliHelpApi</code> as the first (and default) API to display the
+help on any general wrong usage.</p>
+<h2 id="localization">Localization</h2>
+<p><code>wan24-CLI</code> uses the
+<a href="https://github.com/WAN-Solutions/wan24-Core"><code>wan24-Core</code></a> localization
+helpers. If you want to localize your CLI API help, you can include the
+<code>wan24-CLI</code> source code and match the keyword source <code>_(&quot;...&quot;)</code> to the
+keyword extraction configuration.</p>
+<p>All help texts defined as API/method/argument attributes will be translated
+before they're going to be displayed.</p>
 <h2 id="processing-multiple-api-method-calls-within-one-process">Processing multiple API method calls within one process</h2>
 <p>Example:</p>
 <pre><code class="lang-bash">dotnet app.dll --key value - --key value2 - --key value3
@@ -281,7 +317,7 @@ informations.</p>
 </code></pre>
 <p>There are some limitations:</p>
 <ol>
-<li>API method calls will be processed synchronous</li>
+<li>API method calls will be processed sequential (not in parallel)</li>
 <li>The first API method which fails or returns an exit code <code>!=0</code> will break
 the processing loop</li>
 <li>API calls without any argument aren't supported and will be ignored</li>
@@ -303,6 +339,16 @@ otherwise the APIs (methods/arguments) would overwrite each other.</p>
 <code>ReflectionExtensions</code> and <code>CliApiContext</code> methods you may also reflect .NET
 reflection info objects or a CLI API context instance for CLI API object
 detail informations.</p>
+<h2 id="header-output">Header output</h2>
+<p>The <code>CliApi.GeneralHeader</code> and <code>CliApi.HelpHeader</code> properties store a header,
+which will be displayed in general, or if help is being displayed (if there's
+a general header, the help header will never be displayed).</p>
+<h2 id="running-as-a-dotnet-tool">Running as a dotnet tool</h2>
+<p>Since there's no way to determine if the process is running as dotnet tool,
+the CLI command would need to be specified in order to get correct usage
+examples from the CLI help API:</p>
+<pre><code class="lang-cs">CliApi.CommandLine = &quot;dotnet tool yourapp&quot;;
+</code></pre>
 <h2 id="best-practice">Best practice</h2>
 <p>You use this library, 'cause it matches your requirements (which
 <code>Spectre.Console</code> alone does not in some cases). You can work work the .NET
