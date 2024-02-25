@@ -67,15 +67,24 @@ A flag is inidicated with a `-[flag]`, having no value following.
 A value may be quoted using single or double quotes. If quoted, the value 
 needs to be escaped for JSON decoding. A backslash needs double escaping.
 
-#### Supported CLR types
+#### Supported argument types
 
-Per default these CLR types can be parsed:
+Per default these CLR types can be parsed from the CLI argument list:
 
 - `bool`: Flag argument
-- `string`: Simple key/value argument
-- `string[]`: Simple key/value list argument
+- `string`: Simple string (key/)value argument
+- `string[]`: Simple string (key/)value list argument
 
-All other CLR types need to be given as JSON encoded values.
+All other CLR types need to be given as JSON encoded values, or you use a 
+custom argument parser - example for float values:
+
+```cs
+CliApi.CustomArgumentParsers[typeof(float)] = (name, type, arg, attr) => float.Parse(arg);
+```
+
+This custom parser will now be used for `float` argument types. If you want to 
+use JSON decoding instead, set the `ParseJson` property value of the `CliApi` 
+attribute of the property or method parameter to `true`.
 
 #### Keyless parameters
 
@@ -395,6 +404,16 @@ detail informations.
 The `CliApi.GeneralHeader` and `CliApi.HelpHeader` properties store a header, 
 which will be displayed in general, or if help is being displayed (if there's 
 a general header, the help header will never be displayed).
+
+## Running as a dotnet tool
+
+Since there's no way to determine if the process is running as dotnet tool, 
+the CLI command would need to be specified in order to get correct usage 
+examples from the CLI help API:
+
+```cs
+CliApi.CommandLine = "dotnet tool yourapp";
+```
 
 ## Best practice
 

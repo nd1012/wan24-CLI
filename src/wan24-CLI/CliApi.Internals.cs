@@ -70,6 +70,26 @@ namespace wan24.CLI
             {
                 bool hasValue = attr.KeyLessOffset < ca.KeyLessArguments.Count - keyLessOffset - keyLessArgOffset;
                 if (Debug) WriteDebug(hasValue ? "Keyless argument value found" : "Keyless argument value not found");
+                if (!type.IsArray && attr.CanParseArgument)
+                {
+                    // CliApiAttribute parsed value
+                    if (Debug) WriteDebug("CliApiAttribute parsed value");
+                    if (!hasValue) return (false, null);
+                    string value = ca.KeyLessArguments[keyLessOffset + keyLessArgOffset];
+                    keyLessArgOffset++;
+                    return (true, attr.ParseArgument(name, type, value));
+                }
+                else if(type.IsArray && attr.CanParseArgument)
+                {
+                    // CliApiAttribute parsed array values
+                    if (Debug) WriteDebug("CliApiAttribute parsed array values");
+                    type = type.GetElementType()!;
+                    string[] values = ca.KeyLessArguments.Skip(keyLessOffset + keyLessArgOffset).ToArray();
+                    keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
+                    Array arr = Array.CreateInstance(type, values.Length);
+                    for (int i = 0, len = values.Length; i < len; arr.SetValue(attr.ParseArgument($"{name}[{i}]", type, values[i]), i), i++) ;
+                    return (true, arr);
+                }
                 if (type == typeof(string))
                 {
                     // Simple string value
@@ -138,7 +158,29 @@ namespace wan24.CLI
             // Named argument
             string? existingName = ca.GetExistingKey(attr.Name == string.Empty ? name : attr.Name);
             if (existingName is not null && Debug) WriteDebug($"Using existing argument name \"{existingName}\"");
-            if (type == typeof(bool))
+            if (!type.IsArray && attr.CanParseArgument)
+            {
+                // CliApiAttribute parsed value
+                if (Debug) WriteDebug("CliApiAttribute parsed value");
+                if (existingName is null) return (false, null);
+                if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
+                if (ca.All(existingName).Count != 1)
+                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} values are given)", existingName);
+                return (true, attr.ParseArgument(name, type, ca.Single(existingName)));
+            }
+            else if (type.IsArray && attr.CanParseArgument)
+            {
+                // CliApiAttribute parsed array values
+                if (Debug) WriteDebug("CliApiAttribute parsed array values");
+                if (existingName is null) return (false, null);
+                if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
+                type = type.GetElementType()!;
+                ReadOnlyCollection<string> values = ca.All(existingName);
+                Array res = Array.CreateInstance(type, values.Count);
+                for (int i = 0, len = values.Count; i < len; res.SetValue(attr.ParseArgument($"{existingName}[{i}]", type, values[i]), i), i++) ;
+                return (true, res);
+            }
+            else if (type == typeof(bool))
             {
                 // Flag
                 if (Debug) WriteDebug("Boolean flag");

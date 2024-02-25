@@ -1,4 +1,5 @@
 ﻿using Spectre.Console;
+using System.Collections.Frozen;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -88,7 +89,7 @@ namespace wan24.CLI
         /// <summary>
         /// Argument object properties
         /// </summary>
-        public IReadOnlyDictionary<string, CliApiArgumentInfo>? ObjectProperties { get; protected set; }
+        public FrozenDictionary<string, CliApiArgumentInfo>? ObjectProperties { get; protected set; }
 
         /// <summary>
         /// Argument type
@@ -165,8 +166,8 @@ namespace wan24.CLI
                 if (sb.Length > 0) sb.Remove(sb.Length - 1, 1);
                 return RX_DOUBLE_SPACE.Replace(sb.ToString(), " ");
             }
-            if (IsKeyLess)
-                return Type switch
+            return IsKeyLess
+                ? Type switch
                 {
                     CliArgumentTypes.Value => IsRequired
                         ? $"[{CliApiInfo.DecorationColor}]{(IsValueList ? $"{Attribute.Example?.EscapeMarkup() ?? ClrName} ..." : Attribute.Example?.EscapeMarkup() ?? ClrName)}[/]"
@@ -174,19 +175,19 @@ namespace wan24.CLI
                     CliArgumentTypes.Object => IsRequired
                         ? $"[{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : Attribute.Example?.EscapeMarkup() ?? $"{ClrName}Json")}[/]"
                         : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : $"{ClrName}Json")}[/][{CliApiInfo.DecorationColor}])[/]",
-                _ => throw new InvalidProgramException()
+                    _ => throw new InvalidProgramException()
+                }
+                : Type switch
+                {
+                    CliArgumentTypes.Flag => $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/][{CliApiInfo.DecorationColor}])[/]",
+                    CliArgumentTypes.Value => IsRequired
+                        ? $"[{CliApiInfo.RequiredColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{Attribute.Example?.EscapeMarkup() ?? ClrName} ..." : Attribute.Example?.EscapeMarkup() ?? ClrName)}[/]"
+                        : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{Attribute.Example?.EscapeMarkup() ?? ClrName} ..." : Attribute.Example?.EscapeMarkup() ?? ClrName)}[/][{CliApiInfo.DecorationColor}])[/]",
+                    CliArgumentTypes.Object => IsRequired
+                        ? $"[{CliApiInfo.RequiredColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : Attribute.Example?.EscapeMarkup() ?? $"{ClrName}Json")}[/]"
+                        : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : $"{ClrName}Json")}[/][{CliApiInfo.DecorationColor}])[/]",
+                    _ => throw new InvalidProgramException()
                 };
-            return Type switch
-            {
-                CliArgumentTypes.Flag => $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/][{CliApiInfo.DecorationColor}])[/]",
-                CliArgumentTypes.Value => IsRequired
-                    ? $"[{CliApiInfo.RequiredColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{Attribute.Example?.EscapeMarkup() ?? ClrName} ..." : Attribute.Example?.EscapeMarkup() ?? ClrName)}[/]"
-                    : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{Attribute.Example?.EscapeMarkup() ?? ClrName} ..." : Attribute.Example?.EscapeMarkup() ?? ClrName)}[/][{CliApiInfo.DecorationColor}])[/]",
-                CliArgumentTypes.Object => IsRequired
-                    ? $"[{CliApiInfo.RequiredColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : Attribute.Example?.EscapeMarkup() ?? $"{ClrName}Json")}[/]"
-                    : $"[{CliApiInfo.DecorationColor}]([/][{CliApiInfo.OptionalColor}]{ArgumentName}[/] [{CliApiInfo.DecorationColor}]{(IsValueList ? $"{(Attribute.Example is null ? $"{ClrName}Json ..." : $"{Attribute.Example.EscapeMarkup()} ...")}" : $"{ClrName}Json")}[/][{CliApiInfo.DecorationColor}])[/]",
-                _ => throw new InvalidProgramException()
-            };
         }
 
         /// <summary>
@@ -207,7 +208,7 @@ namespace wan24.CLI
                 info = new(Method, pi, nic);
                 props[info.Name] = info;
             }
-            ObjectProperties = props;
+            ObjectProperties = props.ToFrozenDictionary();
         }
 
         /// <summary>

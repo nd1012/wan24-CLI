@@ -53,6 +53,11 @@ namespace wan24.CLI
         public string? HelpTextProperty { get; set; }
 
         /// <summary>
+        /// Can an argument value be parsed using <see cref="ParseArgument(string, Type, string)"/>?
+        /// </summary>
+        public virtual bool CanParseArgument { get; }
+
+        /// <summary>
         /// Get the help text (Spectre.Console markup is supported)
         /// </summary>
         /// <returns>Help text</returns>
@@ -105,5 +110,15 @@ namespace wan24.CLI
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
         /// <returns>API argument informations</returns>
         public virtual CliApiArgumentInfo? GetArgumentInfo(CliApiMethodInfo method, ParameterInfo pi, NullabilityInfoContext nic) => null;
+
+        /// <summary>
+        /// Parse an argument value
+        /// </summary>
+        /// <param name="name">Argument name (without dashes)</param>
+        /// <param name="type">Argument type</param>
+        /// <param name="arg">Argument string value</param>
+        /// <returns>Parsed argument value of the given type</returns>
+        /// <exception cref="NotSupportedException">The <see cref="CliApiAttribute"/> doesn't support argument parsing</exception>
+        public virtual object? ParseArgument(string name, Type type, string arg) => throw new NotSupportedException();
     }
 }
