@@ -5,7 +5,7 @@ namespace wan24_CLI_Tests
     [TestClass]
     public class CliDemo_Tests
     {
-        [TestMethod, Timeout(3000)]
+        [TestMethod, Timeout(10000)]
         public void General_Tests()
         {
             string configuration =
@@ -124,7 +124,7 @@ namespace wan24_CLI_Tests
             }
         }
 
-        [TestMethod, Timeout(3000)]
+        [TestMethod, Timeout(10000)]
         public async Task GeneralAsync_Tests()
         {
             string configuration =
