@@ -74,6 +74,10 @@ Per default these CLR types can be parsed from the CLI argument list:
 - `bool`: Flag argument
 - `string`: Simple string (key/)value argument
 - `string[]`: Simple string (key/)value list argument
+- `FileStream`: Simple string (key/)value argument using `CliApiFileStream` 
+attribute
+- `FileStream[]`: Simple string (key/)value argument using `CliApiFileStream` 
+attribute
 
 All other CLR types need to be given as JSON encoded values, or you use a 
 custom argument parser - example for float values:
@@ -89,6 +93,15 @@ attribute of the property or method parameter to `true`.
 The `CliApiAttribute` allows overriding the `CanParseArgument` property and 
 the `ParseArgument` method to implement a custom argument value type parsing 
 within the attribute directly.
+
+##### `FileStream` argument value type using `CliApiFileStreamAttribute`
+
+A property or a method parameter type may be `FileStream` or `FileStream[]`, 
+if the `CliApiFileStream` attribute was used. The attribute allows to set how 
+to create the filestream using `wan24.Core.FsHelper.CreateFileStream`.
+
+The `CliApiFileStreamAttribute` contains a custom argument value parser which 
+may also be overridden, if required.
 
 #### Keyless parameters
 
