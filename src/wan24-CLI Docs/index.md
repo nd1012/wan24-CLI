@@ -86,6 +86,10 @@ This custom parser will now be used for `float` argument types. If you want to
 use JSON decoding instead, set the `ParseJson` property value of the `CliApi` 
 attribute of the property or method parameter to `true`.
 
+The `CliApiAttribute` allows overriding the `CanParseArgument` property and 
+the `ParseArgument` method to implement a custom argument value type parsing 
+within the attribute directly.
+
 #### Keyless parameters
 
 Example:

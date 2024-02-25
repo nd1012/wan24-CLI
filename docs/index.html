@@ -120,6 +120,9 @@ custom argument parser - example for float values:</p>
 <p>This custom parser will now be used for <code>float</code> argument types. If you want to
 use JSON decoding instead, set the <code>ParseJson</code> property value of the <code>CliApi</code>
 attribute of the property or method parameter to <code>true</code>.</p>
+<p>The <code>CliApiAttribute</code> allows overriding the <code>CanParseArgument</code> property and
+the <code>ParseArgument</code> method to implement a custom argument value type parsing
+within the attribute directly.</p>
 <h4 id="keyless-parameters">Keyless parameters</h4>
 <p>Example:</p>
 <pre><code class="lang-bash">dotnet app.dll -flag value1 --key value2 - value3 value4

@@ -573,6 +573,19 @@ references:
   fullName.vb: wan24.CLI.CliApiAttribute.New
   nameWithType: CliApiAttribute.CliApiAttribute
   nameWithType.vb: CliApiAttribute.New
+- uid: wan24.CLI.CliApiAttribute.CanParseArgument
+  name: CanParseArgument
+  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_CanParseArgument
+  commentId: P:wan24.CLI.CliApiAttribute.CanParseArgument
+  fullName: wan24.CLI.CliApiAttribute.CanParseArgument
+  nameWithType: CliApiAttribute.CanParseArgument
+- uid: wan24.CLI.CliApiAttribute.CanParseArgument*
+  name: CanParseArgument
+  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_CanParseArgument_
+  commentId: Overload:wan24.CLI.CliApiAttribute.CanParseArgument
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiAttribute.CanParseArgument
+  nameWithType: CliApiAttribute.CanParseArgument
 - uid: wan24.CLI.CliApiAttribute.Example
   name: Example
   href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_Example
@@ -696,6 +709,22 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiAttribute.Name
   nameWithType: CliApiAttribute.Name
+- uid: wan24.CLI.CliApiAttribute.ParseArgument(System.String,System.Type,System.String)
+  name: ParseArgument(string, Type, string)
+  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_ParseArgument_System_String_System_Type_System_String_
+  commentId: M:wan24.CLI.CliApiAttribute.ParseArgument(System.String,System.Type,System.String)
+  name.vb: ParseArgument(String, Type, String)
+  fullName: wan24.CLI.CliApiAttribute.ParseArgument(string, System.Type, string)
+  fullName.vb: wan24.CLI.CliApiAttribute.ParseArgument(String, System.Type, String)
+  nameWithType: CliApiAttribute.ParseArgument(string, Type, string)
+  nameWithType.vb: CliApiAttribute.ParseArgument(String, Type, String)
+- uid: wan24.CLI.CliApiAttribute.ParseArgument*
+  name: ParseArgument
+  href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_ParseArgument_
+  commentId: Overload:wan24.CLI.CliApiAttribute.ParseArgument
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiAttribute.ParseArgument
+  nameWithType: CliApiAttribute.ParseArgument
 - uid: wan24.CLI.CliApiAttribute.ParseJson
   name: ParseJson
   href: api/wan24.CLI.CliApiAttribute.html#wan24_CLI_CliApiAttribute_ParseJson
