@@ -5,19 +5,19 @@ using wan24.Core;
 
 namespace wan24.CLI.Demo
 {
-    [CliApi("demo")]
-    [DisplayText("Demo API")]
+    [CliApi("asyncdemo")]
+    [DisplayText("Asynchronous demo API")]
     [Description("This demonstration API is used for the wan24-CLI tests")]
-    public sealed class DemoApi
+    public sealed class AsyncDemoApi
     {
-        public DemoApi() { }
+        public AsyncDemoApi() { }
 
         [CliApi("echo")]
         [DisplayText("Echo a message")]
         [Description("The output to STDOUT is the given message (Spectre.Console markup is supported), exit code will be 123")]
         [StdOut("Message")]
         [ExitCode(123, "Default exit code")]
-        public static int Echo(
+        public static Task<int> EchoAsync(
             [CliApi]
             [DisplayText("Message")]
             [Description("The message to display (Spectre.Console markup is supported)")]
@@ -26,7 +26,7 @@ namespace wan24.CLI.Demo
             )
         {
             AnsiConsole.MarkupLine(message);
-            return exitCode;
+            return Task.FromResult(exitCode);
         }
 
         [CliApi("echo2")]
@@ -34,10 +34,10 @@ namespace wan24.CLI.Demo
         [Description("The output to STDOUT is the given message (Spectre.Console markup is supported), exit code will be 456")]
         [StdOut("Message")]
         [ExitCode(456, "Default exit code")]
-        public static int Echo2([CliApi] Echo2Arguments args, int exitCode = 456)
+        public static Task<int> Echo2Async([CliApi] Echo2Arguments args, int exitCode = 456)
         {
             AnsiConsole.MarkupLine(args.Message);
-            return exitCode;
+            return Task.FromResult(exitCode);
         }
 
         [CliApi("echo3")]
@@ -45,7 +45,7 @@ namespace wan24.CLI.Demo
         [Description("The output to STDOUT is the given message from STDIN (Spectre.Console markup is supported)")]
         [StdIn("Message", required: true)]
         [StdOut("Message")]
-        public static void Echo3()
+        public static Task Echo3Async()
         {
             using StreamReader stdIn = new(Console.OpenStandardInput());
             string message = stdIn.ReadToEnd();
@@ -53,57 +53,64 @@ namespace wan24.CLI.Demo
             {
                 AnsiConsole.MarkupLine(message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logging.WriteError($"{ex.Message}: {message}");
                 throw;
             }
+            return Task.CompletedTask;
         }
 
         [CliApi("sum")]
         [DisplayText("Summarize integers")]
         [Description("The given integers will be summarized")]
         [StdOut("Result")]
-        public static void Sum(
+        public static Task SumAsync(
             [CliApi(0)]
             [DisplayText("Numbers to summarize")]
             [Description("Define 1..n integer values to summarize")]
             string[] integers
             )
-            => Console.WriteLine(integers.Select(int.Parse).Sum().ToString());
+        {
+            Console.WriteLine(integers.Select(int.Parse).Sum().ToString());
+            return Task.CompletedTask;
+        }
 
         [CliApi("sum2")]
         [DisplayText("Summarize integers")]
         [Description("The given integers will be summarized, the result will be the exit code")]
-        public static int Sum2(
+        public static Task<int> Sum2Async(
             [CliApi(ParseJson = true, Example = "1 2 3 ...")]
             [DisplayText("Numbers to summarize")]
             [Description("Define 1..n integer values to summarize")]
             int[] integers
             )
-            => integers.Sum();
+            => Task.FromResult(integers.Sum());
 
         [CliApi("exit")]
         [DisplayText("Exit with code -123")]
         [Description("This API method will let the CLI app exit with code -123")]
         [ExitCode(123, "Default exit code")]
-        public static int ExitCode() => -123;
+        public static Task<int> ExitCodeAsync() => Task.FromResult(-123);
 
         [CliApi("error")]
         [DisplayText("Throw an exception")]
         [Description("This API method will throw an exception")]
-        public static void Error() => throw new InvalidProgramException("Error API method called");
+        public static Task ErrorAsync() => throw new InvalidProgramException("Error API method called");
 
         [CliApi("custom")]
         [DisplayText("Custom type")]
         [Description("Demonstrate the usage of a custom argument type parser")]
-        public static void CustomType(
+        public static Task CustomTypeAsync(
             [CliApi(Example = "float")]
             [DisplayText("Number")]
             [Description("Float number to output to the console")]
             float number
             )
-            => Console.WriteLine(number.ToString());
+        {
+            Console.WriteLine(number.ToString());
+            return Task.CompletedTask;
+        }
 
         public sealed record class Echo2Arguments : ICliArguments
         {

@@ -49,8 +49,8 @@ Global
 		{32A92641-FF55-4CA8-B1DD-A0165C3F04CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32A92641-FF55-4CA8-B1DD-A0165C3F04CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32A92641-FF55-4CA8-B1DD-A0165C3F04CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32A92641-FF55-4CA8-B1DD-A0165C3F04CD}.Trunk|Any CPU.ActiveCfg = Debug|Any CPU
-		{32A92641-FF55-4CA8-B1DD-A0165C3F04CD}.Trunk|Any CPU.Build.0 = Debug|Any CPU
+		{32A92641-FF55-4CA8-B1DD-A0165C3F04CD}.Trunk|Any CPU.ActiveCfg = Trunk|Any CPU
+		{32A92641-FF55-4CA8-B1DD-A0165C3F04CD}.Trunk|Any CPU.Build.0 = Trunk|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

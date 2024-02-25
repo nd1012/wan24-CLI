@@ -139,9 +139,10 @@ namespace wan24.CLI
                     // Array of JSON parsed values
                     if (Debug) WriteDebug("Array of JSON parsed values");
                     if (!hasValue) return (false, Array.CreateInstance(type.GetElementType()!, length: 0));
+                    type = type.GetElementType()!;
                     string[] values = ca.KeyLessArguments.Skip(keyLessOffset + keyLessArgOffset).ToArray();
                     keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
-                    Array arr = Array.CreateInstance(type.GetElementType()!, values.Length);
+                    Array arr = Array.CreateInstance(type, values.Length);
                     for (int i = 0, len = values.Length; i < len; arr.SetValue(ParseArgumentJsonValue($"{name}[{i}]", type, values[i], attr), i), i++) ;
                     return (true, arr);
                 }
@@ -237,8 +238,9 @@ namespace wan24.CLI
                 if (Debug) WriteDebug("Array of parsed JSON values");
                 if (existingName is null) return (true, Array.CreateInstance(type.GetElementType()!, length: 0));
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
+                type = type.GetElementType()!;
                 ReadOnlyCollection<string> values = ca.All(existingName);
-                Array res = Array.CreateInstance(type.GetElementType()!, values.Count);
+                Array res = Array.CreateInstance(type, values.Count);
                 for (int i = 0, len = values.Count; i < len; res.SetValue(ParseArgumentJsonValue($"{existingName}[{i}]", type, values[i], attr), i), i++) ;
                 return (true, res);
             }
@@ -278,7 +280,7 @@ namespace wan24.CLI
             foreach(KeyValuePair<Type, ParseType_Delegate> kvp in CustomArgumentParsers)
             {
                 if (kvp.Key == type) return kvp.Value;
-                if (type.IsAssignableFrom(type)) return kvp.Value;
+                if (type.IsAssignableFrom(kvp.Key)) return kvp.Value;
                 if (gtd is not null && kvp.Key.IsGenericType && gtd == kvp.Key.GetGenericTypeDefinition()) return kvp.Value;
             }
             return null;

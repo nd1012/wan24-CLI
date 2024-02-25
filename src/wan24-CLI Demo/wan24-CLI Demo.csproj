@@ -7,6 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>wan24CliDemo</AssemblyName>
+    <Configurations>Debug;Release;Trunk</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
