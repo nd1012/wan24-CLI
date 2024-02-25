@@ -77,6 +77,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliApiFileStreamAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliApiFileStreamAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.CLI.CliApiHelper.yml",
       "output": {
         ".html": {

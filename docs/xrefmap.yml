@@ -922,6 +922,125 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiContext.Parameters
   nameWithType: CliApiContext.Parameters
+- uid: wan24.CLI.CliApiFileStreamAttribute
+  name: CliApiFileStreamAttribute
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html
+  commentId: T:wan24.CLI.CliApiFileStreamAttribute
+  fullName: wan24.CLI.CliApiFileStreamAttribute
+  nameWithType: CliApiFileStreamAttribute
+- uid: wan24.CLI.CliApiFileStreamAttribute.#ctor(System.String@)
+  name: CliApiFileStreamAttribute(in string?)
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute__ctor_System_String__
+  commentId: M:wan24.CLI.CliApiFileStreamAttribute.#ctor(System.String@)
+  name.vb: New(String)
+  fullName: wan24.CLI.CliApiFileStreamAttribute.CliApiFileStreamAttribute(in string?)
+  fullName.vb: wan24.CLI.CliApiFileStreamAttribute.New(String)
+  nameWithType: CliApiFileStreamAttribute.CliApiFileStreamAttribute(in string?)
+  nameWithType.vb: CliApiFileStreamAttribute.New(String)
+- uid: wan24.CLI.CliApiFileStreamAttribute.#ctor*
+  name: CliApiFileStreamAttribute
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute__ctor_
+  commentId: Overload:wan24.CLI.CliApiFileStreamAttribute.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.CLI.CliApiFileStreamAttribute.CliApiFileStreamAttribute
+  fullName.vb: wan24.CLI.CliApiFileStreamAttribute.New
+  nameWithType: CliApiFileStreamAttribute.CliApiFileStreamAttribute
+  nameWithType.vb: CliApiFileStreamAttribute.New
+- uid: wan24.CLI.CliApiFileStreamAttribute.Access
+  name: Access
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_Access
+  commentId: P:wan24.CLI.CliApiFileStreamAttribute.Access
+  fullName: wan24.CLI.CliApiFileStreamAttribute.Access
+  nameWithType: CliApiFileStreamAttribute.Access
+- uid: wan24.CLI.CliApiFileStreamAttribute.Access*
+  name: Access
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_Access_
+  commentId: Overload:wan24.CLI.CliApiFileStreamAttribute.Access
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiFileStreamAttribute.Access
+  nameWithType: CliApiFileStreamAttribute.Access
+- uid: wan24.CLI.CliApiFileStreamAttribute.CanParseArgument
+  name: CanParseArgument
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_CanParseArgument
+  commentId: P:wan24.CLI.CliApiFileStreamAttribute.CanParseArgument
+  fullName: wan24.CLI.CliApiFileStreamAttribute.CanParseArgument
+  nameWithType: CliApiFileStreamAttribute.CanParseArgument
+- uid: wan24.CLI.CliApiFileStreamAttribute.CanParseArgument*
+  name: CanParseArgument
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_CanParseArgument_
+  commentId: Overload:wan24.CLI.CliApiFileStreamAttribute.CanParseArgument
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiFileStreamAttribute.CanParseArgument
+  nameWithType: CliApiFileStreamAttribute.CanParseArgument
+- uid: wan24.CLI.CliApiFileStreamAttribute.Mode
+  name: Mode
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_Mode
+  commentId: P:wan24.CLI.CliApiFileStreamAttribute.Mode
+  fullName: wan24.CLI.CliApiFileStreamAttribute.Mode
+  nameWithType: CliApiFileStreamAttribute.Mode
+- uid: wan24.CLI.CliApiFileStreamAttribute.Mode*
+  name: Mode
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_Mode_
+  commentId: Overload:wan24.CLI.CliApiFileStreamAttribute.Mode
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiFileStreamAttribute.Mode
+  nameWithType: CliApiFileStreamAttribute.Mode
+- uid: wan24.CLI.CliApiFileStreamAttribute.Overwrite
+  name: Overwrite
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_Overwrite
+  commentId: P:wan24.CLI.CliApiFileStreamAttribute.Overwrite
+  fullName: wan24.CLI.CliApiFileStreamAttribute.Overwrite
+  nameWithType: CliApiFileStreamAttribute.Overwrite
+- uid: wan24.CLI.CliApiFileStreamAttribute.Overwrite*
+  name: Overwrite
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_Overwrite_
+  commentId: Overload:wan24.CLI.CliApiFileStreamAttribute.Overwrite
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiFileStreamAttribute.Overwrite
+  nameWithType: CliApiFileStreamAttribute.Overwrite
+- uid: wan24.CLI.CliApiFileStreamAttribute.ParseArgument(System.String,System.Type,System.String)
+  name: ParseArgument(string, Type, string)
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_ParseArgument_System_String_System_Type_System_String_
+  commentId: M:wan24.CLI.CliApiFileStreamAttribute.ParseArgument(System.String,System.Type,System.String)
+  name.vb: ParseArgument(String, Type, String)
+  fullName: wan24.CLI.CliApiFileStreamAttribute.ParseArgument(string, System.Type, string)
+  fullName.vb: wan24.CLI.CliApiFileStreamAttribute.ParseArgument(String, System.Type, String)
+  nameWithType: CliApiFileStreamAttribute.ParseArgument(string, Type, string)
+  nameWithType.vb: CliApiFileStreamAttribute.ParseArgument(String, Type, String)
+- uid: wan24.CLI.CliApiFileStreamAttribute.ParseArgument*
+  name: ParseArgument
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_ParseArgument_
+  commentId: Overload:wan24.CLI.CliApiFileStreamAttribute.ParseArgument
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiFileStreamAttribute.ParseArgument
+  nameWithType: CliApiFileStreamAttribute.ParseArgument
+- uid: wan24.CLI.CliApiFileStreamAttribute.Share
+  name: Share
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_Share
+  commentId: P:wan24.CLI.CliApiFileStreamAttribute.Share
+  fullName: wan24.CLI.CliApiFileStreamAttribute.Share
+  nameWithType: CliApiFileStreamAttribute.Share
+- uid: wan24.CLI.CliApiFileStreamAttribute.Share*
+  name: Share
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_Share_
+  commentId: Overload:wan24.CLI.CliApiFileStreamAttribute.Share
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiFileStreamAttribute.Share
+  nameWithType: CliApiFileStreamAttribute.Share
+- uid: wan24.CLI.CliApiFileStreamAttribute.UnixMode
+  name: UnixMode
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_UnixMode
+  commentId: P:wan24.CLI.CliApiFileStreamAttribute.UnixMode
+  fullName: wan24.CLI.CliApiFileStreamAttribute.UnixMode
+  nameWithType: CliApiFileStreamAttribute.UnixMode
+- uid: wan24.CLI.CliApiFileStreamAttribute.UnixMode*
+  name: UnixMode
+  href: api/wan24.CLI.CliApiFileStreamAttribute.html#wan24_CLI_CliApiFileStreamAttribute_UnixMode_
+  commentId: Overload:wan24.CLI.CliApiFileStreamAttribute.UnixMode
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiFileStreamAttribute.UnixMode
+  nameWithType: CliApiFileStreamAttribute.UnixMode
 - uid: wan24.CLI.CliApiHelper
   name: CliApiHelper
   href: api/wan24.CLI.CliApiHelper.html
