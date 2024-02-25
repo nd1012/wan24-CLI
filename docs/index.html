@@ -112,6 +112,10 @@ needs to be escaped for JSON decoding. A backslash needs double escaping.</p>
 <li><code>bool</code>: Flag argument</li>
 <li><code>string</code>: Simple string (key/)value argument</li>
 <li><code>string[]</code>: Simple string (key/)value list argument</li>
+<li><code>FileStream</code>: Simple string (key/)value argument using <code>CliApiFileStream</code>
+attribute</li>
+<li><code>FileStream[]</code>: Simple string (key/)value argument using <code>CliApiFileStream</code>
+attribute</li>
 </ul>
 <p>All other CLR types need to be given as JSON encoded values, or you use a
 custom argument parser - example for float values:</p>
@@ -123,6 +127,12 @@ attribute of the property or method parameter to <code>true</code>.</p>
 <p>The <code>CliApiAttribute</code> allows overriding the <code>CanParseArgument</code> property and
 the <code>ParseArgument</code> method to implement a custom argument value type parsing
 within the attribute directly.</p>
+<h5 id="filestream-argument-value-type-using-cliapifilestreamattribute"><code>FileStream</code> argument value type using <code>CliApiFileStreamAttribute</code></h5>
+<p>A property or a method parameter type may be <code>FileStream</code> or <code>FileStream[]</code>,
+if the <code>CliApiFileStream</code> attribute was used. The attribute allows to set how
+to create the filestream using <code>wan24.Core.FsHelper.CreateFileStream</code>.</p>
+<p>The <code>CliApiFileStreamAttribute</code> contains a custom argument value parser which
+may also be overridden, if required.</p>
 <h4 id="keyless-parameters">Keyless parameters</h4>
 <p>Example:</p>
 <pre><code class="lang-bash">dotnet app.dll -flag value1 --key value2 - value3 value4
