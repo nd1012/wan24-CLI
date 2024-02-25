@@ -49,7 +49,7 @@ namespace wan24_CLI_Tests
                 Console.WriteLine($"CMD: {cl}");
                 Console.WriteLine($"STDOUT: {stdOut}");
                 Console.WriteLine($"STDERR: {stdErr}");
-                Assert.AreEqual(456, proc.Process.ExitCode);
+                Assert.AreEqual(213, proc.Process.ExitCode);
                 Assert.AreEqual("test", stdOut.Trim());
             }
 
@@ -168,7 +168,7 @@ namespace wan24_CLI_Tests
                 Console.WriteLine($"CMD: {cl}");
                 Console.WriteLine($"STDOUT: {stdOut}");
                 Console.WriteLine($"STDERR: {stdErr}");
-                Assert.AreEqual(456, proc.Process.ExitCode);
+                Assert.AreEqual(213, proc.Process.ExitCode);
                 Assert.AreEqual("test", stdOut.Trim());
             }
 

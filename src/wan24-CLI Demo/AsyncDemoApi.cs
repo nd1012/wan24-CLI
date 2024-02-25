@@ -31,10 +31,10 @@ namespace wan24.CLI.Demo
 
         [CliApi("echo2")]
         [DisplayText("Echo a message")]
-        [Description("The output to STDOUT is the given message (Spectre.Console markup is supported), exit code will be 456")]
+        [Description("The output to STDOUT is the given message (Spectre.Console markup is supported), exit code will be 213")]
         [StdOut("Message")]
-        [ExitCode(456, "Default exit code")]
-        public static Task<int> Echo2Async([CliApi] Echo2Arguments args, int exitCode = 456)
+        [ExitCode(213, "Default exit code")]
+        public static Task<int> Echo2Async([CliApi] Echo2Arguments args, int exitCode = 213)
         {
             AnsiConsole.MarkupLine(args.Message);
             return Task.FromResult(exitCode);
