@@ -12,7 +12,7 @@ namespace wan24.CLI
         /// Constructor
         /// </summary>
         /// <param name="name">CLI argument name</param>
-        public CliApiFileStreamAttribute(in string? name = null) : base(name) { }
+        public CliApiFileStreamAttribute(string? name = null) : base(name) { }
 
         /// <summary>
         /// File mode

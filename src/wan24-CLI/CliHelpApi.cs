@@ -242,6 +242,11 @@ namespace wan24.CLI
                         Console.WriteLine();
                         AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]STDOUT:[/] {(methodInfo.StdOut.Required ? $"[{CliApiInfo.RequiredColor}]({_("Required")})" : $"[{CliApiInfo.OptionalColor}]({_("Optional")})")}[/] {_(methodInfo.StdOut.Description.EscapeMarkup())}");
                     }
+                    if (methodInfo.StdErr is not null)
+                    {
+                        Console.WriteLine();
+                        AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]STDERR:[/] {_(methodInfo.StdErr.Description.EscapeMarkup())}");
+                    }
                     if (methodInfo.Attribute?.HelpTextProperty is not null)
                     {
                         Console.WriteLine();
