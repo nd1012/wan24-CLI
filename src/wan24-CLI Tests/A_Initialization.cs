@@ -12,6 +12,7 @@ namespace wan24_CLI_Tests
         public static void Init(TestContext tc)
         {
             if (File.Exists("tests.log")) File.Delete("tests.log");
+            if (File.Exists("demo.log")) File.Delete("demo.log");
             Logging.Logger = new ConsoleLogger(LogLevel.Trace, next: FileLogger.CreateAsync("tests.log", LogLevel.Trace).Result);
             Logging.WriteInfo("wan24-CLI Tests initialized");
             Bootstrap.Async().Wait();

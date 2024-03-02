@@ -53,22 +53,23 @@ namespace wan24.CLI
         protected override void LogInt<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
         {
             string color = logLevel switch
-            {
-                LogLevel.Trace => TraceColor,
-                LogLevel.Debug => DebugColor,
-                LogLevel.Information => InformationColor,
-                LogLevel.Warning => WarningColor,
-                LogLevel.Error => ErrorColor,
-                LogLevel.Critical => CriticalColor,
-                _ => throw new InvalidProgramException()
-            };
+                {
+                    LogLevel.Trace => TraceColor,
+                    LogLevel.Debug => DebugColor,
+                    LogLevel.Information => InformationColor,
+                    LogLevel.Warning => WarningColor,
+                    LogLevel.Error => ErrorColor,
+                    LogLevel.Critical => CriticalColor,
+                    _ => throw new InvalidProgramException()
+                },
+                message = $"[{color}]{GetMessage(logLevel, eventId, state, exception, formatter).EscapeMarkup()}[/]";
             if (WriteToStdErr)
             {
-                CliApi.StdErr.MarkupLine($"[{color}]{GetMessage(logLevel, eventId, state, exception, formatter).EscapeMarkup()}[/]");
+                CliApi.StdErr.MarkupLine(message);
             }
             else
             {
-                AnsiConsole.MarkupLine($"[{color}]{GetMessage(logLevel, eventId, state, exception, formatter).EscapeMarkup()}[/]");
+                AnsiConsole.MarkupLine(message);
             }
         }
     }

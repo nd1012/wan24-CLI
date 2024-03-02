@@ -1,5 +1,7 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
+using wan24.Core;
 
 namespace wan24.CLI
 {
@@ -12,6 +14,45 @@ namespace wan24.CLI
         /// Regular expression to match double spaces
         /// </summary>
         private static readonly Regex RX_DOUBLE_SPACES = RxDoubleSpaces();
+
+        /// <summary>
+        /// Find exported CLI API types
+        /// </summary>
+        /// <param name="ass">Assembly</param>
+        /// <param name="nic">Nullability info context</param>
+        /// <returns>CLI API type informations</returns>
+        public static IEnumerable<CliApiInfo> FindExportedCliApis(this IEnumerable<Assembly> ass, NullabilityInfoContext? nic = null)
+        {
+            nic ??= new();
+            return from a in ass
+                   from t in a.FindExportedCliApis(nic)
+                   select t;
+        }
+
+        /// <summary>
+        /// Find exported CLI API types
+        /// </summary>
+        /// <param name="ass">Assembly</param>
+        /// <param name="nic">Nullability info context</param>
+        /// <returns>CLI API type informations</returns>
+        public static IEnumerable<CliApiInfo> FindExportedCliApis(this Assembly ass, NullabilityInfoContext? nic = null) => ass.GetTypes().FindExportedCliApis(nic);
+
+        /// <summary>
+        /// Find exported CLI API types
+        /// </summary>
+        /// <param name="types">Types</param>
+        /// <param name="nic">Nullability info context</param>
+        /// <returns>CLI API type informations</returns>
+        public static IEnumerable<CliApiInfo> FindExportedCliApis(this IEnumerable<Type> types, NullabilityInfoContext? nic = null)
+        {
+            nic ??= new();
+            return from type in types
+                   where type.CanConstruct() &&
+                    !type.IsValueType &&
+                    type != typeof(CliHelpApi) &&
+                    type.GetCustomAttributeCached<CliApiAttribute>() is not null
+                   select new CliApiInfo(type, nic);
+        }
 
         /// <summary>
         /// Get the default API

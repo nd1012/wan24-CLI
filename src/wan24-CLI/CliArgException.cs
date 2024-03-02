@@ -3,6 +3,7 @@
     /// <summary>
     /// Thrown on CLI argument error
     /// </summary>
+    [Serializable]
     public class CliArgException : ArgumentException
     {
         /// <summary>

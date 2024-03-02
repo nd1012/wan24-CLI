@@ -1,6 +1,7 @@
 ﻿using Spectre.Console;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using wan24.Core;
 
 namespace wan24.CLI.Demo
@@ -104,6 +105,33 @@ namespace wan24.CLI.Demo
             float number
             )
             => Console.WriteLine(number.ToString());
+
+        [CliApi("dynamic")]
+        [DisplayText("Dynamic arguments")]
+        [Description("Demonstrate the usage of ConsoleIoHelper")]
+        [StdIn("Input")]
+        [StdOut("Output", required: true)]
+        public static void DynamicArguments(
+            [CliApi]
+            [DisplayText("Input")]
+            [Description("Input string")]
+            string? input = null,
+            [CliApi(ParseJson = true)]
+            [DisplayText("Input format")]
+            [Description("Input string format")]
+            ConsoleIoHelper.Format inputFormat = ConsoleIoHelper.Format.String,
+            [CliApi(ParseJson = true)]
+            [DisplayText("Output format")]
+            [Description("Output string format")]
+            ConsoleIoHelper.Format outputFormat = ConsoleIoHelper.Format.String
+            )
+        {
+            using Stream inputStream = ConsoleIoHelper.GetInput(input, format: inputFormat) ?? throw new ArgumentException("Input required", nameof(input));
+            using MemoryPoolStream ms = new();
+            inputStream.CopyTo(ms);
+            ms.Position = 0;
+            ConsoleIoHelper.SendOutput(ms, format: outputFormat);
+        }
 
         public sealed record class Echo2Arguments : ICliArguments
         {

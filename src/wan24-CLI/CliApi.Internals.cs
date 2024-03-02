@@ -266,7 +266,7 @@ namespace wan24.CLI
         /// <returns>Parsed argument value</returns>
         internal static object? ParseArgumentJsonValue(string name, Type type, string arg, CliApiAttribute attr)
             => attr.ParseJson
-                ? JsonHelper.DecodeObject(type, arg)
+                ? JsonHelper.DecodeObject(type, JsonHelper.MayBeJson(arg) ? arg : JsonHelper.Encode(arg))
                 : throw new InvalidProgramException($"JSON parsing needs to be enabled for argument \"{name}\"");
 
         /// <summary>
@@ -285,18 +285,6 @@ namespace wan24.CLI
             }
             return null;
         }
-
-        /// <summary>
-        /// Find all exported CLI APIs
-        /// </summary>
-        /// <returns>CLI API types</returns>
-        internal static Type[] FindExportedApis()
-            => (from ass in TypeHelper.Instance.Assemblies
-                from type in ass.GetTypes()
-                where type.CanConstruct() &&
-                  type.GetCustomAttributeCached<CliApiAttribute>() is not null &&
-                  type != typeof(CliHelpApi)
-                select type).ToArray();
 
         /// <summary>
         /// Find the default API

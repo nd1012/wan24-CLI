@@ -23,7 +23,7 @@ namespace wan24_CLI_Tests
                 stdOut,
                 stdErr;
             Console.WriteLine($"CMD: {cmd} \"{app}\"");
-            string[] defaultArgs = ["--wan24.Core.CliConfig.LoggerType", "wan24.CLI.VividConsoleLogger", "--wan24.Core.CliConfig.LogLevel", "\"Debug\""];
+            string[] defaultArgs = ["--wan24.Core.Settings.LogLevel", "Debug", "--wan24.Core.CliConfig.LoggerType", "wan24.CLI.VividConsoleLogger", "--wan24.Core.CliConfig.LogFile", "demo.log"];
 
             // Echo
             using (ProcessStream proc = ProcessStream.Create(cmd, args: [app, "demo", "echo", "--message", "test", .. defaultArgs]))
@@ -122,6 +122,31 @@ namespace wan24_CLI_Tests
                 Assert.AreEqual(0, proc.Process.ExitCode);
                 Assert.AreEqual(0.123f, float.Parse(stdOut.Trim()));
             }
+
+            // Dynamic arguments
+            using (ProcessStream proc = ProcessStream.Create(cmd, args: [
+                app, 
+                "demo", 
+                "dynamic", 
+                "--input", 
+                Convert.ToBase64String("test".GetBytes()), 
+                "--inputFormat",
+                "Base64",
+                "--outputFormat",
+                "Hex",
+                .. defaultArgs
+                ]))
+            {
+                proc.Process!.WaitForExit();
+                stdOut = proc.StdOut!.ReadToEnd();
+                stdErr = proc.StdErr!.ReadToEnd();
+                cl = $"{proc.Process.StartInfo.FileName} {string.Join(' ', proc.Process.StartInfo.ArgumentList)}";
+                Console.WriteLine($"CMD: {cl}");
+                Console.WriteLine($"STDOUT: {stdOut}");
+                Console.WriteLine($"STDERR: {stdErr}");
+                Assert.AreEqual(0, proc.Process.ExitCode);
+                Assert.AreEqual("test", Convert.FromHexString(stdOut).ToUtf8String());
+            }
         }
 
         [TestMethod, Timeout(10000)]
@@ -142,14 +167,14 @@ namespace wan24_CLI_Tests
                 stdOut,
                 stdErr;
             Console.WriteLine($"CMD: {cmd} \"{app}\"");
-            string[] defaultArgs = ["--wan24.Core.CliConfig.LoggerType", "wan24.CLI.VividConsoleLogger", "--wan24.Core.CliConfig.LogLevel", "\"Debug\""];
+            string[] defaultArgs = ["--wan24.Core.Settings.LogLevel", "Debug", "--wan24.Core.CliConfig.LoggerType", "wan24.CLI.VividConsoleLogger", "--wan24.Core.CliConfig.LogFile", "demo.log"];
 
             // Echo
             using (ProcessStream proc = ProcessStream.Create(cmd, args: [app, "asyncdemo", "echo", "--message", "test", .. defaultArgs]))
             {
                 await proc.Process!.WaitForExitAsync().DynamicContext();
-                stdOut = proc.StdOut!.ReadToEnd();
-                stdErr = proc.StdErr!.ReadToEnd();
+                stdOut = await proc.StdOut!.ReadToEndAsync().DynamicContext();
+                stdErr = await proc.StdErr!.ReadToEndAsync().DynamicContext();
                 cl = $"{proc.Process.StartInfo.FileName} {string.Join(' ', proc.Process.StartInfo.ArgumentList)}";
                 Console.WriteLine($"CMD: {cl}");
                 Console.WriteLine($"STDOUT: {stdOut}");
@@ -162,8 +187,8 @@ namespace wan24_CLI_Tests
             using (ProcessStream proc = ProcessStream.Create(cmd, args: [app, "asyncdemo", "echo2", "--message", "test", .. defaultArgs]))
             {
                 await proc.Process!.WaitForExitAsync().DynamicContext();
-                stdOut = proc.StdOut!.ReadToEnd();
-                stdErr = proc.StdErr!.ReadToEnd();
+                stdOut = await proc.StdOut!.ReadToEndAsync().DynamicContext();
+                stdErr = await proc.StdErr!.ReadToEndAsync().DynamicContext();
                 cl = $"{proc.Process.StartInfo.FileName} {string.Join(' ', proc.Process.StartInfo.ArgumentList)}";
                 Console.WriteLine($"CMD: {cl}");
                 Console.WriteLine($"STDOUT: {stdOut}");
@@ -178,8 +203,8 @@ namespace wan24_CLI_Tests
                 await proc.StdIn!.WriteAsync("test").DynamicContext();
                 proc.StdIn.Close();
                 await proc.Process!.WaitForExitAsync().DynamicContext();
-                stdOut = proc.StdOut!.ReadToEnd();
-                stdErr = proc.StdErr!.ReadToEnd();
+                stdOut = await proc.StdOut!.ReadToEndAsync().DynamicContext();
+                stdErr = await proc.StdErr!.ReadToEndAsync().DynamicContext();
                 cl = $"{proc.Process.StartInfo.FileName} {string.Join(' ', proc.Process.StartInfo.ArgumentList)}";
                 Console.WriteLine($"CMD: {cl}");
                 Console.WriteLine($"STDOUT: {stdOut}");
@@ -192,8 +217,8 @@ namespace wan24_CLI_Tests
             using (ProcessStream proc = ProcessStream.Create(cmd, args: [app, "asyncdemo", "sum", "1", "2", "3", .. defaultArgs]))
             {
                 await proc.Process!.WaitForExitAsync().DynamicContext();
-                stdOut = proc.StdOut!.ReadToEnd();
-                stdErr = proc.StdErr!.ReadToEnd();
+                stdOut = await proc.StdOut!.ReadToEndAsync().DynamicContext();
+                stdErr = await proc.StdErr!.ReadToEndAsync().DynamicContext();
                 cl = $"{proc.Process.StartInfo.FileName} {string.Join(' ', proc.Process.StartInfo.ArgumentList)}";
                 Console.WriteLine($"CMD: {cl}");
                 Console.WriteLine($"STDOUT: {stdOut}");
@@ -206,8 +231,8 @@ namespace wan24_CLI_Tests
             using (ProcessStream proc = ProcessStream.Create(cmd, args: [app, "asyncdemo", "sum2", "--integers", "1", "2", "3", .. defaultArgs]))
             {
                 await proc.Process!.WaitForExitAsync().DynamicContext();
-                stdOut = proc.StdOut!.ReadToEnd();
-                stdErr = proc.StdErr!.ReadToEnd();
+                stdOut = await proc.StdOut!.ReadToEndAsync().DynamicContext();
+                stdErr = await proc.StdErr!.ReadToEndAsync().DynamicContext();
                 cl = $"{proc.Process.StartInfo.FileName} {string.Join(' ', proc.Process.StartInfo.ArgumentList)}";
                 Console.WriteLine($"CMD: {cl}");
                 Console.WriteLine($"STDOUT: {stdOut}");
@@ -219,8 +244,8 @@ namespace wan24_CLI_Tests
             using (ProcessStream proc = ProcessStream.Create(cmd, args: [app, "asyncdemo", "error", .. defaultArgs]))
             {
                 await proc.Process!.WaitForExitAsync().DynamicContext();
-                stdOut = proc.StdOut!.ReadToEnd();
-                stdErr = proc.StdErr!.ReadToEnd();
+                stdOut = await proc.StdOut!.ReadToEndAsync().DynamicContext();
+                stdErr = await proc.StdErr!.ReadToEndAsync().DynamicContext();
                 cl = $"{proc.Process.StartInfo.FileName} {string.Join(' ', proc.Process.StartInfo.ArgumentList)}";
                 Console.WriteLine($"CMD: {cl}");
                 Console.WriteLine($"STDOUT: {stdOut}");
@@ -232,14 +257,39 @@ namespace wan24_CLI_Tests
             using (ProcessStream proc = ProcessStream.Create(cmd, args: [app, "asyncdemo", "custom", "--number", 0.123f.ToString(), .. defaultArgs]))
             {
                 await proc.Process!.WaitForExitAsync().DynamicContext();
-                stdOut = proc.StdOut!.ReadToEnd();
-                stdErr = proc.StdErr!.ReadToEnd();
+                stdOut = await proc.StdOut!.ReadToEndAsync().DynamicContext();
+                stdErr = await proc.StdErr!.ReadToEndAsync().DynamicContext();
                 cl = $"{proc.Process.StartInfo.FileName} {string.Join(' ', proc.Process.StartInfo.ArgumentList)}";
                 Console.WriteLine($"CMD: {cl}");
                 Console.WriteLine($"STDOUT: {stdOut}");
                 Console.WriteLine($"STDERR: {stdErr}");
                 Assert.AreEqual(0, proc.Process.ExitCode);
                 Assert.AreEqual(0.123f, float.Parse(stdOut.Trim()));
+            }
+
+            // Dynamic arguments
+            using (ProcessStream proc = ProcessStream.Create(cmd, args: [
+                app,
+                "asyncdemo",
+                "dynamic",
+                "--input",
+                Convert.ToBase64String("test".GetBytes()),
+                "--inputFormat",
+                "Base64",
+                "--outputFormat",
+                "Hex",
+                .. defaultArgs
+                ]))
+            {
+                await proc.Process!.WaitForExitAsync().DynamicContext();
+                stdOut = await proc.StdOut!.ReadToEndAsync().DynamicContext();
+                stdErr = await proc.StdErr!.ReadToEndAsync().DynamicContext();
+                cl = $"{proc.Process.StartInfo.FileName} {string.Join(' ', proc.Process.StartInfo.ArgumentList)}";
+                Console.WriteLine($"CMD: {cl}");
+                Console.WriteLine($"STDOUT: {stdOut}");
+                Console.WriteLine($"STDERR: {stdErr}");
+                Assert.AreEqual(0, proc.Process.ExitCode);
+                Assert.AreEqual("test", Convert.FromHexString(stdOut).ToUtf8String());
             }
         }
     }

@@ -34,40 +34,40 @@ namespace wan24.CLI
         /// <summary>
         /// Background color
         /// </summary>
-        public static Color BackGroundColor { get; set; } = Color.Black;
+        public static string BackGroundColor { get; set; } = Color.Black.ToString();
 
         /// <summary>
         /// Highlight color
         /// </summary>
-        public static Color HighlightColor { get; set; } = Color.White;
+        public static string HighlightColor { get; set; } = $"{Color.White} on black";
 
         /// <summary>
         /// Required color
         /// </summary>
-        public static Color RequiredColor { get; set; } = Color.Wheat1;
+        public static string RequiredColor { get; set; } = $"{Color.Wheat1} on black";
 
         /// <summary>
         /// Optional color
         /// </summary>
-        public static Color OptionalColor { get; set; } = Color.Silver;
+        public static string OptionalColor { get; set; } = $"{Color.Silver} on black";
 
         /// <summary>
         /// Decoration color
         /// </summary>
-        public static Color DecorationColor { get; set; } = Color.Grey;
+        public static string DecorationColor { get; set; } = $"{Color.Grey} on black";
 
         /// <summary>
         /// API name color
         /// </summary>
-        public static Color ApiNameColor { get; set; } = Color.Aqua;
+        public static string ApiNameColor { get; set; } = $"{Color.Aqua} on black";
 
         /// <summary>
         /// API method name color
         /// </summary>
-        public static Color ApiMethodNameColor { get; set; } = Color.Yellow;
+        public static string ApiMethodNameColor { get; set; } = $"{Color.Yellow} on black";
 
         /// <summary>
-        /// CLI API type
+        /// CLI API type$"{
         /// </summary>
         public Type Type { get; }
 
