@@ -3,6 +3,14 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "api/index.md",
       "output": {
@@ -127,6 +135,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliAppConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliAppConfig.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.CLI.CliArgException.yml",
       "output": {
         ".html": {
@@ -167,10 +185,70 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliHelpApi.DetailHelp_Delegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliHelpApi.DetailHelp_Delegate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.CLI.CliHelpApi.yml",
       "output": {
         ".html": {
           "relative_path": "api/wan24.CLI.CliHelpApi.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliProcessHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliProcessHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.CliStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.CliStream.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.ConsoleColorProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.ConsoleColorProfile.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.ConsoleIoHelper.Format.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.ConsoleIoHelper.Format.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.ConsoleIoHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.ConsoleIoHelper.html"
         }
       },
       "version": ""
@@ -241,6 +319,16 @@
       "output": {
         ".html": {
           "relative_path": "api/wan24.CLI.ReflectionExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.StdErrAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.StdErrAttribute.html"
         }
       },
       "version": ""
