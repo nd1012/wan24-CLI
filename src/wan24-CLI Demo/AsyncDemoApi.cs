@@ -112,6 +112,33 @@ namespace wan24.CLI.Demo
             return Task.CompletedTask;
         }
 
+        [CliApi("dynamic")]
+        [DisplayText("Dynamic arguments")]
+        [Description("Demonstrate the usage of ConsoleIoHelper")]
+        [StdIn("Input")]
+        [StdOut("Output", required: true)]
+        public static async Task DynamicArgumentsAsync(
+            [CliApi]
+            [DisplayText("Input")]
+            [Description("Input string")]
+            string? input = null,
+            [CliApi(ParseJson = true)]
+            [DisplayText("Input format")]
+            [Description("Input string format")]
+            ConsoleIoHelper.Format inputFormat = ConsoleIoHelper.Format.String,
+            [CliApi(ParseJson = true)]
+            [DisplayText("Output format")]
+            [Description("Output string format")]
+            ConsoleIoHelper.Format outputFormat = ConsoleIoHelper.Format.String
+            )
+        {
+            MemoryPoolStream ms = new();
+            Stream inputStream = ConsoleIoHelper.GetInput(input, format: inputFormat) ?? throw new ArgumentException("Input required", nameof(input));
+            await using (inputStream.DynamicContext()) await inputStream.CopyToAsync(ms).DynamicContext();
+            ms.Position = 0;
+            await ConsoleIoHelper.SendOutputAsync(ms, format: outputFormat).DynamicContext();
+        }
+
         public sealed record class Echo2Arguments : ICliArguments
         {
             [CliApi]

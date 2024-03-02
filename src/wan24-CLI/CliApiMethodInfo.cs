@@ -54,6 +54,7 @@ namespace wan24.CLI
             ExitCodes = exitCodes.ToFrozenDictionary();
             StdIn = mi.GetCustomAttributeCached<StdInAttribute>();
             StdOut = mi.GetCustomAttributeCached<StdOutAttribute>();
+            StdErr = mi.GetCustomAttributeCached<StdErrAttribute>();
         }
 
         /// <summary>
@@ -105,6 +106,11 @@ namespace wan24.CLI
         /// STDOUT usage attribute
         /// </summary>
         public StdOutAttribute? StdOut { get; }
+
+        /// <summary>
+        /// STDERR usage attribute
+        /// </summary>
+        public StdErrAttribute? StdErr { get; }
 
         /// <inheritdoc/>
         public override string ToString()

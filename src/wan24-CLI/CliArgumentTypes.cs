@@ -20,7 +20,7 @@ namespace wan24.CLI
         /// <summary>
         /// CLI argument object (see <see cref="ICliArguments"/>)
         /// </summary>
-        [DisplayText("Argument object")]
+        [DisplayText("Argument object with exported argument properties")]
         Object
     }
 }

@@ -6,7 +6,8 @@ library for console output.
 
 `Spectre.Console` contains some of the functionality this library provides, 
 but in a different style, which may not meet some developers needs. The goal 
-of this library is to provide a tool for rapid CLI app API development.
+of this library is to provide a tool for (even more) rapid CLI app API 
+development.
 
 ## Usage
 
@@ -281,6 +282,11 @@ variables:
 
 The `wan24-Core` string parser is being used for this.
 
+Another option for help details is the `HelpMethod` property of the `CliApi` 
+attribute, which may contain a public static API element help method name 
+(see `CliHelpApi.DetailHelp-Delegate`). This method will then be executed, if 
+help details for an element have been requested.
+
 If your API methods return an exit code, you can add documentation for them 
 using the `ExitCode` attribute on the method.
 
@@ -357,6 +363,156 @@ informations.
 **TIP**: Serve the `CliHelpApi` as the first (and default) API to display the 
 help on any general wrong usage.
 
+## Console I/O
+
+If you'd like to support dynamic console input/output formats, you can use the 
+`ConsoleIoHelper.GetInput/SendOutput(Async)` method for that. They support 
+console input from
+
+- arguments
+- environment variables
+- user input (also password)
+- STDIN
+
+in the input formats
+
+- raw binary
+- UTF-8
+- base64
+- hexadecimal
+- byte encoded
+
+and can encode console output to those formats also. Using these helper 
+methods you can support dynamic I/O formats and sources using a single line of 
+code.
+
+Example:
+
+```cs
+[CliApi]
+[StdIn("/path/to/inputFile")]
+[StdOut("/path/to/outputFile")]
+public int YourApiMethod(
+	[CliApi] string? input = null,
+	[CliApi] string? output = null,
+	[CliApi(ParseJson = true)] ConsoleIoHelper.Format inFormat = ConsoleIoHelper.Format.Base64,
+	[CliApi(ParseJson = true)] ConsoleIoHelper.Format outFormat = ConsoleIoHelper.Format.Base64,
+	[CliApi] bool useStdIn = false
+	)
+{
+	Stream inputStream = ConsoleIoHelper.GetInput(input, useStdIn, "Input: ", format: inFormat);
+	// Now inputStream contains the input data from any source, 
+	// converted from UTF-8, base64, hex or byte encoded to raw binary
+	return ConsoleIoHelper.SendOutput(outputStream, output, format: outFormat, exitCode: 0);
+}
+```
+
+Input from STDIN, output to STDOUT:
+
+```bash
+dotnet app.dll YourApiMethod -useStdIn < /path/to/inputFile > /path/to/outputFile
+```
+
+Input from a file, output to STDOUT:
+
+```bash
+dotnet app.dll YourApiMethod --input /path/to/inputFile --inFormat "Binary | File" > /path/to/outputFile
+```
+
+Input from the user (UTF-8 encoded string), output to STDOUT:
+
+```bash
+dotnet app.dll YourApiMethod --inFormat String > /path/to/outputFile
+```
+
+Input from an environment variable (UTF-8 encoded string), output to STDOUT:
+
+```bash
+dotnet app.dll YourApiMethod --input VARIABLE_NAME --inFormat "String | Environment" > /path/to/outputFile
+```
+
+Input from STDIN, output base64 encoded to STDOUT:
+
+```bash
+dotnet app.dll YourApiMethod -useStdIn --outFormat Base64 < /path/to/inputFile > /path/to/outputFile
+```
+
+Input from STDIN, output base64 encoded to file:
+
+```bash
+dotnet app.dll YourApiMethod -useStdIn --output /path/to/outputFile --outFormat Base64 < /path/to/inputFile
+```
+
+These I/O formats are supported:
+
+- `Binary`: raw binary (always used for input files)
+- `String`: UTF-8 encoded
+- `Base64`: base64 encoded
+- `Hex`: hexadecimal encoded
+- `ByteEncoded`: byte encoded
+
+Input may come from
+
+- STDIN
+- CLI argument
+- envionment variable
+- file
+
+Output may go to
+
+- STDOUT
+- file
+
+The `ConsoleIoHelper.GetInput` method also allows to display a secret user 
+input prompt (see available parameters).
+
+## Color profiles
+
+The `ConsoleColorProfile` allows to provide multiple color profiles which can 
+be configured
+
+- using CLI arguments (`wan24.Core.CliConfig`)
+- in a JSON configuration file (`CliAppConfig`)
+- from code
+
+Example for setting a color profile from CLI arguments:
+
+```bash
+dotnet app.dll ... --wan24.CLI.ConsoleColorProfile.ApplyRegistered PROFILE
+```
+
+Example for setting a color profile in a JSON configuration:
+
+```json
+{
+	...
+	"ColorProfile": "PROFILE",
+	...
+}
+```
+
+Example for defining color profiles in a JSON configuration:
+
+```json
+{
+	...
+	"ColorProfiles": [
+		{
+			"Name": "PROFLE",
+			"BackGroundColor": "black",
+			...
+		},
+		...
+	]
+	...
+}
+```
+
+**NOTE**: Single colors can be overridden in the JSON structure by using the 
+color properties at the root level.
+
+Color profiles willbe applied to the static `CliApiInfo` color properties.
+
 ## Localization
 
 `wan24-CLI` uses the 
@@ -429,7 +585,7 @@ the CLI command would need to be specified in order to get correct usage
 examples from the CLI help API:
 
 ```cs
-CliApi.CommandLine = "dotnet tool yourapp";
+CliApi.CommandLine = "dotnet tool run yourapp";
 ```
 
 ## Best practice

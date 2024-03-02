@@ -16,17 +16,6 @@ namespace wan24.CLI
     public static partial class CliApi
     {
         /// <summary>
-        /// Constructor
-        /// </summary>
-        static CliApi()
-        {
-            string fn = Path.GetFileName(Assembly.GetEntryAssembly()!.Location);
-            CommandLine = fn.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)
-                ? $"dotnet {fn}"
-                : fn;
-        }
-
-        /// <summary>
         /// STDERR ANSI console
         /// </summary>
         public static IAnsiConsole StdErr { get; } = AnsiConsole.Create(new AnsiConsoleSettings()
@@ -75,9 +64,11 @@ namespace wan24.CLI
         public static bool HelpHeaderDisplayed { get; internal set; }
 
         /// <summary>
-        /// The command line to use
+        /// The app command line to use
         /// </summary>
-        public static string CommandLine { get; set; }
+        public static string CommandLine { get; set; } = ENV.App.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)
+            ? $"dotnet {Path.GetFileName(ENV.App)}"
+            : Path.GetFileName(ENV.App);
 
         /// <summary>
         /// Custom argument type parser delegates
@@ -101,7 +92,11 @@ namespace wan24.CLI
         {
             await Task.Yield();
             cancellationToken.ThrowIfCancellationRequested();
-            args ??= Environment.GetCommandLineArgs();
+            if(args is null)
+            {
+                args = ENV.CliArguments;
+                if (args.Length > 0) args = [.. args.AsSpan(1)];
+            }
             // Parse CLI arguments
             CliArguments ca;
             try
@@ -132,13 +127,17 @@ namespace wan24.CLI
         {
             await Task.Yield();
             cancellationToken.ThrowIfCancellationRequested();
-            args ??= Environment.GetCommandLineArgs();
+            if (args is null)
+            {
+                args = ENV.CliArguments;
+                if (args.Length > 0) args = [.. args.AsSpan(1)];
+            }
             // Find exported APIs
             if (exportedApis.Length == 0)
             {
                 if (Trace) WriteTrace("Find exported APIs");
-                exportedApis = FindExportedApis();
-                if (exportedApis.Length == 0 || exportedApis.Length == 1 && typeof(CliHelpApi).IsAssignableFrom(exportedApis[0]))
+                exportedApis = [.. TypeHelper.Instance.Assemblies.FindExportedCliApis().Select(a => a.Type)];
+                if (exportedApis.Length == 0 || (exportedApis.Length == 1 && typeof(CliHelpApi).IsAssignableFrom(exportedApis[0])))
                     throw new InvalidProgramException("No CLI APIs exported");
             }
             ExportedApis = CliApiInfo.Create(exportedApis);
@@ -170,7 +169,7 @@ namespace wan24.CLI
                         if (Trace) WriteTrace($"API call returned with exit code {exitCode}");
                         if (exitCode != 0)
                         {
-                            AnsiConsole.MarkupLine($"[{CliApiInfo.ApiNameColor} on black]{_("Break in arguments chunk ${0} with exit code %{1}", (i + 1).ToString(), exitCode.ToString())}[/]");
+                            AnsiConsole.MarkupLine($"[{CliApiInfo.ApiNameColor}{(CliApiInfo.ApiNameColor.Contains(" on ") ? string.Empty : $" {CliApiInfo.BackGroundColor}")}]{_("Break in arguments chunk ${0} with exit code %{1}", (i + 1).ToString(), exitCode.ToString())}[/]");
                             return exitCode;
                         }
                         startArg = endArg + 1;
@@ -204,13 +203,17 @@ namespace wan24.CLI
             DisplayGeneralHeader();
             cancellationToken.ThrowIfCancellationRequested();
             if (!Bootstrap.DidBoot) await Bootstrap.Async(cancellationToken: cancellationToken).DynamicContext();
-            args ??= Environment.GetCommandLineArgs();
+            if (args is null)
+            {
+                args = ENV.CliArguments;
+                if (args.Length > 0) args = [.. args.AsSpan(1)];
+            }
             // Find exported APIs
             if (exportedApis.Length == 0)
             {
                 if (Trace) WriteTrace("Find exported APIs");
-                exportedApis = FindExportedApis();
-                if (exportedApis.Length == 0 || exportedApis.Length == 1 && typeof(CliHelpApi).IsAssignableFrom(exportedApis[0]))
+                exportedApis = [.. TypeHelper.Instance.Assemblies.FindExportedCliApis().Select(a => a.Type)];
+                if (exportedApis.Length == 0 || (exportedApis.Length == 1 && typeof(CliHelpApi).IsAssignableFrom(exportedApis[0])))
                     throw new InvalidProgramException("No CLI APIs exported");
             }
             bool removeExportedApis = ExportedApis is null;
@@ -545,7 +548,7 @@ namespace wan24.CLI
         /// </summary>
         public static void DisplayGeneralHeader()
         {
-            if (GeneralHeader is null || (GeneralHeaderDisplayed || HelpHeaderDisplayed)) return;
+            if (GeneralHeader is null || GeneralHeaderDisplayed || HelpHeaderDisplayed) return;
             GeneralHeaderDisplayed = true;
             AnsiConsole.MarkupLine(_(GeneralHeader));
             Console.WriteLine();

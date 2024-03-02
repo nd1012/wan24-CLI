@@ -128,16 +128,24 @@ namespace wan24.CLI
                 AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Usage")}:[/]");
                 AnsiConsole.MarkupLine($"  [{CliApiInfo.RequiredColor}]{CliApi.CommandLine.EscapeMarkup()}[/] [{CliApiInfo.ApiNameColor}]{ApiName}[/] [{CliApiInfo.DecorationColor}]([/][{CliApiInfo.ApiMethodNameColor}]{_("Method")}[/][{CliApiInfo.DecorationColor}]) ([/][{CliApiInfo.OptionalColor}]{_("Arguments")}[/][{CliApiInfo.DecorationColor}])[/]");
                 Console.WriteLine();
-                if (Details && apiInfo.Attribute?.HelpTextProperty is not null)
+                if (Details && (apiInfo.Attribute?.HelpTextProperty is not null || apiInfo.Attribute?.HelpMethod is not null))
                 {
                     AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Usage details")}:[/]");
-                    AnsiConsole.MarkupLine(apiInfo.Attribute.GetHelpText()!.Parse(new Dictionary<string, string>()
+                    if (apiInfo.Attribute?.HelpTextProperty is not null)
+                    {
+                        AnsiConsole.MarkupLine(apiInfo.Attribute.GetHelpText()!.Parse(new Dictionary<string, string>()
                         {
                             {"CommandLine", CliApi.CommandLine.EscapeMarkup()},
                             {"API", apiInfo.Name },
                             {"Method", string.Empty }
                         }));
-                    Console.WriteLine();
+                        Console.WriteLine();
+                    }
+                    if (apiInfo.Attribute?.HelpMethod is not null)
+                    {
+                        apiInfo.Attribute.RunHelpMethod(apiInfo, CliApi.CurrentContext);
+                        Console.WriteLine();
+                    }
                 }
                 AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("API methods")}:[/]");
                 foreach (CliApiMethodInfo apiMethodInfo in apiInfo.Methods.Values)
@@ -208,16 +216,25 @@ namespace wan24.CLI
                             );
                         AnsiConsole.MarkupLine($"[{CliApiInfo.RequiredColor}]{_(argInfo.Title.EscapeMarkup())}[/]");
                         if (argInfo.Description is not null) AnsiConsole.MarkupLine($"  {_(argInfo.Description.EscapeMarkup())}");
-                        if (Details && argInfo.Attribute?.HelpTextProperty is not null)
+                        if (Details)
                         {
-                            AnsiConsole.MarkupLine(argInfo.Attribute.GetHelpText()!.Parse(new Dictionary<string, string>()
+                            if (argInfo.Attribute?.HelpTextProperty is not null)
                             {
-                                {"CommandLine", CliApi.CommandLine.EscapeMarkup()},
-                                {"API", apiInfo.Name },
-                                {"Method", methodInfo.Name }
-                            }));
+                                Console.WriteLine();
+                                AnsiConsole.MarkupLine(argInfo.Attribute.GetHelpText()!.Parse(new Dictionary<string, string>()
+                                {
+                                    {"CommandLine", CliApi.CommandLine.EscapeMarkup()},
+                                    {"API", apiInfo.Name },
+                                    {"Method", methodInfo.Name }
+                                }));
+                            }
+                            if (argInfo.Attribute?.HelpMethod is not null)
+                            {
+                                Console.WriteLine();
+                                argInfo.Attribute.RunHelpMethod(argInfo, CliApi.CurrentContext);
+                            }
                         }
-                        else if (argInfo.Attribute?.HelpTextProperty is not null)
+                        else if (argInfo.Attribute?.HelpTextProperty is not null || argInfo.Attribute?.HelpMethod is not null)
                         {
                             hasDetails = true;
                         }
@@ -242,17 +259,30 @@ namespace wan24.CLI
                         Console.WriteLine();
                         AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]STDOUT:[/] {(methodInfo.StdOut.Required ? $"[{CliApiInfo.RequiredColor}]({_("Required")})" : $"[{CliApiInfo.OptionalColor}]({_("Optional")})")}[/] {_(methodInfo.StdOut.Description.EscapeMarkup())}");
                     }
-                    if (methodInfo.Attribute?.HelpTextProperty is not null)
+                    if (methodInfo.StdErr is not null)
+                    {
+                        Console.WriteLine();
+                        AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]STDERR:[/] {_(methodInfo.StdErr.Description.EscapeMarkup())}");
+                    }
+                    if (methodInfo.Attribute?.HelpTextProperty is not null || methodInfo.Attribute?.HelpMethod is not null)
                     {
                         Console.WriteLine();
                         AnsiConsole.MarkupLine($"[{CliApiInfo.HighlightColor}]{_("Usage details")}:[/]");
-                        Console.WriteLine();
-                        AnsiConsole.MarkupLine(methodInfo.Attribute.GetHelpText()!.Parse(new Dictionary<string, string>()
+                        if (methodInfo.Attribute.HelpTextProperty is not null)
                         {
-                            {"CommandLine", CliApi.CommandLine.EscapeMarkup()},
-                            {"API", apiInfo.Name },
-                            {"Method", methodInfo.Name }
-                        }));
+                            Console.WriteLine();
+                            AnsiConsole.MarkupLine(methodInfo.Attribute.GetHelpText()!.Parse(new Dictionary<string, string>()
+                            {
+                                {"CommandLine", CliApi.CommandLine.EscapeMarkup()},
+                                {"API", apiInfo.Name },
+                                {"Method", methodInfo.Name }
+                            }));
+                        }
+                        if (methodInfo.Attribute.HelpMethod is not null)
+                        {
+                            methodInfo.Attribute.RunHelpMethod(methodInfo, CliApi.CurrentContext);
+                            Console.WriteLine();
+                        }
                     }
                 }
                 else if (
@@ -297,5 +327,12 @@ namespace wan24.CLI
 
         /// <inheritdoc/>
         Task<int> ICliApiErrorHandler.HandleApiErrorAsync(CliApiContext context) => Task.FromResult(DisplayHelp(context));
+
+        /// <summary>
+        /// Delegate for a help details handler
+        /// </summary>
+        /// <param name="apiElement">API element (<see cref="CliApiInfo"/>, <see cref="CliApiMethodInfo"/>, <see cref="CliApiArgumentInfo"/>)</param>
+        /// <param name="context">Context</param>
+        public delegate void DetailHelp_Delegate(object apiElement, CliApiContext context);
     }
 }

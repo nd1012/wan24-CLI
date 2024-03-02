@@ -53,6 +53,11 @@ namespace wan24.CLI
         public string? HelpTextProperty { get; set; }
 
         /// <summary>
+        /// Public static help method name (<see cref="CliHelpApi.DetailHelp_Delegate"/>)
+        /// </summary>
+        public string? HelpMethod { get; set; }
+
+        /// <summary>
         /// Can an argument value be parsed using <see cref="ParseArgument(string, Type, string)"/>?
         /// </summary>
         public virtual bool CanParseArgument { get; }
@@ -74,6 +79,24 @@ namespace wan24.CLI
             if (pi.Getter is null)
                 throw new InvalidProgramException($"Failed to load the help text from \"{HelpTextProperty}\": Property \"{temp[^1]}\" has no getter");
             return pi.Getter!(null) is string res ? _(res) : null;
+        }
+
+        /// <summary>
+        /// Run the help method, if defined
+        /// </summary>
+        /// <param name="apiElement">API element</param>
+        /// <param name="context">Context</param>
+        /// <returns>If the method was executed</returns>
+        public virtual bool RunHelpMethod(object apiElement, CliApiContext context)
+        {
+            if (HelpMethod is null) return false;
+            string[] temp = HelpMethod.Split('.');
+            Type type = TypeHelper.Instance.GetType(string.Join('.', temp.SkipLast(count: 1)), throwOnError: true)
+                ?? throw new InvalidProgramException($"Failed to load the help text method from \"{HelpMethod}\": Failed to load the static methods type");
+            MethodInfo mi = type.GetMethodCached(temp[^1], BindingFlags.Public | BindingFlags.Static)
+                ?? throw new InvalidProgramException($"Failed to load the help text method from \"{HelpMethod}\": Method \"{temp[^1]}\" not found");
+            mi.Invoke(obj: null, [apiElement, context]);
+            return true;
         }
 
         /// <summary>
