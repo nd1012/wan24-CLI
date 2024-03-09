@@ -31,7 +31,7 @@ namespace wan24.CLI
         /// <summary>
         /// Use <c>InvokeAuth</c> for invoking API methods?
         /// </summary>
-        public static bool UseInvokeAuto { get; set; } = true;
+        public static bool UseInvokeAuto { get; set; }
 
         /// <summary>
         /// Current CLI API context
@@ -258,6 +258,11 @@ namespace wan24.CLI
                 if (exportedApis.Length == 0 || (exportedApis.Length == 1 && typeof(CliHelpApi).IsAssignableFrom(exportedApis[0])))
                     throw new InvalidProgramException("No CLI APIs exported");
             }
+            CurrentContext = new()
+            {
+                ExportedApis = exportedApis,
+                Arguments = ca
+            };
             bool removeExportedApis = ExportedApis is null;
             if (removeExportedApis) ExportedApis = CliApiInfo.Create(exportedApis);
             try
@@ -330,6 +335,7 @@ namespace wan24.CLI
                             Arguments = ca
                         }).DynamicContext();
                     }
+                    CurrentContext.API = api;
                 }
                 // Validate the required arguments
                 try
@@ -404,6 +410,7 @@ namespace wan24.CLI
                     }
                     if (Trace) WriteTrace($"Using named method {mi.Name}");
                 }
+                CurrentContext.Method = mi;
                 // Collect API method invokation parameters
                 List<object?> param = [];
                 if (UseInvokeAuto) param.Add(cancellationToken);
@@ -452,17 +459,10 @@ namespace wan24.CLI
                         Exception = ex
                     }).DynamicContext();
                 }
+                CurrentContext.Parameters = [.. param];
                 // Invoke the API method and handle the result
                 try
                 {
-                    CurrentContext = new()
-                    {
-                        ExportedApis = exportedApis,
-                        API = api,
-                        Method = mi,
-                        Parameters = [.. param],
-                        Arguments = ca
-                    };
                     if (UseInvokeAuto)
                     {
                         int res = (typeof(Task).IsAssignableFrom(mi.ReturnType)
