@@ -82,6 +82,48 @@ namespace wan24.CLI
         public static bool DisplayFullExceptions { get; set; }
 
         /// <summary>
+        /// State
+        /// </summary>
+        public static IEnumerable<Core.Status> State
+        {
+            get
+            {
+                // General
+                yield return new(__("Command"), CommandLine, __("The used command line"));
+                yield return new(__("Helper"), Helper.GetType(), __("The used API helper CLR type"));
+                yield return new(__("CLI API running"), CurrentContext is not null, __("If a CLI API is being executed at present"));
+                yield return new(__("Invoke auto"), UseInvokeAuto, __("If using auto-invokation"));
+                yield return new(__("Full exceptions"), DisplayFullExceptions, __("If displaying full exception informations on error"));
+                // Current context
+                if (CurrentContext is not null)
+                {
+                    yield return new(__("API"), CurrentContext.API?.GetType(), __("CLR type of the executing API"));
+                    yield return new(__("Arguments"), CurrentContext.Arguments?.ToString(), __("Used CLI arguments"));
+                    yield return new(__("Method"), CurrentContext.Method?.Name, __("CLR name of the executing API method"));
+                    yield return new(__("Exception"), CurrentContext.Exception?.Message ?? CurrentContext.Exception?.GetType().ToString(), __("Exception during handling the API call"));
+                    foreach (Type type in CurrentContext.ExportedApis)
+                        yield return new(__("Type"), type, __("CLR type of an exported API"), __("Exported APIs"));
+                }
+                // Custom parsers
+                yield return new(__("Custom parsers"), CustomArgumentParsers.Count, __("The number of custom CLI argument type parsers"), __("Custom parsers"));
+                foreach (Type type in CustomArgumentParsers.Keys)
+                    yield return new(__("Type"), type, __("Custom parsed CLI argument CLR type"), __("Custom parsers"));
+                // Color profiles
+                yield return new(__("Color profiles"), ConsoleColorProfile.Registered.Count, __("The number of available console color profiles"), __("Color profiles"));
+                foreach (string profile in ConsoleColorProfile.Registered.Keys)
+                    yield return new(__("Profile"), profile, __("Name of a custom console color profile"), __("Color profiles"));
+                // Used colors
+                yield return new(__("Background"), CliApiInfo.BackGroundColor, __("The used background color name"), __("Colors"));
+                yield return new(__("Highlight"), CliApiInfo.HighlightColor, __("The used highlight color name"), __("Colors"));
+                yield return new(__("Required"), CliApiInfo.RequiredColor, __("The used required element color name"), __("Colors"));
+                yield return new(__("Optional"), CliApiInfo.OptionalColor, __("The used optional element color name"), __("Colors"));
+                yield return new(__("Decoration"), CliApiInfo.DecorationColor, __("The used decoration color name"), __("Colors"));
+                yield return new(__("API"), CliApiInfo.ApiNameColor, __("The used API name color name"), __("Colors"));
+                yield return new(__("Method"), CliApiInfo.ApiMethodNameColor, __("The used API method name color name"), __("Colors"));
+            }
+        }
+
+        /// <summary>
         /// Run the CLI API
         /// </summary>
         /// <param name="args">Argument list</param>
