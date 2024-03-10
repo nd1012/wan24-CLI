@@ -35,6 +35,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.CLI.Bootstrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.CLI.Bootstrapper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.CLI.CliApi.ParseType_Delegate.yml",
       "output": {
         ".html": {

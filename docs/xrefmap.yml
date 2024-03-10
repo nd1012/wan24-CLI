@@ -7,6 +7,25 @@ references:
   commentId: N:wan24.CLI
   fullName: wan24.CLI
   nameWithType: wan24.CLI
+- uid: wan24.CLI.Bootstrapper
+  name: Bootstrapper
+  href: api/wan24.CLI.Bootstrapper.html
+  commentId: T:wan24.CLI.Bootstrapper
+  fullName: wan24.CLI.Bootstrapper
+  nameWithType: Bootstrapper
+- uid: wan24.CLI.Bootstrapper.Boot
+  name: Boot()
+  href: api/wan24.CLI.Bootstrapper.html#wan24_CLI_Bootstrapper_Boot
+  commentId: M:wan24.CLI.Bootstrapper.Boot
+  fullName: wan24.CLI.Bootstrapper.Boot()
+  nameWithType: Bootstrapper.Boot()
+- uid: wan24.CLI.Bootstrapper.Boot*
+  name: Boot
+  href: api/wan24.CLI.Bootstrapper.html#wan24_CLI_Bootstrapper_Boot_
+  commentId: Overload:wan24.CLI.Bootstrapper.Boot
+  isSpec: "True"
+  fullName: wan24.CLI.Bootstrapper.Boot
+  nameWithType: Bootstrapper.Boot
 - uid: wan24.CLI.CliApi
   name: CliApi
   href: api/wan24.CLI.CliApi.html
@@ -232,6 +251,19 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApi.RunMultiAsync
   nameWithType: CliApi.RunMultiAsync
+- uid: wan24.CLI.CliApi.State
+  name: State
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_State
+  commentId: P:wan24.CLI.CliApi.State
+  fullName: wan24.CLI.CliApi.State
+  nameWithType: CliApi.State
+- uid: wan24.CLI.CliApi.State*
+  name: State
+  href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_State_
+  commentId: Overload:wan24.CLI.CliApi.State
+  isSpec: "True"
+  fullName: wan24.CLI.CliApi.State
+  nameWithType: CliApi.State
 - uid: wan24.CLI.CliApi.StdErr
   name: StdErr
   href: api/wan24.CLI.CliApi.html#wan24_CLI_CliApi_StdErr
