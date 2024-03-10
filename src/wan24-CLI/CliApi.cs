@@ -7,6 +7,7 @@ using wan24.ObjectValidation;
 using static wan24.Core.Logger;
 using static wan24.Core.Logging;
 using static wan24.Core.TranslationHelper;
+using static wan24.Core.TranslationHelper.Ext;
 
 namespace wan24.CLI
 {

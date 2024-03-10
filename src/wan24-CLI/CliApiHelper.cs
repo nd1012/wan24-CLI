@@ -1,7 +1,7 @@
 ﻿using Spectre.Console;
 using System.Diagnostics.Contracts;
 using wan24.Core;
-using static wan24.Core.TranslationHelper;
+using static wan24.Core.TranslationHelper.Ext;
 
 namespace wan24.CLI
 {
