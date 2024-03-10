@@ -1,5 +1,6 @@
 ﻿using Spectre.Console;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using wan24.Core;
 using wan24.ObjectValidation;
@@ -54,7 +55,7 @@ namespace wan24.CLI
         [ExitCode(0, "Default exit code")]
         public virtual int Help()
         {
-            Contract.Assume(CliApi.CurrentContext is not null && CliApi.ExportedApis is not null);
+            Contract.Assert(CliApi.CurrentContext is not null && CliApi.ExportedApis is not null);
             CliApi.DisplayHelpHeader();
             CliApiInfo? apiInfo = ApiName is null
                 ? null
