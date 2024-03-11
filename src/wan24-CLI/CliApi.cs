@@ -546,7 +546,7 @@ namespace wan24.CLI
             )
         {
             if (Trace) WriteTrace("Display context API help");
-            DisplayHelpHeader();
+            if (context.Parameters is null || context.Exception is null || context.ForceDisplayHelp) DisplayHelpHeader();
             if (useApi)
             {
                 // Try the API type error handler / help provider

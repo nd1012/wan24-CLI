@@ -55,6 +55,7 @@ namespace wan24.CLI
         public virtual int Help()
         {
             Contract.Assert(CliApi.CurrentContext is not null && CliApi.ExportedApis is not null);
+            if (CliApi.CurrentContext.Parameters is not null && CliApi.CurrentContext.Exception is not null && !CliApi.CurrentContext.ForceDisplayHelp) return 1;
             CliApi.DisplayHelpHeader();
             CliApiInfo? apiInfo = ApiName is null
                 ? null
