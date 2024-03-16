@@ -212,7 +212,7 @@ namespace wan24.CLI
                         if (Trace) WriteTrace($"API call returned with exit code {exitCode}");
                         if (exitCode != 0)
                         {
-                            AnsiConsole.MarkupLine($"[{CliApiInfo.ApiNameColor}{(CliApiInfo.ApiNameColor.Contains(" on ") ? string.Empty : $" {CliApiInfo.BackGroundColor}")}]{_("Break in arguments chunk ${0} with exit code %{1}", (i + 1).ToString(), exitCode.ToString())}[/]");
+                            AnsiConsole.MarkupLine($"[{CliApiInfo.ApiNameColor}{(CliApiInfo.ApiNameColor.Contains(" on ") ? string.Empty : $" {CliApiInfo.BackGroundColor}")}]{_("Break in arguments chunk %{0} with exit code %{1}", (i + 1).ToString(), exitCode.ToString())}[/]");
                             return exitCode;
                         }
                         startArg = endArg + 1;
