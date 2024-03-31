@@ -32,9 +32,9 @@
   </Target>
 
   <ItemGroup>
-    <PackageReference Include="ObjectValidation" Version="2.4.0" Condition="'$(Configuration)' != 'Trunk'" />
+    <PackageReference Include="ObjectValidation" Version="2.5.0" Condition="'$(Configuration)' != 'Trunk'" />
     <PackageReference Include="Spectre.Console" Version="0.48.0" />
-    <PackageReference Include="wan24-Core" Version="2.11.0" Condition="'$(Configuration)' != 'Trunk'" />
+    <PackageReference Include="wan24-Core" Version="2.16.0" Condition="'$(Configuration)' != 'Trunk'" />
 	<ProjectReference Include="..\..\..\wan24-Core\src\Wan24-Core\Wan24-Core.csproj" Condition="'$(Configuration)' == 'Trunk'" />
 	<ProjectReference Include="..\..\..\ObjectValidation\src\ObjectValidation\ObjectValidation.csproj" Condition="'$(Configuration)' == 'Trunk'" />
   </ItemGroup>
@@ -48,6 +48,54 @@
     <None Update="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+    </None>
+    <None Update="wan24-CLI licenses\LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Microsoft.Extensions.Configuration.Abstractions.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Microsoft.Extensions.DependencyInjection.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Microsoft.Extensions.Diagnostics.Abstractions.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Microsoft.Extensions.FileProviders.Abstractions.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Microsoft.Extensions.Hosting.Abstractions.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Microsoft.Extensions.Localization.Abstractions.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Microsoft.Extensions.Logging.Abstractions.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Microsoft.Extensions.Options.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Microsoft.Extensions.Primitives.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\ObjectValidation.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\Spectre.Console.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\System.Diagnostics.DiagnosticSource.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\System.Memory.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wan24-CLI licenses\wan24-Core.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
