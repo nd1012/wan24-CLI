@@ -31,8 +31,7 @@ namespace wan24.CLI
         /// <summary>
         /// App version
         /// </summary>
-        public static Version Version { get; set; }
-            = new Version(Assembly.GetEntryAssembly()?.GetCustomAttributeCached<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "1.0.0");
+        public static Version Version { get; set; } = new("1.0.0");
 
         /// <summary>
         /// Display the app informations
