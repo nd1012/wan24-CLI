@@ -295,11 +295,9 @@ to an ANSI console. The default colors used can be customized in the static
 `CliApiInfo` properties.
 
 All help output can be localized. For a full localization, you can parse the 
-`wan24-CLI` source code with POEdit, for example, too. Parser should look for 
-these phrases:
-
-- `_("...")` (single underscore)
-- `__("...")` (double underscore)
+`wan24-CLI` source code with 
+[wan24-I8NTools](https://github.com/nd1012/wan24-I8NTools) to get a common PO 
+file.
 
 For intercepting errors there are multiple ways:
 

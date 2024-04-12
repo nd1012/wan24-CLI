@@ -44,6 +44,11 @@ namespace wan24.CLI
         public Exception? Exception { get; set; }
 
         /// <summary>
+        /// Force displaying help on API method execution error?
+        /// </summary>
+        public bool ForceDisplayHelp { get; set; }
+
+        /// <summary>
         /// Get the exported API names
         /// </summary>
         /// <returns>Exported API names (sorted ascending)</returns>

@@ -24,7 +24,8 @@ namespace wan24.CLI
         public virtual int DisplayHelp(CliApiContext context)
         {
             Contract.Assume(CliApi.ExportedApis is not null);
-            CliApi.DisplayHelpHeader();
+            bool displayHelp = context.Parameters is null || context.Exception is null || context.ForceDisplayHelp;
+            if (displayHelp) CliApi.DisplayHelpHeader();
             CliArgException? argException = context.Exception as CliArgException;
             if (context.Exception is not null)
             {
@@ -33,6 +34,7 @@ namespace wan24.CLI
                     : $"[white on red]{_("An exception has been catched")}: {(CliApi.DisplayFullExceptions ? context.Exception.ToString().EscapeMarkup() : context.Exception.Message.EscapeMarkup())}[/]");
                 CliApi.StdErr.WriteLine();
             }
+            if (!displayHelp) return 1;
             CliHelpApi help = CliApi.ExportedApis.Values.Where(a => typeof(CliHelpApi).IsAssignableFrom(a.Type)).FirstOrDefault()?.Type is Type apiHelpType
                 ? apiHelpType.ConstructAuto() as CliHelpApi ?? throw new InvalidProgramException($"Failed to instance API help from {apiHelpType}")
                 : new();
