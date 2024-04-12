@@ -301,12 +301,9 @@ using the <code>ExitCode</code> attribute on the method.</p>
 to an ANSI console. The default colors used can be customized in the static
 <code>CliApiInfo</code> properties.</p>
 <p>All help output can be localized. For a full localization, you can parse the
-<code>wan24-CLI</code> source code with POEdit, for example, too. Parser should look for
-these phrases:</p>
-<ul>
-<li><code>_(&quot;...&quot;)</code> (single underscore)</li>
-<li><code>__(&quot;...&quot;)</code> (double underscore)</li>
-</ul>
+<code>wan24-CLI</code> source code with
+<a href="https://github.com/nd1012/wan24-I8NTools">wan24-I8NTools</a> to get a common PO
+file.</p>
 <p>For intercepting errors there are multiple ways:</p>
 <h3 id="icliapierrorhandler"><code>ICliApiErrorHandler</code></h3>
 <p>If your API type implements the <code>ICliApiErrorHandler</code> interface, errors during

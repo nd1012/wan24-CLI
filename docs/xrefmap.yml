@@ -7,6 +7,96 @@ references:
   commentId: N:wan24.CLI
   fullName: wan24.CLI
   nameWithType: wan24.CLI
+- uid: wan24.CLI.AboutApi
+  name: AboutApi
+  href: api/wan24.CLI.AboutApi.html
+  commentId: T:wan24.CLI.AboutApi
+  fullName: wan24.CLI.AboutApi
+  nameWithType: AboutApi
+- uid: wan24.CLI.AboutApi.#ctor
+  name: AboutApi()
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi__ctor
+  commentId: M:wan24.CLI.AboutApi.#ctor
+  name.vb: New()
+  fullName: wan24.CLI.AboutApi.AboutApi()
+  fullName.vb: wan24.CLI.AboutApi.New()
+  nameWithType: AboutApi.AboutApi()
+  nameWithType.vb: AboutApi.New()
+- uid: wan24.CLI.AboutApi.#ctor*
+  name: AboutApi
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi__ctor_
+  commentId: Overload:wan24.CLI.AboutApi.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.CLI.AboutApi.AboutApi
+  fullName.vb: wan24.CLI.AboutApi.New
+  nameWithType: AboutApi.AboutApi
+  nameWithType.vb: AboutApi.New
+- uid: wan24.CLI.AboutApi.DisplayInfo
+  name: DisplayInfo()
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_DisplayInfo
+  commentId: M:wan24.CLI.AboutApi.DisplayInfo
+  fullName: wan24.CLI.AboutApi.DisplayInfo()
+  nameWithType: AboutApi.DisplayInfo()
+- uid: wan24.CLI.AboutApi.DisplayInfo*
+  name: DisplayInfo
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_DisplayInfo_
+  commentId: Overload:wan24.CLI.AboutApi.DisplayInfo
+  isSpec: "True"
+  fullName: wan24.CLI.AboutApi.DisplayInfo
+  nameWithType: AboutApi.DisplayInfo
+- uid: wan24.CLI.AboutApi.DisplayVersion
+  name: DisplayVersion()
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_DisplayVersion
+  commentId: M:wan24.CLI.AboutApi.DisplayVersion
+  fullName: wan24.CLI.AboutApi.DisplayVersion()
+  nameWithType: AboutApi.DisplayVersion()
+- uid: wan24.CLI.AboutApi.DisplayVersion*
+  name: DisplayVersion
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_DisplayVersion_
+  commentId: Overload:wan24.CLI.AboutApi.DisplayVersion
+  isSpec: "True"
+  fullName: wan24.CLI.AboutApi.DisplayVersion
+  nameWithType: AboutApi.DisplayVersion
+- uid: wan24.CLI.AboutApi.Info
+  name: Info
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_Info
+  commentId: P:wan24.CLI.AboutApi.Info
+  fullName: wan24.CLI.AboutApi.Info
+  nameWithType: AboutApi.Info
+- uid: wan24.CLI.AboutApi.Info*
+  name: Info
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_Info_
+  commentId: Overload:wan24.CLI.AboutApi.Info
+  isSpec: "True"
+  fullName: wan24.CLI.AboutApi.Info
+  nameWithType: AboutApi.Info
+- uid: wan24.CLI.AboutApi.Title
+  name: Title
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_Title
+  commentId: P:wan24.CLI.AboutApi.Title
+  fullName: wan24.CLI.AboutApi.Title
+  nameWithType: AboutApi.Title
+- uid: wan24.CLI.AboutApi.Title*
+  name: Title
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_Title_
+  commentId: Overload:wan24.CLI.AboutApi.Title
+  isSpec: "True"
+  fullName: wan24.CLI.AboutApi.Title
+  nameWithType: AboutApi.Title
+- uid: wan24.CLI.AboutApi.Version
+  name: Version
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_Version
+  commentId: P:wan24.CLI.AboutApi.Version
+  fullName: wan24.CLI.AboutApi.Version
+  nameWithType: AboutApi.Version
+- uid: wan24.CLI.AboutApi.Version*
+  name: Version
+  href: api/wan24.CLI.AboutApi.html#wan24_CLI_AboutApi_Version_
+  commentId: Overload:wan24.CLI.AboutApi.Version
+  isSpec: "True"
+  fullName: wan24.CLI.AboutApi.Version
+  nameWithType: AboutApi.Version
 - uid: wan24.CLI.Bootstrapper
   name: Bootstrapper
   href: api/wan24.CLI.Bootstrapper.html
@@ -857,6 +947,19 @@ references:
   isSpec: "True"
   fullName: wan24.CLI.CliApiContext.ExportedApis
   nameWithType: CliApiContext.ExportedApis
+- uid: wan24.CLI.CliApiContext.ForceDisplayHelp
+  name: ForceDisplayHelp
+  href: api/wan24.CLI.CliApiContext.html#wan24_CLI_CliApiContext_ForceDisplayHelp
+  commentId: P:wan24.CLI.CliApiContext.ForceDisplayHelp
+  fullName: wan24.CLI.CliApiContext.ForceDisplayHelp
+  nameWithType: CliApiContext.ForceDisplayHelp
+- uid: wan24.CLI.CliApiContext.ForceDisplayHelp*
+  name: ForceDisplayHelp
+  href: api/wan24.CLI.CliApiContext.html#wan24_CLI_CliApiContext_ForceDisplayHelp_
+  commentId: Overload:wan24.CLI.CliApiContext.ForceDisplayHelp
+  isSpec: "True"
+  fullName: wan24.CLI.CliApiContext.ForceDisplayHelp
+  nameWithType: CliApiContext.ForceDisplayHelp
 - uid: wan24.CLI.CliApiContext.GetArgumentHostType(System.String)
   name: GetArgumentHostType(string)
   href: api/wan24.CLI.CliApiContext.html#wan24_CLI_CliApiContext_GetArgumentHostType_System_String_
