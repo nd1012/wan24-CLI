@@ -301,7 +301,7 @@ namespace wan24.CLI
         /// </summary>
         /// <param name="type">API type</param>
         /// <returns>API methods</returns>
-        internal static IEnumerable<MethodInfo> FindApiMethods(Type type)
+        internal static IEnumerable<MethodInfoExt> FindApiMethods(Type type)
             => from mi in type.GetMethodsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
                where mi.GetCustomAttributeCached<CliApiAttribute>() is not null
                select mi;
@@ -311,7 +311,7 @@ namespace wan24.CLI
         /// </summary>
         /// <param name="methods">API methods</param>
         /// <returns>Default API method</returns>
-        internal static MethodInfo? FindDefaultApiMethod(IEnumerable<MethodInfo> methods)
+        internal static MethodInfoExt? FindDefaultApiMethod(IEnumerable<MethodInfoExt> methods)
             => (from mi in methods
                 where mi.GetCustomAttributeCached<CliApiAttribute>()!.IsDefault
                 select mi).FirstOrDefault();
@@ -331,8 +331,8 @@ namespace wan24.CLI
         /// </summary>
         /// <param name="mi">API method</param>
         /// <returns>API arguments</returns>
-        internal static IEnumerable<ParameterInfo> FindApiArguments(MethodInfo mi)
-            => from pi in mi.GetParametersCached()
+        internal static IEnumerable<ParameterInfo> FindApiArguments(MethodInfoExt mi)
+            => from pi in mi.Parameters
                where pi.GetCustomAttributeCached<CliApiAttribute>() is not null
                select pi;
     }

@@ -158,7 +158,7 @@ namespace wan24.CLI
         /// </summary>
         /// <param name="api">API type</param>
         /// <returns>Exported API methods</returns>
-        public static IEnumerable<MethodInfo> GetExportedApiMethods(this Type api) => CliApi.FindApiMethods(api);
+        public static IEnumerable<MethodInfoExt> GetExportedApiMethods(this Type api) => CliApi.FindApiMethods(api);
 
         /// <summary>
         /// Get the exported API methods
@@ -166,7 +166,7 @@ namespace wan24.CLI
         /// <param name="api">API type</param>
         /// <returns>Exported API method names (sorted ascending)</returns>
         public static IEnumerable<string> GetExportedApiMethodNames(this Type api)
-            => GetExportedApiMethods(api).Select(mi => mi.GetCliApiMethodName()).OrderBy(name => name);
+            => GetExportedApiMethods(api).Select(mi => mi.Method.GetCliApiMethodName()).OrderBy(name => name);
 
         /// <summary>
         /// Get the available (named!) arguments
@@ -174,18 +174,18 @@ namespace wan24.CLI
         /// <param name="api">API type</param>
         /// <param name="mi">API method</param>
         /// <returns>Available arguments (sorted ascending; including dash prefix)</returns>
-        public static IEnumerable<string> GetAvailableArguments(this Type api, MethodInfo? mi = null)
+        public static IEnumerable<string> GetAvailableArguments(this Type api, MethodInfoExt? mi = null)
         {
             IEnumerable<string> GetObjectArguments(Type type)
             {
                 CliApiAttribute? attr;
-                foreach (PropertyInfo pi in CliApi.FindApiArguments(type))
+                foreach (PropertyInfoExt pi in CliApi.FindApiArguments(type))
                 {
                     attr = pi.GetCustomAttributeCached<CliApiAttribute>();
                     if (attr is null) continue;
                     if (attr.KeyLessOffset == -1)
                     {
-                        yield return pi.PropertyType == typeof(bool) ? $"-{pi.GetCliApiArgumentName()}" : $"--{pi.GetCliApiArgumentName()}";
+                        yield return pi.PropertyType == typeof(bool) ? $"-{pi.Property.GetCliApiArgumentName()}" : $"--{pi.Property.GetCliApiArgumentName()}";
                     }
                     else
                     {
@@ -198,7 +198,7 @@ namespace wan24.CLI
                 foreach (string arg in GetObjectArguments(api))
                     yield return arg;
                 if (mi is null) yield break;
-                foreach (ParameterInfo pi in mi.GetParameters())
+                foreach (ParameterInfo pi in mi.Parameters)
                 {
                     if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                     if (pi.ParameterType == typeof(bool))
@@ -226,7 +226,7 @@ namespace wan24.CLI
         /// <param name="arg">Argument (excluding dash prefix)</param>
         /// <param name="mi">API method</param>
         /// <returns>Argument host type</returns>
-        public static CliArgumentHosts GetArgumentHostType(this Type api, string arg, MethodInfo? mi = null)
+        public static CliArgumentHosts GetArgumentHostType(this Type api, string arg, MethodInfoExt? mi = null)
         {
             if (CliApi.FindApiArguments(api).Any(pi => pi.Property.GetCliApiArgumentName() == arg)) return CliArgumentHosts.Property;
             if (mi is null) return CliArgumentHosts.None;
@@ -249,7 +249,7 @@ namespace wan24.CLI
                 }
                 return CliArgumentHosts.None;
             }
-            foreach (ParameterInfo pi in mi.GetParameters())
+            foreach (ParameterInfo pi in mi.Parameters)
             {
                 if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                 if (pi.ParameterType.GetCliArgumentType() == CliArgumentTypes.Object && FindArgument(pi.ParameterType) == CliArgumentHosts.Property)
@@ -266,7 +266,7 @@ namespace wan24.CLI
         /// <param name="arg">Argument (excluding dash prefix)</param>
         /// <param name="mi">API method</param>
         /// <returns>Host parameter</returns>
-        public static ParameterInfo? GetCliArgumentHostParameter(this Type api, string arg, MethodInfo? mi = null)
+        public static ParameterInfo? GetCliArgumentHostParameter(this Type api, string arg, MethodInfoExt? mi = null)
         {
             if (CliApi.FindApiArguments(api).Any(pi => pi.Property.GetCliApiArgumentName() == arg)) return null;
             if (mi is null) return null;
@@ -275,21 +275,21 @@ namespace wan24.CLI
             {
                 if (seen.Contains(type)) return CliArgumentHosts.None;
                 seen.Add(type);
-                foreach (PropertyInfo pi in CliApi.FindApiArguments(type))
+                foreach (PropertyInfoExt pi in CliApi.FindApiArguments(type))
                 {
                     if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                     if (pi.PropertyType.GetCliArgumentType() == CliArgumentTypes.Object)
                     {
                         if (FindArgument(pi.PropertyType) == CliArgumentHosts.Property) return CliArgumentHosts.Property;
                     }
-                    else if (pi.GetCliApiArgumentName() == arg)
+                    else if (pi.Property.GetCliApiArgumentName() == arg)
                     {
                         return CliArgumentHosts.Property;
                     }
                 }
                 return CliArgumentHosts.None;
             }
-            foreach (ParameterInfo pi in mi.GetParameters())
+            foreach (ParameterInfo pi in mi.Parameters)
             {
                 if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                 if (pi.ParameterType.GetCliArgumentType() == CliArgumentTypes.Object && FindArgument(pi.ParameterType) == CliArgumentHosts.Property)
@@ -306,7 +306,7 @@ namespace wan24.CLI
         /// <param name="arg">Argument (excluding dash prefix)</param>
         /// <param name="mi">API method</param>
         /// <returns>Host property</returns>
-        public static PropertyInfoExt? GetCliArgumentHostProperty(this Type api, string arg, MethodInfo? mi = null)
+        public static PropertyInfoExt? GetCliArgumentHostProperty(this Type api, string arg, MethodInfoExt? mi = null)
         {
             if (CliApi.FindApiArguments(api).FirstOrDefault(pi => pi.Property.GetCliApiArgumentName() == arg) is PropertyInfoExt res) return res;
             if (mi is null) return null;
@@ -329,7 +329,7 @@ namespace wan24.CLI
                 }
                 return null;
             }
-            foreach (ParameterInfo pi in mi.GetParameters())
+            foreach (ParameterInfo pi in mi.Parameters)
             {
                 if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                 if (pi.ParameterType.GetCliArgumentType() != CliArgumentTypes.Object)
@@ -349,26 +349,26 @@ namespace wan24.CLI
         /// <param name="member">Member name (of the property or parameter)</param>
         /// <param name="mi">API method</param>
         /// <returns><see cref="PropertyInfo"/> or <see cref="ParameterInfo"/></returns>
-        public static object? FindCliArgumentMember(this Type api, string member, MethodInfo? mi = null)
+        public static object? FindCliArgumentMember(this Type api, string member, MethodInfoExt? mi = null)
         {
             if (
                 ((object?)CliApi.FindApiArguments(api).FirstOrDefault(pi => pi.Name == member)
-                    ?? mi?.GetParameters().FirstOrDefault(pi => pi.Name == member && pi.GetCustomAttributeCached<CliApiAttribute>() is not null))
+                    ?? mi?.Parameters.FirstOrDefault(pi => pi.Name == member && pi.GetCustomAttributeCached<CliApiAttribute>() is not null))
                 is object res
                 )
                 return res;
             if (mi is null) return null;
             List<Type> seen = [];
-            PropertyInfo? FindArgument(Type type)
+            PropertyInfoExt? FindArgument(Type type)
             {
                 if (seen.Contains(type)) return null;
                 seen.Add(type);
-                foreach (PropertyInfo pi in CliApi.FindApiArguments(type))
+                foreach (PropertyInfoExt pi in CliApi.FindApiArguments(type))
                 {
                     if (pi.GetCustomAttributeCached<CliApiAttribute>() is null) continue;
                     if (pi.PropertyType.GetCliArgumentType() == CliArgumentTypes.Object)
                     {
-                        if (FindArgument(pi.PropertyType) is PropertyInfo res) return res;
+                        if (FindArgument(pi.PropertyType) is PropertyInfoExt res) return res;
                     }
                     else if (pi.Name == member)
                     {
@@ -377,7 +377,7 @@ namespace wan24.CLI
                 }
                 return null;
             }
-            foreach (ParameterInfo pi in mi.GetParameters())
+            foreach (ParameterInfo pi in mi.Parameters)
             {
                 if (
                     !typeof(ICliArguments).IsAssignableFrom(pi.ParameterType) ||
@@ -385,7 +385,7 @@ namespace wan24.CLI
                     pi.ParameterType.GetCliArgumentType() != CliArgumentTypes.Object
                     )
                     continue;
-                if (FindArgument(pi.ParameterType) is PropertyInfo property) return property;
+                if (FindArgument(pi.ParameterType) is PropertyInfoExt property) return property;
             }
             return null;
         }

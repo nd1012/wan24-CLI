@@ -93,8 +93,8 @@ namespace wan24.CLI
                 yield return new(__("Command"), CommandLine, __("The used command line"));
                 yield return new(__("Helper"), Helper.GetType(), __("The used API helper CLR type"));
                 yield return new(__("CLI API running"), CurrentContext is not null, __("If a CLI API is being executed at present"));
-                yield return new(__("Invoke auto"), UseInvokeAuto, __("If using auto-invokation"));
-                yield return new(__("Full exceptions"), DisplayFullExceptions, __("If displaying full exception informations on error"));
+                yield return new(__("Invoke auto"), UseInvokeAuto, __("If using auto-invocation"));
+                yield return new(__("Full exceptions"), DisplayFullExceptions, __("If displaying full exception information on error"));
                 // Current context
                 if (CurrentContext is not null)
                 {
@@ -357,8 +357,8 @@ namespace wan24.CLI
                 keyLessOffset += keyLessArgOffset;
                 keyLessArgOffset = 0;
                 // Find the API method to call
-                MethodInfo[] methods = FindApiMethods(api.GetType()).ToArray();
-                MethodInfo mi;
+                MethodInfoExt[] methods = FindApiMethods(api.GetType()).ToArray();
+                MethodInfoExt mi;
                 if (exportedApis.Length == 1 && methods.Length == 1)
                 {
                     // Use the only API method of the only API
@@ -412,14 +412,14 @@ namespace wan24.CLI
                     if (Trace) WriteTrace($"Using named method {mi.Name}");
                 }
                 CurrentContext.Method = mi;
-                // Collect API method invokation parameters
+                // Collect API method invocation parameters
                 List<object?> param = [];
                 if (UseInvokeAuto) param.Add(cancellationToken);
                 try
                 {
                     object? value;
                     IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> results;
-                    foreach (ParameterInfo pi in mi.GetParameters())
+                    foreach (ParameterInfo pi in mi.Parameters)
                         if (pi.GetCustomAttributeCached<CliApiAttribute>() is not CliApiAttribute attr)
                         {
                             // Not a CLI argument parameter
@@ -467,12 +467,12 @@ namespace wan24.CLI
                     if (UseInvokeAuto)
                     {
                         int res = (typeof(Task).IsAssignableFrom(mi.ReturnType)
-                            ? await mi.InvokeAutoAsync(mi.IsStatic ? null : api, [.. param]).DynamicContext()
-                            : mi.InvokeAuto(mi.IsStatic ? null : api, [.. param])) is int exitCode ? exitCode : 0;
+                            ? await mi.Method.InvokeAutoAsync(mi.Method.IsStatic ? null : api, [.. param]).DynamicContext()
+                            : mi.Method.InvokeAuto(mi.Method.IsStatic ? null : api, [.. param])) is int exitCode ? exitCode : 0;
                         if (Trace) WriteTrace($"API method returned exit code {res}");
                         return res;
                     }
-                    object? ret = mi.Invoke(mi.IsStatic ? null : api, [.. param]);
+                    object? ret = mi.Invoker!(mi.Method.IsStatic ? null : api, [.. param]);
                     if (ret is not null)
                     {
                         if (ret is int res)
@@ -480,23 +480,10 @@ namespace wan24.CLI
                             if (Trace) WriteTrace($"API method returned exit code {res}");
                             return res;
                         }
-                        if (ret is Task task)
+                        if(await TaskHelper.GetAnyTaskResultAsync(ret).DynamicContext() is int exitCode)
                         {
-                            await task.DynamicContext();
-                            if (mi.ReturnType.IsGenericType && task.GetResult(mi.ReturnType.GetGenericArguments()[0]) is int exitCode)
-                            {
-                                if (Trace) WriteTrace($"API method returned exit code {exitCode}");
-                                return exitCode;
-                            }
-                        }
-                        else if (ret is ValueTask valueTask)
-                        {
-                            await valueTask.DynamicContext();
-                            if (mi.ReturnType.IsGenericType && valueTask.GetResult(mi.ReturnType.GetGenericArguments()[0]) is int exitCode)
-                            {
-                                if (Trace) WriteTrace($"API method returned exit code {exitCode}");
-                                return exitCode;
-                            }
+                            if (Trace) WriteTrace($"API method returned exit code {exitCode}");
+                            return exitCode;
                         }
                     }
                     if (Trace) WriteTrace("API method returned no exit code (using zero)");
@@ -587,7 +574,7 @@ namespace wan24.CLI
         }
 
         /// <summary>
-        /// Display the gerneral header message
+        /// Display the general header message
         /// </summary>
         public static void DisplayGeneralHeader()
         {
