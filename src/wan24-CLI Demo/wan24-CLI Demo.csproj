@@ -8,6 +8,7 @@
     <Nullable>enable</Nullable>
     <AssemblyName>wan24CliDemo</AssemblyName>
     <Configurations>Debug;Release;Trunk</Configurations>
+    <EnablePreviewFeatures Condition="'$(Configuration)' != 'Release'">True</EnablePreviewFeatures>
   </PropertyGroup>
 
   <ItemGroup>

@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wan24-Core", "..\..\wan24-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wan24-CLI Demo", "wan24-CLI Demo\wan24-CLI Demo.csproj", "{32A92641-FF55-4CA8-B1DD-A0165C3F04CD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Referenced", "Referenced", "{CBA73539-322A-4312-919B-57987C83811A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A023CA2-4FB0-421D-827B-4EC017B50AB7} = {CBA73539-322A-4312-919B-57987C83811A}
+		{E7C5B32A-2097-4056-ABDB-D798F2E907D6} = {CBA73539-322A-4312-919B-57987C83811A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90B17315-E81F-4E3E-92EB-7A726B4A5FF5}

@@ -6,7 +6,7 @@ using wan24.Core;
 namespace wan24.CLI
 {
     /// <summary>
-    /// CLI API method informations
+    /// CLI API method information
     /// </summary>
     public record class CliApiMethodInfo
     {
@@ -16,7 +16,7 @@ namespace wan24.CLI
         /// <param name="api">API</param>
         /// <param name="mi">API method</param>
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
-        public CliApiMethodInfo(CliApiInfo api, MethodInfo mi, NullabilityInfoContext nic)
+        public CliApiMethodInfo(CliApiInfo api, MethodInfoExt mi, NullabilityInfoContext nic)
         {
             API = api;
             Method = mi;
@@ -65,7 +65,7 @@ namespace wan24.CLI
         /// <summary>
         /// API method
         /// </summary>
-        public MethodInfo Method { get; }
+        public MethodInfoExt Method { get; }
 
         /// <summary>
         /// <see cref="CliApiAttribute"/>

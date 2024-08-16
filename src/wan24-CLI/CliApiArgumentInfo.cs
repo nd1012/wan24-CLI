@@ -8,7 +8,7 @@ using wan24.Core;
 namespace wan24.CLI
 {
     /// <summary>
-    /// CLI API argument informations
+    /// CLI API argument information
     /// </summary>
     public partial record class CliApiArgumentInfo
     {
@@ -28,19 +28,19 @@ namespace wan24.CLI
             Method = method;
             Host = CliArgumentHosts.Property;
             Property = pi;
-            Name = pi.Property.GetCliApiArgumentName().RemoveDashPrefix();
+            Name = pi.GetCliApiArgumentName().RemoveDashPrefix();
             Attribute = pi.GetCustomAttributeCached<CliApiAttribute>() ?? throw new ArgumentException("Missing CliApiAttribute", nameof(pi));
             Type = ClrType.GetCliArgumentType();
             IsValueList = pi.PropertyType.IsArray && pi.PropertyType.GetElementType() == typeof(string);
-            IsRequired = pi.Property.IsCliValueRequired(nic);
+            IsRequired = pi.IsCliValueRequired(nic);
             IsComplex = Type == CliArgumentTypes.Object && !typeof(ICliArguments).IsAssignableFrom(pi.PropertyType);
-            Title = pi.Property.GetCliTitle();
-            Description = pi.Property.GetCliDescription();
+            Title = pi.GetCliTitle();
+            Description = pi.GetCliDescription();
             SetObjectProperties(nic);
         }
 
         /// <summary>
-        /// COnstructor
+        /// Constructor
         /// </summary>
         /// <param name="method">Method</param>
         /// <param name="pi">Parameter</param>

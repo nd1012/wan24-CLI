@@ -26,7 +26,7 @@ namespace wan24.CLI
         /// <summary>
         /// API method
         /// </summary>
-        public MethodInfo? Method { get; set; }
+        public MethodInfoExt? Method { get; set; }
 
         /// <summary>
         /// API method parameters
@@ -61,8 +61,8 @@ namespace wan24.CLI
         /// Get the exported API methods
         /// </summary>
         /// <returns>Exported API methods</returns>
-        public IEnumerable<MethodInfo> GetExportedApiMethods()
-            => API is null ? Array.Empty<MethodInfo>().AsEnumerable() : API.GetType().GetExportedApiMethods();
+        public IEnumerable<MethodInfoExt> GetExportedApiMethods()
+            => API is null ? Array.Empty<MethodInfoExt>().AsEnumerable() : API.GetType().GetExportedApiMethods();
 
         /// <summary>
         /// Get the exported API methods
@@ -78,7 +78,7 @@ namespace wan24.CLI
         /// </summary>
         /// <returns>Available arguments (sorted ascending; including dash prefix)</returns>
         public IEnumerable<string> GetAvailableArguments()
-            => API is null
+            => API is null || Method is null
                 ? Array.Empty<string>().AsEnumerable()
                 : API.GetType().GetAvailableArguments(Method);
 
@@ -88,7 +88,7 @@ namespace wan24.CLI
         /// <param name="arg">Argument (excluding dash prefix)</param>
         /// <returns>Argument host type</returns>
         public CliArgumentHosts GetArgumentHostType(string arg)
-            => API is null ? CliArgumentHosts.None : API.GetType().GetArgumentHostType(arg, Method);
+            => API is null || Method is null ? CliArgumentHosts.None : API.GetType().GetArgumentHostType(arg, Method);
 
         /// <summary>
         /// Get the CLI argument host parameter
@@ -96,7 +96,7 @@ namespace wan24.CLI
         /// <param name="arg">Argument (excluding dash prefix)</param>
         /// <returns>Host parameter</returns>
         public ParameterInfo? GetCliArgumentHostParameter(string arg)
-            => API?.GetType().GetCliArgumentHostParameter(arg, Method);
+            => API is null || Method is null ? null : API.GetType().GetCliArgumentHostParameter(arg, Method);
 
         /// <summary>
         /// Get the CLI argument host property
@@ -104,6 +104,6 @@ namespace wan24.CLI
         /// <param name="arg">Argument (excluding dash prefix)</param>
         /// <returns>Host property</returns>
         public PropertyInfoExt? GetCliArgumentHostProperty(string arg)
-            => API?.GetType().GetCliArgumentHostProperty(arg, Method);
+            => API is null || Method is null ? null : API.GetType().GetCliArgumentHostProperty(arg, Method);
     }
 }
