@@ -26,7 +26,7 @@ namespace wan24.CLI
         /// <summary>
         /// API method
         /// </summary>
-        public MethodInfo? Method { get; set; }
+        public MethodInfoExt? Method { get; set; }
 
         /// <summary>
         /// API method parameters
@@ -70,8 +70,8 @@ namespace wan24.CLI
         /// <returns>Exported API method names (sorted ascending)</returns>
         public IEnumerable<string> GetExportedApiMethodNames()
             => from mi in GetExportedApiMethods()
-               orderby mi.Method.GetCliApiMethodName()
-               select mi.Method.GetCliApiMethodName();
+               orderby mi.GetCliApiMethodName()
+               select mi.GetCliApiMethodName();
 
         /// <summary>
         /// Get the available arguments

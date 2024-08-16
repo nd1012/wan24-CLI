@@ -388,7 +388,7 @@ namespace wan24.CLI
                     keyLessOffset++;
                     mi = null!;
                     CliApiAttribute attr;
-                    foreach (MethodInfo m in methods)
+                    foreach (MethodInfoExt m in methods)
                     {
                         attr = m.GetCustomAttributeCached<CliApiAttribute>()!;
                         if (
@@ -466,7 +466,7 @@ namespace wan24.CLI
                 {
                     if (UseInvokeAuto)
                     {
-                        int res = (typeof(Task).IsAssignableFrom(mi.ReturnType)
+                        int res = (mi.ReturnType.IsTask()
                             ? await mi.Method.InvokeAutoAsync(mi.Method.IsStatic ? null : api, [.. param]).DynamicContext()
                             : mi.Method.InvokeAuto(mi.Method.IsStatic ? null : api, [.. param])) is int exitCode ? exitCode : 0;
                         if (Trace) WriteTrace($"API method returned exit code {res}");

@@ -18,8 +18,8 @@ namespace wan24.CLI
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="keyLessOffset">Keyless argument offset (applies to a property or parameteter only)</param>
-        /// <param name="parseJson">Parse JSON values? (applies to a property or parameteter only)</param>
+        /// <param name="keyLessOffset">Keyless argument offset (applies to a property or parameter only)</param>
+        /// <param name="parseJson">Parse JSON values? (applies to a property or parameter only)</param>
         public CliApiAttribute(int keyLessOffset, bool parseJson = false) : this(parseJson: parseJson) => KeyLessOffset = keyLessOffset;
 
         /// <summary>
@@ -33,12 +33,12 @@ namespace wan24.CLI
         public bool IsDefault { get; set; }
 
         /// <summary>
-        /// Keyless argument offset (applies to a property or parameteter only)
+        /// Keyless argument offset (applies to a property or parameter only)
         /// </summary>
         public int KeyLessOffset { get; } = -1;
 
         /// <summary>
-        /// Parse JSON values? (applies to a property or parameteter only)
+        /// Parse JSON values? (applies to a property or parameter only)
         /// </summary>
         public bool ParseJson { get; set; } = parseJson;
 
@@ -93,45 +93,45 @@ namespace wan24.CLI
             string[] temp = HelpMethod.Split('.');
             Type type = TypeHelper.Instance.GetType(string.Join('.', temp.SkipLast(count: 1)), throwOnError: true)
                 ?? throw new InvalidProgramException($"Failed to load the help text method from \"{HelpMethod}\": Failed to load the static methods type");
-            MethodInfo mi = type.GetMethodCached(temp[^1], BindingFlags.Public | BindingFlags.Static)
+            MethodInfoExt mi = type.GetMethodCached(temp[^1], BindingFlags.Public | BindingFlags.Static)
                 ?? throw new InvalidProgramException($"Failed to load the help text method from \"{HelpMethod}\": Method \"{temp[^1]}\" not found");
-            mi.Invoke(obj: null, [apiElement, context]);
+            mi.Invoker!(null, [apiElement, context]);
             return true;
         }
 
         /// <summary>
-        /// Get API informations
+        /// Get API information
         /// </summary>
         /// <param name="api">API type</param>
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
-        /// <returns>API informations</returns>
+        /// <returns>API information</returns>
         public virtual CliApiInfo? GetApiInfo(Type api, NullabilityInfoContext nic) => null;
 
         /// <summary>
-        /// Get API method informations
+        /// Get API method information
         /// </summary>
         /// <param name="api">API</param>
         /// <param name="mi">Method</param>
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
-        /// <returns>API method informations</returns>
+        /// <returns>API method information</returns>
         public virtual CliApiMethodInfo? GetApiMethodInfo(CliApiInfo api, MethodInfo mi, NullabilityInfoContext nic) => null;
 
         /// <summary>
-        /// Get API argument informations
+        /// Get API argument information
         /// </summary>
         /// <param name="method">Method</param>
         /// <param name="pi">Property</param>
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
-        /// <returns>API argument informations</returns>
+        /// <returns>API argument information</returns>
         public virtual CliApiArgumentInfo? GetArgumentInfo(CliApiMethodInfo method, PropertyInfo pi, NullabilityInfoContext nic) => null;
 
         /// <summary>
-        /// Get API argument informations
+        /// Get API argument information
         /// </summary>
         /// <param name="method">Method</param>
         /// <param name="pi">Parameter</param>
         /// <param name="nic"><see cref="NullabilityInfoContext"/></param>
-        /// <returns>API argument informations</returns>
+        /// <returns>API argument information</returns>
         public virtual CliApiArgumentInfo? GetArgumentInfo(CliApiMethodInfo method, ParameterInfo pi, NullabilityInfoContext nic) => null;
 
         /// <summary>

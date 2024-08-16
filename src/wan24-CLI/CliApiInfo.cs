@@ -6,7 +6,7 @@ using wan24.Core;
 namespace wan24.CLI
 {
     /// <summary>
-    /// CLI API informations
+    /// CLI API information
     /// </summary>
     public record class CliApiInfo
     {
@@ -26,7 +26,7 @@ namespace wan24.CLI
             IsHelpProvider = typeof(ICliApiHelpProvider).IsAssignableFrom(api);
             nic ??= new();
             Dictionary<string, CliApiMethodInfo> methods = [];
-            foreach (MethodInfo mi in api.GetExportedApiMethods())
+            foreach (MethodInfoExt mi in api.GetExportedApiMethods())
                 methods[mi.GetCliApiMethodName()] = mi.GetCustomAttributeCached<CliApiAttribute>()?.GetApiMethodInfo(this, mi, nic) ?? new(this, mi, nic);
             Methods = methods.ToFrozenDictionary();
         }
@@ -115,7 +115,7 @@ namespace wan24.CLI
         /// Create for exported APIs
         /// </summary>
         /// <param name="exportedApis">Exported APIs</param>
-        /// <returns>Exported API informations</returns>
+        /// <returns>Exported API information</returns>
         public static FrozenDictionary<string, CliApiInfo> Create(params Type[] exportedApis)
         {
             NullabilityInfoContext nic = new();
