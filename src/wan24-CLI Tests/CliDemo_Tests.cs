@@ -1,9 +1,10 @@
 ﻿using wan24.Core;
+using wan24.Tests;
 
 namespace wan24_CLI_Tests
 {
     [TestClass]
-    public class CliDemo_Tests
+    public class CliDemo_Tests : TestBase
     {
         [TestMethod, Timeout(10000)]
         public void General_Tests()
