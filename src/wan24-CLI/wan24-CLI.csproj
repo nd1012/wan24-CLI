@@ -33,9 +33,9 @@
   </Target>
 
   <ItemGroup>
-    <PackageReference Include="ObjectValidation" Version="2.6.0" Condition="'$(Configuration)' != 'Trunk'" />
+    <PackageReference Include="ObjectValidation" Version="2.7.0" Condition="'$(Configuration)' != 'Trunk'" />
     <PackageReference Include="Spectre.Console" Version="0.49.1" />
-    <PackageReference Include="wan24-Core" Version="2.34.0" Condition="'$(Configuration)' != 'Trunk'" />
+    <PackageReference Include="wan24-Core" Version="2.35.0" Condition="'$(Configuration)' != 'Trunk'" />
 	<ProjectReference Include="..\..\..\wan24-Core\src\Wan24-Core\Wan24-Core.csproj" Condition="'$(Configuration)' == 'Trunk'" />
 	<ProjectReference Include="..\..\..\ObjectValidation\src\ObjectValidation\ObjectValidation.csproj" Condition="'$(Configuration)' == 'Trunk'" />
   </ItemGroup>
