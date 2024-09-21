@@ -9,7 +9,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageId>wan24-CLI</PackageId>
     <Title>wan24-CLI</Title>
-    <Version>1.6.0</Version>
+    <Version>1.7.0</Version>
     <Authors>nd1012</Authors>
     <Company>Andreas Zimmermann, wan24.de</Company>
     <Product>wan24-CLI</Product>
@@ -33,9 +33,9 @@
   </Target>
 
   <ItemGroup>
-    <PackageReference Include="ObjectValidation" Version="2.7.0" Condition="'$(Configuration)' != 'Trunk'" />
+    <PackageReference Include="ObjectValidation" Version="2.8.0" Condition="'$(Configuration)' != 'Trunk'" />
     <PackageReference Include="Spectre.Console" Version="0.49.1" />
-    <PackageReference Include="wan24-Core" Version="2.36.0" Condition="'$(Configuration)' != 'Trunk'" />
+    <PackageReference Include="wan24-Core" Version="2.38.0" Condition="'$(Configuration)' != 'Trunk'" />
 	<ProjectReference Include="..\..\..\wan24-Core\src\Wan24-Core\Wan24-Core.csproj" Condition="'$(Configuration)' == 'Trunk'" />
 	<ProjectReference Include="..\..\..\ObjectValidation\src\ObjectValidation\ObjectValidation.csproj" Condition="'$(Configuration)' == 'Trunk'" />
   </ItemGroup>
