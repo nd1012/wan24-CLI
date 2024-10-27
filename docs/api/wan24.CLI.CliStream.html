@@ -118,6 +118,7 @@
     <h5>Implements</h5>
     <div><span class="xref">IStream</span></div>
     <div><span class="xref">IDisposableObject</span></div>
+    <div><span class="xref">IBasicDisposableObject</span></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><span class="xref">IStatusProvider</span></div>
@@ -474,7 +475,7 @@
   <h6><strong>Assembly</strong>: wan24CLI.dll</h6>
   <h5 id="wan24_CLI_CliStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CliStream : BiDirectionalStream, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class CliStream : BiDirectionalStream, IStream, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
   </div>
   <h5 id="wan24_CLI_CliStream_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
@@ -524,6 +525,9 @@
   </div>
   <div>
       <span class="xref">wan24.Core.IDisposableObject</span>
+  </div>
+  <div>
+      <span class="xref">wan24.Core.IBasicDisposableObject</span>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
