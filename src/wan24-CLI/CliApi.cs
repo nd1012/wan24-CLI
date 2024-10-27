@@ -278,7 +278,7 @@ namespace wan24.CLI
                     if (Trace) WriteTrace("Only one API is exported");
                     api = exportedApis[0].ConstructAuto() ?? throw new InvalidProgramException($"Failed to instance CLI API {exportedApis[0]}");
                 }
-                else if (ca.KeyLessArguments.Count == 0)
+                else if (ca.KeyLessArguments.Length == 0)
                 {
                     // Use the default API
                     Type type = FindDefaultApi(exportedApis) ?? exportedApis[0];
@@ -365,7 +365,7 @@ namespace wan24.CLI
                     if (Trace) WriteTrace("Only one API method is exported");
                     mi = methods[0];
                 }
-                else if (ca.KeyLessArguments.Count == keyLessOffset || ca.KeyLessArguments[keyLessOffset] != args[keyLessOffset])
+                else if (ca.KeyLessArguments.Length == keyLessOffset || ca.KeyLessArguments[keyLessOffset] != args[keyLessOffset])
                 {
                     // Use the default method
                     mi = FindDefaultApiMethod(methods)!;
