@@ -4,6 +4,7 @@ using wan24.Core;
 using wan24.ObjectValidation;
 using static wan24.Core.Logging;
 using static wan24.Core.Logger;
+using System.Collections.Immutable;
 
 namespace wan24.CLI
 {
@@ -68,7 +69,7 @@ namespace wan24.CLI
             // Keyless argument
             if (attr.KeyLessOffset != -1)
             {
-                bool hasValue = attr.KeyLessOffset < ca.KeyLessArguments.Count - keyLessOffset - keyLessArgOffset;
+                bool hasValue = attr.KeyLessOffset < ca.KeyLessArguments.Length - keyLessOffset - keyLessArgOffset;
                 if (Debug) WriteDebug(hasValue ? "Keyless argument value found" : "Keyless argument value not found");
                 if (!type.IsArray && attr.CanParseArgument)
                 {
@@ -85,7 +86,7 @@ namespace wan24.CLI
                     if (Debug) WriteDebug("CliApiAttribute parsed array values");
                     type = type.GetElementType()!;
                     string[] values = ca.KeyLessArguments.Skip(keyLessOffset + keyLessArgOffset).ToArray();
-                    keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
+                    keyLessArgOffset = ca.KeyLessArguments.Length - keyLessOffset;
                     Array arr = Array.CreateInstance(type, values.Length);
                     for (int i = 0, len = values.Length; i < len; arr.SetValue(attr.ParseArgument($"{name}[{i}]", type, values[i]), i), i++) ;
                     return (true, arr);
@@ -105,7 +106,7 @@ namespace wan24.CLI
                     if (Debug) WriteDebug("Simple string array");
                     if (!hasValue) return (false, Array.Empty<string>());
                     string[] res = ca.KeyLessArguments.Skip(keyLessOffset + keyLessArgOffset).ToArray();
-                    keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
+                    keyLessArgOffset = ca.KeyLessArguments.Length - keyLessOffset;
                     return (true, res);
                 }
                 else if ((FindTypeParser(type) ?? (type.IsArray ? FindTypeParser(type.GetElementType()!) : null)) is ParseType_Delegate parser)
@@ -128,7 +129,7 @@ namespace wan24.CLI
                         type = type.GetElementType()!;
                         if (Debug) WriteDebug($"Array of custom parsed {type}");
                         string[] values = ca.KeyLessArguments.Skip(keyLessOffset + keyLessArgOffset).ToArray();
-                        keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
+                        keyLessArgOffset = ca.KeyLessArguments.Length - keyLessOffset;
                         Array arr = Array.CreateInstance(type, values.Length);
                         for (int i = 0, len = values.Length; i < len; arr.SetValue(parser($"{name}[{i}]", type, values[i], attr), i), i++) ;
                         return (true, arr);
@@ -141,7 +142,7 @@ namespace wan24.CLI
                     if (!hasValue) return (false, Array.CreateInstance(type.GetElementType()!, length: 0));
                     type = type.GetElementType()!;
                     string[] values = ca.KeyLessArguments.Skip(keyLessOffset + keyLessArgOffset).ToArray();
-                    keyLessArgOffset = ca.KeyLessArguments.Count - keyLessOffset;
+                    keyLessArgOffset = ca.KeyLessArguments.Length - keyLessOffset;
                     Array arr = Array.CreateInstance(type, values.Length);
                     for (int i = 0, len = values.Length; i < len; arr.SetValue(ParseArgumentJsonValue($"{name}[{i}]", type, values[i], attr), i), i++) ;
                     return (true, arr);
@@ -165,8 +166,8 @@ namespace wan24.CLI
                 if (Debug) WriteDebug("CliApiAttribute parsed value");
                 if (existingName is null) return (false, null);
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
-                if (ca.All(existingName).Count != 1)
-                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} values are given)", existingName);
+                if (ca.All(existingName).Length != 1)
+                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Length} values are given)", existingName);
                 return (true, attr.ParseArgument(name, type, ca.Single(existingName)));
             }
             else if (type.IsArray && attr.CanParseArgument)
@@ -176,9 +177,9 @@ namespace wan24.CLI
                 if (existingName is null) return (false, null);
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
                 type = type.GetElementType()!;
-                ReadOnlyCollection<string> values = ca.All(existingName);
-                Array res = Array.CreateInstance(type, values.Count);
-                for (int i = 0, len = values.Count; i < len; res.SetValue(attr.ParseArgument($"{existingName}[{i}]", type, values[i]), i), i++) ;
+                ImmutableArray<string> values = ca.All(existingName);
+                Array res = Array.CreateInstance(type, values.Length);
+                for (int i = 0, len = values.Length; i < len; res.SetValue(attr.ParseArgument($"{existingName}[{i}]", type, values[i]), i), i++) ;
                 return (true, res);
             }
             else if (type == typeof(bool))
@@ -194,8 +195,8 @@ namespace wan24.CLI
                 if (Debug) WriteDebug("Simple string value");
                 if (existingName is null) return (false, null);
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
-                if (ca.All(existingName).Count != 1)
-                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} values are given)", existingName);
+                if (ca.All(existingName).Length != 1)
+                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Length} values are given)", existingName);
                 return (true, ca.Single(existingName));
             }
             else if (type.IsArray && type.GetElementType() == typeof(string))
@@ -218,17 +219,17 @@ namespace wan24.CLI
                 if (!type.IsArray)
                 {
                     if (Debug) WriteDebug($"Simple custom parsed {type}");
-                    if (ca.All(existingName).Count != 1)
-                        throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} values are given)", existingName);
+                    if (ca.All(existingName).Length != 1)
+                        throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Length} values are given)", existingName);
                     return (true, parser(existingName, type, ca.Single(existingName), attr));
                 }
                 else
                 {
                     type = type.GetElementType()!;
                     if (Debug) WriteDebug($"Array of custom parsed {type}");
-                    ReadOnlyCollection<string> values = ca.All(existingName);
-                    Array res = Array.CreateInstance(type, values.Count);
-                    for (int i = 0, len = values.Count; i < len; res.SetValue(parser($"{existingName}[{i}]", type, values[i], attr), i), i++) ;
+                    ImmutableArray<string> values = ca.All(existingName);
+                    Array res = Array.CreateInstance(type, values.Length);
+                    for (int i = 0, len = values.Length; i < len; res.SetValue(parser($"{existingName}[{i}]", type, values[i], attr), i), i++) ;
                     return (true, res);
                 }
             }
@@ -239,9 +240,9 @@ namespace wan24.CLI
                 if (existingName is null) return (true, Array.CreateInstance(type.GetElementType()!, length: 0));
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
                 type = type.GetElementType()!;
-                ReadOnlyCollection<string> values = ca.All(existingName);
-                Array res = Array.CreateInstance(type, values.Count);
-                for (int i = 0, len = values.Count; i < len; res.SetValue(ParseArgumentJsonValue($"{existingName}[{i}]", type, values[i], attr), i), i++) ;
+                ImmutableArray<string> values = ca.All(existingName);
+                Array res = Array.CreateInstance(type, values.Length);
+                for (int i = 0, len = values.Length; i < len; res.SetValue(ParseArgumentJsonValue($"{existingName}[{i}]", type, values[i], attr), i), i++) ;
                 return (true, res);
             }
             else
@@ -250,8 +251,8 @@ namespace wan24.CLI
                 if (Debug) WriteDebug("JSON parsed value");
                 if (existingName is null) return (false, null);
                 if (ca.IsBoolean(existingName)) throw new CliArgException($"Argument is not a flag (value required)", existingName);
-                if (ca.All(existingName).Count != 1)
-                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Count} values are given)", existingName);
+                if (ca.All(existingName).Length != 1)
+                    throw new CliArgException($"Only a single value is allowed ({ca.All(existingName).Length} values are given)", existingName);
                 return (true, ParseArgumentJsonValue(existingName, type, ca.Single(existingName), attr));
             }
         }

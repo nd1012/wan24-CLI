@@ -1,12 +1,13 @@
 ﻿using Spectre.Console;
 using System.ComponentModel;
 using System.Diagnostics.Contracts;
-using wan24.Core;
 using wan24.ObjectValidation;
 using static wan24.Core.TranslationHelper.Ext;
 
 namespace wan24.CLI
 {
+    using wan24.Core;
+
     /// <summary>
     /// CLI help API
     /// </summary>
